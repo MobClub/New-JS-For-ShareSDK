@@ -34,7 +34,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	private static final String API_SHOW_SHARE_MENU = "showShareMenu";
 	private static final String API_SHOW_SHARE_VIEW = "showShareView";
 	private static final String API_GET_FRIEND_LIST = "getFriendList";
-	private static final String API_FOLLOW_FRIEND = "followFriend";
+	private static final String API_FOLLOW_FRIEND = "addFriend";
 	private static final String API_CLOSE_SSO = "closeSSOWhenAuthorize";
 	
 	public static final int MSG_LOAD_URL = 1; // load js script

@@ -9,7 +9,6 @@
 
         function init()
         {          
-        	alert("Sample js init()");
         	//android的平台配置信息跟ShareSDK.xml一致；
             var sinaConf = 
             {
@@ -164,10 +163,10 @@
             });
         }
         
-        function followFriendBtnClickHandler()
+        function addFriendBtnClickHandler()
         {	//测试的一个账号
         	var account = "蜜思Louisette";
-            $sharesdk.followFriend($sharesdk.platformID.SinaWeibo, account, function (platform, state, error) {
+            $sharesdk.addFriend($sharesdk.platformID.SinaWeibo, account, function (platform, state, error) {
 
                 alert("state = " + state +  "\nerror = " + error);
 
@@ -187,6 +186,6 @@
     <input type="button" value="显示分享菜单" onclick="showShareMenuClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="获取好友列表" onclick="friendListBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
-    <input type="button" value="关注好友" onclick="followFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="关注好友" onclick="addFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
 </body>
 </html>

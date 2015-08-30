@@ -41,7 +41,7 @@
         "ShowShareMenu" : "showShareMenu",
         "ShowShareView" : "showShareView",
         "GetFriendList" : "getFriendList",
-        "FollowFriend" : "followFriend",
+        "AddFriend" : "addFriend",
         "CloseSSOWhenAuthorize" : "closeSSOWhenAuthorize"
     };
 
@@ -212,7 +212,7 @@
                         case ShareSDKMethodName.GetFriendList:
                         	callbackFunc(response.platform, response.state, response.data, response.error);
                         	break;
-                        case ShareSDKMethodName.FollowFriend:
+                        case ShareSDKMethodName.AddFriend:
                         	callbackFunc(response.platform, response.state, response.error);
                         	break;
                         case ShareSDKMethodName.GetAuthInfo:
@@ -292,7 +292,7 @@
                             break;
                         case ShareSDKMethodName.GetFriendList:
                         	break;
-                        case ShareSDKMethodName.FollowFriend:
+                        case ShareSDKMethodName.AddFriend:
                         	break;
                         case ShareSDKMethodName.GetAuthInfo:
                         	break;
@@ -569,7 +569,7 @@
      */
     ShareSDK.initSDKAndSetPlatfromConfig = function (appKey, platformConfig)
     {
-        alert(" ShareSDK.initSDKAndSetPlatfromConfig");
+    	alert(" ShareSDK.initSDKAndSetPlatfromConfig");
         var params =
         {
             "appKey" : appKey,
@@ -783,14 +783,14 @@
      * @param friendName
      * @param callback 
      */
-    ShareSDK.followFriend = function(platform, friendName, callback){
+    ShareSDK.addFriend = function(platform, friendName, callback){
     	var params = 
     	{
     			"platform" : platform,
                 "friendName" : friendName,
                 "callback" : "(" + callback.toString() + ")"	
     	}
-    	ShareSDK._callMethod(ShareSDKMethodName.FollowFriend, params);
+    	ShareSDK._callMethod(ShareSDKMethodName.AddFriend, params);
     };
     
     /**
