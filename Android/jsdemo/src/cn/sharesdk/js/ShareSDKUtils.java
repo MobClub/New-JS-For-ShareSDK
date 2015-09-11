@@ -355,10 +355,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 			platformDbMap.put("token", db.getToken());
 			platformDbMap.put("tokenSecret", db.getTokenSecret());
 			platformDbMap.put("userGender", db.getUserGender());
-			platformDbMap.put("userIcon", db.getUserIcon());
 			platformDbMap.put("userID", db.getUserId());
 			platformDbMap.put("openID", db.get("openid"));
 			platformDbMap.put("userName", db.getUserName());
+			platformDbMap.put("userIcon", db.getUserIcon());
 			authInfo = hashon.fromHashMap(platformDbMap);
 		}
 		return authInfo;
@@ -445,8 +445,8 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 			if (map.containsKey("siteUrl")) {
 				oks.setSiteUrl(String.valueOf(map.get("siteUrl")));
 			}
-			if (params.containsKey("theme")){
-				String theme = (String) params.get("theme");
+			if (params.containsKey("shareTheme")){
+				String theme = (String) params.get("shareTheme");
 				if("shybule".equals(theme)){
 					oks.setTheme(OnekeyShareTheme.SKYBLUE);
 				}else {
