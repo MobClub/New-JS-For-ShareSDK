@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <script language="javascript" type="text/javascript" src="ShareSDK.js"></script>
     <script language="javascript" type="text/javascript">
-
         function init()
         {          
         	//android的平台配置信息跟ShareSDK.xml一致；
@@ -22,22 +21,22 @@
             };
         	//platformConfig平台配置信息可为null，此时用ShareSDK.xml
 			var platformConfig = {}; 
-			platformConfig[$sharesdk.platformID.SinaWeibo] = sinaConf;
-            $sharesdk.initSDKAndSetPlatfromConfig("androidv1101", platformConfig);
+			platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
+            $sharesdk.InitSDKAndSetPlatfromConfig("androidv1101", platformConfig);
         }
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.platformID.QQ, function (platform, state, error){
+            $sharesdk.Authorize($sharesdk.PlatformID.QQ, function (platform, state, error){
 
-                alert("state = " + state + "\nerror = " + error);
+                alert("state = " + state + "\n error = " + error);
 
             });
         }
 
         function isAuthValidBtnClickHandler()
         {
-            $sharesdk.isAuthorizedValid($sharesdk.platformID.QQ, function (platform, hasAuth) {
+            $sharesdk.IsAuthorizedValid($sharesdk.PlatformID.QQ, function (platform, hasAuth) {
 
                 alert("hasAuth = " + hasAuth);
 
@@ -46,21 +45,21 @@
         
         function cancelAuthBtnClickHandler()
         {
-        	 $sharesdk.cancelAuthorize($sharesdk.platformID.SinaWeibo);
+        	 $sharesdk.CancelAuthorize($sharesdk.PlatformID.SinaWeibo);
         }
 
         function userInfoBtnClickHandler()
         {
-            $sharesdk.getUserInfo($sharesdk.platformID.SinaWeibo, function (platform, state, user, db, error) {
+            $sharesdk.GetUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, db, error) {
 
-                alert("state = " + state + "\nuser = " + user +  "\ndb = " + db + "\nerror = " + error);
+                alert("state = " + state + "\n user = " + user +  "\n db = " + db + "\n error = " + error);
 
             });
         }
         
         function authInfoBtnClickHandler()
         {
-            $sharesdk.getAuthInfo($sharesdk.platformID.QQ, function (platform, authInfo) {
+            $sharesdk.GetAuthInfo($sharesdk.PlatformID.QQ, function (platform, authInfo) {
 
                 alert("authInfo = " + authInfo);
 
@@ -77,11 +76,11 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://sharesdk.cn",
-                "type" : $sharesdk.contentType.Text
+                "type" : $sharesdk.ContentType.Text
             };
-            $sharesdk.shareContent($sharesdk.platformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.ShareContent($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
 
-                alert("state = " + state + "\nshareInfo = " + shareInfo + "\nerror = " + error);
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
             });
         }
@@ -100,13 +99,13 @@
             };
 			
             var platforms = [
-            	$sharesdk.platformID.SinaWeibo,
-            	$sharesdk.platformID.TencentWeibo
+            	$sharesdk.PlatformID.SinaWeibo,
+            	$sharesdk.PlatformID.TencentWeibo
             ];
             
-            $sharesdk.oneKeyShareContent(platforms, params, function (platform, state, shareInfo, error) {
+            $sharesdk.OneKeyShareContent(platforms, params, function (platform, state, shareInfo, error) {
 
-                alert("state = " + state + "\nshareInfo = " + shareInfo + "\nerror = " + error);
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
             });
         }
@@ -124,9 +123,9 @@
                 "type" : 1
             };
 
-            $sharesdk.showShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
+            $sharesdk.ShowShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
 
-                alert("state = " + state + "\nshareInfo = " + shareInfo + "\nerror = " + error);
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
             });
         }
@@ -144,9 +143,9 @@
                 "type" : 1
             };
 
-            $sharesdk.showShareView($sharesdk.platformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.ShowShareView($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
 
-                alert("state = " + state + "\nshareInfo = " + shareInfo + "\nerror = " + error);
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
             });
         }
@@ -156,9 +155,9 @@
         	var page = 1;
         	var count = 10;
         	var account = "沂谋大爱蓝军";
-            $sharesdk.getFriendList($sharesdk.platformID.SinaWeibo, page, count, account, function (platform, state, friendList, error) {
+            $sharesdk.GetFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (platform, state, friendList, error) {
 
-                alert("state = " + state + "\nfriendList = " + friendList + "\nerror = " + error);
+                alert("state = " + state + "\n friendList = " + friendList + "\n error = " + error);
 
             });
         }
@@ -166,9 +165,9 @@
         function addFriendBtnClickHandler()
         {	//测试的一个账号
         	var account = "蜜思Louisette";
-            $sharesdk.addFriend($sharesdk.platformID.SinaWeibo, account, function (platform, state, error) {
+            $sharesdk.AddFriend($sharesdk.PlatformID.SinaWeibo, account, function (platform, state, error) {
 
-                alert("state = " + state +  "\nerror = " + error);
+                alert("state = " + state +  "\n error = " + error);
 
             });
         }

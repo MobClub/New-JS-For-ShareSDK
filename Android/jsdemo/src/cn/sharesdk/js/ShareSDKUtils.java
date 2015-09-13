@@ -66,7 +66,8 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	/* process js init function */
 	void onInit() {
 		// platform type: 1 for android, 2 for ios
-		String script = "javascript:$sharesdk._init(1);";
+		Log.d("ShareSDKUtils ===", "initSDK");
+		String script = "javascript:$sharesdk.InitSDK(1);";
 		Message msg = new Message();
 		msg.what = MSG_LOAD_URL;
 		msg.obj = script;
