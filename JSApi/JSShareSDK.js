@@ -1,4 +1,4 @@
-function ShareSDKUtils() {
+function JSShareSDK() {
 
     //是否正在与本地进行交互
     var isRunning = false;
@@ -803,4 +803,4 @@ function ShareSDKUtils() {
 
 };
 
-var $sharesdk = new ShareSDKUtils();
+var $sharesdk = new JSShareSDK();
