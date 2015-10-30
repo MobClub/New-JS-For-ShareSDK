@@ -1,10 +1,3 @@
-/**
- * Created with JetBrains WebStorm.
- * User: vim888
- * Date: 14-3-17
- * Time: 下午5:10
- * To change this template use File | Settings | File Templates.
- */
 function ShareSDKUtils() {
 
     //是否正在与本地进行交互
