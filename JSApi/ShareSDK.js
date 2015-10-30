@@ -5,24 +5,24 @@
  * Time: 下午5:10
  * To change this template use File | Settings | File Templates.
  */
-(function (window){
+function ShareSDKUtils() {
 
     //是否正在与本地进行交互
-    var _running = false;
-
+    var isRunning = false;
+    var isDebug = true;
     //流水号
-    var _seqId = 0;
+    var seqId = 0;
     //是否已经发送初始化请求
-    var _isSendInitRequest = false;
+    var isSendInitRequest = false;
     //初始化回调方法
-    var _initCallbackFuncs = [];
+    var initCallbackFuncs = [];
     //API调用器
-    var _apiCaller = null;
+    var apiCaller = null;
 
-    var _firstRequest = null;
-    var _lastRequest = null;
+    var firstRequest = null;
+    var lastRequest = null;
     var jsLog = null;
-
+    
     /**
      * SDK方法名称
      * @type {object}
@@ -41,7 +41,7 @@
         "ShowShareMenu" : "showShareMenu",
         "ShowShareView" : "showShareView",
         "GetFriendList" : "getFriendList",
-        "FollowFriend" : "followFriend",
+        "AddFriend" : "addFriend",
         "CloseSSOWhenAuthorize" : "closeSSOWhenAuthorize"
     };
 
@@ -52,20 +52,20 @@
      * @param params        参数集合
      * @constructor
      */
-    function RequestInfo (seqId, method, params)
+    var RequestInfo = function (seqId, method, params)
     {
         this.seqId = seqId;
         this.method = method;
         this.params = params;
         this.nextRequest = null;
-    }
+    };
 
     /**
      * JSON字符串转换为对象
      * @param string        JSON字符串
      * @returns {Object}    转换后对象
      */
-    function jsonStringToObject (string)
+    var JsonStringToObject = function (string)
     {
 
         try {
@@ -78,14 +78,14 @@
 
         }
 
-    }
+    };
 
     /**
      * 对象转JSON字符串
      * @param obj           对象
      * @returns {string}    JSON字符串
      */
-    function objectToJsonString (obj)
+    var ObjectToJsonString = function (obj)
     {
         var S = [];
         var J = null;
@@ -95,7 +95,7 @@
         if (type === '[object Array]') {
 
             for (var i = 0; i < obj.length; i++) {
-                S.push(objectToJsonString(obj[i]));
+                S.push(ObjectToJsonString(obj[i]));
             }
 
             J = '[' + S.join(',') + ']';
@@ -112,7 +112,7 @@
 
             for (var key in obj) {
 
-                var value = objectToJsonString(obj[key]);
+                var value = ObjectToJsonString(obj[key]);
                 if (value != null) {
                     S.push('"' + key + '":' + value);
                 }
@@ -132,27 +132,28 @@
 
 
         return J;
-    }
+    };
 
     /**
      * Android接口调用器
      * @constructor
      */
-    function AndroidAPICaller()
+    var AndroidAPICaller = function ()
     {
         /**
          * 调用方法
          * @param request       请求信息
          */
-        this.callMethod = function(request)
+        this.callMethod = function (request)
         {
-            jsLog.log("js request: " + request.method);
-            
-            jsLog.log("    seqId = " + request.seqId.toString());
-            jsLog.log("    api = " + request.method);
-            jsLog.log("    data = " + objectToJsonString(request.params));
+        	if (isDebug) {
+	            jsLog.log("js request: " + request.method);	            
+	            jsLog.log("    seqId = " + request.seqId.toString());
+	            jsLog.log("    api = " + request.method);
+	            jsLog.log("    data = " + ObjectToJsonString(request.params));
+        	}
             //java接口
-            window.JSInterface.jsCallback(request.seqId.toString(), request.method, objectToJsonString(request.params), "$sharesdk._callback");
+            window.JSInterface.jsCallback(request.seqId.toString(), request.method, ObjectToJsonString(request.params), "$sharesdk.Callback");
         };
 
         /**
@@ -177,11 +178,11 @@
         this.callback = function (response)
         {
             var logMsg = "java returns: " + JSON.stringify(response);
-            jsLog.log(logMsg);
-
+            if (isDebug) {
+            	jsLog.log(logMsg);
+            }
             if (response.callback)
             {
-                jsLog.log("callback = " + response.callback);
                 var callbackFunc = eval(response.callback);
 
                 if (callbackFunc)
@@ -212,7 +213,7 @@
                         case ShareSDKMethodName.GetFriendList:
                         	callbackFunc(response.platform, response.state, response.data, response.error);
                         	break;
-                        case ShareSDKMethodName.FollowFriend:
+                        case ShareSDKMethodName.AddFriend:
                         	callbackFunc(response.platform, response.state, response.error);
                         	break;
                         case ShareSDKMethodName.GetAuthInfo:
@@ -222,14 +223,14 @@
                 }
             }
         };
-    }
+    };
 
     /**
      * iOS接口调用器
      */
-    function iOSAPICaller()
+    var IOSAPICaller = function ()
     {
-        this._requestes = {};
+        var requestes = {};
 
         /**
          * 调用方法
@@ -237,7 +238,7 @@
          */
         this.callMethod = function(request)
         {
-            this._requestes[request.seqId] = request;
+            requestes[request.seqId] = request;
             window.location.href = "sharesdk://call?seqId=" + request.seqId + "&methodName=" + request.method;
 
         };
@@ -292,7 +293,7 @@
                             break;
                         case ShareSDKMethodName.GetFriendList:
                         	break;
-                        case ShareSDKMethodName.FollowFriend:
+                        case ShareSDKMethodName.AddFriend:
                         	break;
                         case ShareSDKMethodName.GetAuthInfo:
                         	break;
@@ -304,30 +305,25 @@
         this.getParams = function (seqId)
         {
             var paramsStr = null;
-            var request = this._requestes[seqId];
+            var request = requestes[seqId];
 
             if (request && request.params)
             {
-                paramsStr = objectToJsonString(request.params);
+                paramsStr = ObjectToJsonString(request.params);
             }
 
-            this._requestes[seqId] = null;
-            delete this._requestes[seqId];
+            requestes[seqId] = null;
+            delete requestes[seqId];
 
             return paramsStr;
         };
-    }
-
-    function ShareSDK ()
-    {
-
-    }
+    };
 
     /**
      * 平台类型
      * @type {object}
      */
-    ShareSDK.platformID = {
+    this.PlatformID = {
     		Unknown : 0,
     		SinaWeibo : 1,			//Sina Weibo         
     		TencentWeibo : 2,		//Tencent Weibo          
@@ -380,7 +376,7 @@
      * 回复状态
      * @type {object}
      */
-    ShareSDK.responseState = {
+    this.ResponseState = {
 
         Begin : 0,              //开始
         Success: 1,             //成功
@@ -393,7 +389,7 @@
      * 内容分享类型
      * @type {object}
      */
-    ShareSDK.contentType = {
+    this.ContentType = {
         Text : 0,
         Image : 1,
         WebPage : 2,
@@ -410,20 +406,20 @@
      * @param callback  回调方法
      * @private
      */
-    ShareSDK._checkInit = function (method, params, callback)
+    var CheckInit = function (method, params, callback)
     {
-        if (_apiCaller == null)
+        if (apiCaller == null)
         {
-            _initCallbackFuncs.push({
+            initCallbackFuncs.push({
                 "method" : method,
                 "params" : params,
                 "callback" : callback
             });
 
-            if (!_isSendInitRequest)
+            if (!isSendInitRequest)
             {
                 window.location.href = "sharesdk://init";
-                _isSendInitRequest = true;
+                isSendInitRequest = true;
             }
         }
         else
@@ -441,25 +437,25 @@
      * @param params        参数
      * @private
      */
-    ShareSDK._callMethod = function (method, params)
+    var CallMethod = function (method, params)
     {
-        ShareSDK._checkInit(method, params, function (method, params) {
+        CheckInit(method, params, function (method, params) {
 
-            _seqId ++;
-            var req = new RequestInfo(_seqId, method, params);
+            seqId ++;
+            var req = new RequestInfo(seqId, method, params);
 
-            if (_firstRequest == null)
+            if (firstRequest == null)
             {
-                _firstRequest = req;
-                _lastRequest = _firstRequest;
+                firstRequest = req;
+                lastRequest = firstRequest;
             }
             else
             {
-                _lastRequest.nextRequest = req;
-                _lastRequest = req;
+                lastRequest.nextRequest = req;
+                lastRequest = req;
             }
 
-            ShareSDK._sendRequest();
+            SendRequest();
         });
     };
 
@@ -467,19 +463,19 @@
      * 发送请求
      * @private
      */
-    ShareSDK._sendRequest = function ()
+    var SendRequest = function ()
     {
-        if (!_running && _firstRequest)
+        if (!isRunning && firstRequest)
         {
-            _running = true;
-            _apiCaller.callMethod(_firstRequest);
-
+            isRunning = true;
+            apiCaller.callMethod(firstRequest);
+            
             setTimeout(function(){
 
-                _running = false;
+                isRunning = false;
                 //直接发送下一个请求
-                ShareSDK._nextRequest();
-                ShareSDK._sendRequest();
+                NextRequest();
+                SendRequest();
 
             }, 50);
 
@@ -490,17 +486,17 @@
      * 下一个请求
      * @private
      */
-    ShareSDK._nextRequest = function ()
+    var NextRequest = function ()
     {
-        if (_firstRequest == _lastRequest)
+        if (firstRequest == lastRequest)
         {
-            _firstRequest = null;
-            _lastRequest = null;
-            _running = false;
+            firstRequest = null;
+            lastRequest = null;
+            isRunning = false;
         }
         else
         {
-            _firstRequest = _firstRequest.nextRequest;
+            firstRequest = firstRequest.nextRequest;
         }
     };
 
@@ -509,7 +505,7 @@
      * @param platform  平台类型，1 安卓 2 iOS
      * @private
      */
-    ShareSDK._init = function (platform)
+    this.InitSDK = function (platform)
     {
         switch (platform)
         {
@@ -519,8 +515,10 @@
                         window.JSInterface.jsLog(msg);
                     }
                 };
-                jsLog.log("found platform type: Android");
-                _apiCaller = new AndroidAPICaller();
+                if(isDebug) {
+                	jsLog.log("found platform type: Android");
+        		}
+                apiCaller = new AndroidAPICaller();
                 break;
             case 2:
                 jsLog = {
@@ -528,17 +526,17 @@
 
                     }
                 };
-                _apiCaller = new iOSAPICaller();
+                apiCaller = new IOSAPICaller();
                 break;
         }
 
         //派发回调
-        for (var i = 0; i < _initCallbackFuncs.length; i++)
+        for (var i = 0; i < initCallbackFuncs.length; i++)
         {
-            var obj = _initCallbackFuncs[i];
+            var obj = initCallbackFuncs[i];
             obj.callback (obj.method, obj.params);
         }
-        _initCallbackFuncs.splice(0);
+        initCallbackFuncs.splice(0);
     };
 
     /**
@@ -546,9 +544,9 @@
      * @param response  回复数据
      * @private
      */
-    ShareSDK._callback = function (response)
+    this.Callback = function (response)
     {
-        _apiCaller.callback(response);
+        apiCaller.callback(response);
     };
 
     /**
@@ -557,9 +555,9 @@
      * @returns {*}
      * @private
      */
-    ShareSDK._getParams = function (seqId)
+    this.GetParams = function (seqId)
     {
-        return _apiCaller.getParams(seqId);
+        return apiCaller.getParams(seqId);
     };
 
     /**
@@ -567,16 +565,18 @@
      * @param platform          平台类型
      * @param config            配置信息
      */
-    ShareSDK.initSDKAndSetPlatfromConfig = function (appKey, platformConfig)
+    this.InitSDKAndSetPlatfromConfig = function (appKey, platformConfig)
     {
-        alert(" ShareSDK.initSDKAndSetPlatfromConfig");
+    	if(isDebug){
+        	alert("initSDKAndSetPlatfromConfig");
+        }
         var params =
         {
             "appKey" : appKey,
             // "enableStatistics" : enableStatistics,
             "platformConfig" : platformConfig
         };
-        ShareSDK._callMethod(ShareSDKMethodName.InitSDKAndSetPlatfromConfig, params);
+        CallMethod(ShareSDKMethodName.InitSDKAndSetPlatfromConfig, params);
     };
 
     /**
@@ -584,7 +584,7 @@
      * @param platform          平台类型
      * @param callback          回调方法
      */
-    ShareSDK.authorize = function (platform, callback)
+    this.Authorize = function (platform, callback)
     {
         var params =
         {
@@ -592,21 +592,21 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.Authorize, params);
+        CallMethod(ShareSDKMethodName.Authorize, params);
     };
 
     /**
      * 取消用户授权
      * @param platform          平台类型
      */
-    ShareSDK.cancelAuthorize = function (platform)
+    this.CancelAuthorize = function (platform)
     {
         var params =
         {
             "platform" : platform
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.CancelAuthorize, params);
+        CallMethod(ShareSDKMethodName.CancelAuthorize, params);
     };
 
     /**
@@ -615,7 +615,7 @@
      * @param callback          回调方法
      *
      */
-    ShareSDK.isAuthorizedValid = function (platform, callback)
+    this.IsAuthorizedValid = function (platform, callback)
     {
         var params =
         {
@@ -623,7 +623,7 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.IsAuthorizedValid, params);
+        CallMethod(ShareSDKMethodName.IsAuthorizedValid, params);
 
     };
 
@@ -633,7 +633,7 @@
      * @param callback          回调方法
      *
      */
-    ShareSDK.isClientValid = function (platform, callback)
+    this.IsClientValid = function (platform, callback)
     {
         var params =
         {
@@ -641,7 +641,7 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.IsClientValid, params);
+        CallMethod(ShareSDKMethodName.IsClientValid, params);
 
     };
     
@@ -650,7 +650,7 @@
      * @param platform          平台类型
      * @param callback          回调方法
      */
-    ShareSDK.getUserInfo = function (platform, callback)
+    this.GetUserInfo = function (platform, callback)
     {
         var params =
         {
@@ -658,7 +658,7 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.GetUserInfo, params);
+        CallMethod(ShareSDKMethodName.GetUserInfo, params);
     };
     
     /**
@@ -666,7 +666,7 @@
      * @param platform          平台类型
      * @param callback          回调方法
      */
-    ShareSDK.getAuthInfo = function (platform, callback)
+    this.GetAuthInfo = function (platform, callback)
     {
         var params =
         {
@@ -674,7 +674,7 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.GetAuthInfo, params);
+        CallMethod(ShareSDKMethodName.GetAuthInfo, params);
     };
 
     /**
@@ -683,7 +683,7 @@
      * @param shareParams       分享内容
      * @param callback          回调方法
      */
-    ShareSDK.shareContent = function (platform, shareParams, callback)
+    this.ShareContent = function (platform, shareParams, callback)
     {
         var params =
         {
@@ -692,7 +692,7 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.ShareContent, params);
+        CallMethod(ShareSDKMethodName.ShareContent, params);
     };
     
 
@@ -702,7 +702,7 @@
      * @param shareParams       分享内容
      * @param callback          回调方法
      */
-    ShareSDK.oneKeyShareContent = function (platforms, shareParams, callback)
+    this.OneKeyShareContent = function (platforms, shareParams, callback)
     {
         var params =
         {
@@ -711,7 +711,7 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.OneKeyShareContent, params);
+        CallMethod(ShareSDKMethodName.OneKeyShareContent, params);
     };
     
     /**
@@ -723,7 +723,7 @@
      * @param direction         弹出菜单的箭头方向（仅用于iPad）
      * @param callback          回调方法
      */
-    ShareSDK.showShareMenu = function (platforms, shareParams, x, y, callback)
+    this.ShowShareMenu = function (platforms, shareParams, x, y, callback)
     {
         var params =
         {
@@ -735,7 +735,7 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.ShowShareMenu, params);
+        CallMethod(ShareSDKMethodName.ShowShareMenu, params);
     };
 
     /**
@@ -744,7 +744,7 @@
      * @param shareParams
      * @param callback
      */
-    ShareSDK.showShareView = function (platform, shareParams, callback)
+    this.ShowShareView = function (platform, shareParams, callback)
     {
         var params =
         {
@@ -753,7 +753,7 @@
             "callback" : "(" + callback.toString() + ")"
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.ShowShareView, params);
+        CallMethod(ShareSDKMethodName.ShowShareView, params);
     };
     
     /**
@@ -764,7 +764,7 @@
      * @param account
      * @param callback
      */
-    ShareSDK.getFriendList = function (platform, page, count, account, callback)
+    this.GetFriendList = function (platform, page, count, account, callback)
     {
     	 var params =
          {
@@ -774,7 +774,7 @@
              "account" : account,
              "callback" : "(" + callback.toString() + ")"
          };
-    	ShareSDK._callMethod(ShareSDKMethodName.GetFriendList, params);
+    	CallMethod(ShareSDKMethodName.GetFriendList, params);
     };
     
     /**
@@ -783,14 +783,14 @@
      * @param friendName
      * @param callback 
      */
-    ShareSDK.followFriend = function(platform, friendName, callback){
+    this.AddFriend = function(platform, friendName, callback){
     	var params = 
     	{
     			"platform" : platform,
                 "friendName" : friendName,
                 "callback" : "(" + callback.toString() + ")"	
     	}
-    	ShareSDK._callMethod(ShareSDKMethodName.FollowFriend, params);
+    	CallMethod(ShareSDKMethodName.AddFriend, params);
     };
     
     /**
@@ -798,16 +798,16 @@
      * @param platform          平台类型
      * @param config            配置信息
      */
-    ShareSDK.closeSSOWhenAuthorize = function (disableSSO)
+    this.CloseSSOWhenAuthorize = function (disableSSO)
     {
         var params =
         {
             "disableSSO" : disableSSO
         };
 
-        ShareSDK._callMethod(ShareSDKMethodName.CloseSSOWhenAuthorize, params);
+        CallMethod(ShareSDKMethodName.CloseSSOWhenAuthorize, params);
     };
 
-    window.$sharesdk = ShareSDK;
+};
 
-})(window)
+var $sharesdk = new ShareSDKUtils();
