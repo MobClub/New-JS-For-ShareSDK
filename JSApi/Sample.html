@@ -4,44 +4,64 @@
     <title>ShareSDK for JS Sample</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <script language="javascript" type="text/javascript" src="ShareSDK.js"></script>
+    <script language="javascript" type="text/javascript" src="JSShareSDK.js"></script>
     <script language="javascript" type="text/javascript">
-
         function init()
-        {
-            $sharesdk.open("iosv1101", true);
-
-            var sinaConf = {};
-            sinaConf["app_key"] = "568898243";
-            sinaConf["app_secret"] = "38a4f8204cc784f81f9f0daaf31e02e3";
-            sinaConf["redirect_uri"] = "http://www.sharesdk.cn";
-            $sharesdk.setPlatformConfig($sharesdk.platformID.SinaWeibo, sinaConf);
-
+        {          
+        	//android的平台配置信息跟ShareSDK.xml一致；
+            var sinaConf = 
+            {
+            "Id" : "1",
+            "SortId" : "1",
+            "AppKey" : "568898243",
+            "AppSecret" : "38a4f8204cc784f81f9f0daaf31e02e3",
+            "RedirectUrl" : "http://www.sharesdk.cn",
+            "ShareByAppClient" : "false",
+            "Enable" : "true"
+            };
+        	//platformConfig平台配置信息可为null，此时用ShareSDK.xml
+			var platformConfig = {}; 
+			platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
+            $sharesdk.InitSDKAndSetPlatfromConfig("androidv1101", platformConfig);
         }
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.platformID.SinaWeibo, function (platform, state, error){
+            $sharesdk.Authorize($sharesdk.PlatformID.QQ, function (platform, state, error){
 
-                alert("state = " + state + "\nerror = " + error);
+                alert("state = " + state + "\n error = " + error);
 
             });
         }
 
-        function hasAuthBtnClickHandler()
+        function isAuthValidBtnClickHandler()
         {
-            $sharesdk.hasAuthorized($sharesdk.platformID.SinaWeibo, function (platform, hasAuth) {
+            $sharesdk.IsAuthorizedValid($sharesdk.PlatformID.QQ, function (platform, hasAuth) {
 
                 alert("hasAuth = " + hasAuth);
 
             });
         }
+        
+        function cancelAuthBtnClickHandler()
+        {
+        	 $sharesdk.CancelAuthorize($sharesdk.PlatformID.SinaWeibo);
+        }
 
         function userInfoBtnClickHandler()
         {
-            $sharesdk.getUserInfo($sharesdk.platformID.SinaWeibo, function (platform, state, user, error) {
+            $sharesdk.GetUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, db, error) {
 
-                alert("state = " + state + "\nuser = " + user + "\nerror = " + error);
+                alert("state = " + state + "\n user = " + user +  "\n db = " + db + "\n error = " + error);
+
+            });
+        }
+        
+        function authInfoBtnClickHandler()
+        {
+            $sharesdk.GetAuthInfo($sharesdk.PlatformID.QQ, function (platform, authInfo) {
+
+                alert("authInfo = " + authInfo);
 
             });
         }
@@ -56,12 +76,11 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://sharesdk.cn",
-                "type" : $sharesdk.contentType.Text
+                "type" : $sharesdk.ContentType.Text
             };
+            $sharesdk.ShareContent($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
 
-            $sharesdk.shareContent($sharesdk.platformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
-
-                alert("state = " + state + "\nshareInfo = " + shareInfo + "\nerror = " + error);
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
             });
         }
@@ -78,10 +97,15 @@
                 "siteUrl" : "http://sharesdk.cn",
                 "type" : 1
             };
+			
+            var platforms = [
+            	$sharesdk.PlatformID.SinaWeibo,
+            	$sharesdk.PlatformID.TencentWeibo
+            ];
+            
+            $sharesdk.OneKeyShareContent(platforms, params, function (platform, state, shareInfo, error) {
 
-            $sharesdk.oneKeyShareContent([$sharesdk.platformID.SinaWeibo, $sharesdk.platformID.TencentWeibo], params, function (platform, state, shareInfo, error) {
-
-                alert("state = " + state + "\nshareInfo = " + shareInfo + "\nerror = " + error);
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
             });
         }
@@ -99,9 +123,9 @@
                 "type" : 1
             };
 
-            $sharesdk.showShareMenu(null, params, 100, 100, $sharesdk.shareMenuArrowDirection.Any, function (platform, state, shareInfo, error) {
+            $sharesdk.ShowShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
 
-                alert("state = " + state + "\nshareInfo = " + shareInfo + "\nerror = " + error);
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
             });
         }
@@ -119,23 +143,48 @@
                 "type" : 1
             };
 
-            $sharesdk.showShareView($sharesdk.platformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.ShowShareView($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
 
-                alert("state = " + state + "\nshareInfo = " + shareInfo + "\nerror = " + error);
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+
+            });
+        }
+        
+        function friendListBtnClickHandler()
+        {
+        	var page = 1;
+        	var count = 10;
+        	var account = "沂谋大爱蓝军";
+            $sharesdk.GetFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (platform, state, friendList, error) {
+
+                alert("state = " + state + "\n friendList = " + friendList + "\n error = " + error);
+
+            });
+        }
+        
+        function addFriendBtnClickHandler()
+        {	//测试的一个账号
+        	var account = "蜜思Louisette";
+            $sharesdk.AddFriend($sharesdk.PlatformID.SinaWeibo, account, function (platform, state, error) {
+
+                alert("state = " + state +  "\n error = " + error);
 
             });
         }
 
     </script>
-</head>
+</head> 
 <body onload="init()" style="text-align: center">
     <br/><br/>
     <input type="button" value="授权" onclick="authBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
-    <input type="button" value="是否授权" onclick="hasAuthBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="是否授权" onclick="isAuthValidBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="取消授权" onclick="cancelAuthBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="获取用户信息" onclick="userInfoBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="分享内容" onclick="shareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="一键分享内容" onclick="oneKeyShareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="显示分享菜单" onclick="showShareMenuClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="获取好友列表" onclick="friendListBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="关注好友" onclick="addFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
 </body>
 </html>
