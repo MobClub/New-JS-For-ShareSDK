@@ -50,9 +50,9 @@
 
         function userInfoBtnClickHandler()
         {
-            $sharesdk.GetUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, db, error) {
+            $sharesdk.GetUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, error) {
 
-                alert("state = " + state + "\n user = " + user +  "\n db = " + db + "\n error = " + error);
+                alert("state = " + state + "\n user = " + user + "\n error = " + error);
 
             });
         }
