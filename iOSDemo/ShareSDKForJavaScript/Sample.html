@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShareSDK for JS Sample</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="ShareSDK.js"></script>
+    <script>
+        function init()
+        {
+            //1、配置平台信息，有开放平台账号系统的平台需要自行去申请账号（平台字段参考：http://wiki.mob.com/社交平台配置项说明/）
+            var platformConfig = {};
+            
+            //以下是示例
+            //新浪微博
+            var sinaConf = {};
+            sinaConf["app_key"] = "568898243";
+            sinaConf["app_secret"] = "38a4f8204cc784f81f9f0daaf31e02e3";
+            sinaConf["redirect_uri"] = "http://www.sharesdk.cn";
+            platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
+            
+            //微信
+            var weixinConf = {};
+            weixinConf["app_id"] = "wx4868b35061f87885";
+            weixinConf["app_secret"] = "64020361b8ec4c99936c0e3999a9f249";
+            platformConfig[$sharesdk.PlatformID.WechatPlatform] = weixinConf;
+
+            //QQ
+            var qqConf = {};
+            qqConf["app_id"] = "100371282";
+            qqConf["app_key"] = "aed9b0303e3ed1e27bae87c33761161d";
+            platformConfig[$sharesdk.PlatformID.QQPlatform] = qqConf;
+
+            //腾讯微博
+            var tencentWeiboConf = {};
+            tencentWeiboConf["app_key"] = "801307650";
+            tencentWeiboConf["app_secret"] = "ae36f4ee3946e1cbb98d6965b0b2ff5c";
+            tencentWeiboConf["redirect_uri"] = "http://www.sharesdk.cn";
+            platformConfig[$sharesdk.PlatformID.TencentWeibo] = tencentWeiboConf;
+            
+            //Facebook
+            var facebookConf = {};
+            facebookConf["api_key"] = "107704292745179";
+            facebookConf["app_secret"] = "38053202e1a5fe26c80c753071f0b573";
+            platformConfig[$sharesdk.PlatformID.Facebook] = facebookConf;
+            
+            //Twitter
+            var twitterConf = {};
+            twitterConf["consumer_key"] = "LRBM0H75rWrU9gNHvlEAA2aOy";
+            twitterConf["consumer_secret"] = "gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G";
+            twitterConf["redirect_uri"] = "http://mob.com";
+            platformConfig[$sharesdk.PlatformID.Twitter] = twitterConf;
+            
+            //Mail
+            var mailConf = {};
+            platformConfig[$sharesdk.PlatformID.Mail] = mailConf;
+
+            //2、初始化ShareSDK
+            $sharesdk.initSDKAndSetPlatfromConfig("iosv1101", platformConfig);
+        }
+
+        function authBtnClickHandler()
+        {
+            $sharesdk.authorize($sharesdk.PlatformID.SinaWeibo, function (platform, state, error) {
+                alert("state = " + state + "\n error = " + error);
+            });
+        }
+
+        function isAuthValidBtnClickHandler()
+        {
+            $sharesdk.isAuthorizedValid($sharesdk.PlatformID.SinaWeibo, function (platform, hasAuth) {
+                alert("hasAuth = " + hasAuth);
+            });
+        }
+
+        function cancelAuthBtnClickHandler()
+        {
+             $sharesdk.cancelAuthorize($sharesdk.PlatformID.SinaWeibo, function (platform, isCancelAuth) {
+                alert("hasAuth = " + isCancelAuth);
+            });
+        }
+
+        function isClientValidBtnClickHandler()
+        {
+            $sharesdk.isClientValid($sharesdk.PlatformID.WeChatTimeline, function (platform, isClientValid) {
+                alert("isClientValid = " + isClientValid);
+            });
+        }
+
+        function userInfoBtnClickHandler()
+        {
+            $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, error) {
+                alert("state = " + state + "\n user = " + user + "\n error = " + error);
+            });
+        }
+
+        function authInfoBtnClickHandler()
+        {
+            $sharesdk.getAuthInfo($sharesdk.PlatformID.SinaWeibo, function (platform, authInfo) {
+                alert("authInfo = " + authInfo);
+            });
+        }
+
+        function shareContentClickHandler()
+        {
+            var params =
+            {
+                "text" : "测试的文字",
+                "imageUrl" : "http://www.mob.com/mob/img/navproducts_03.png",
+                "title" : "测试的标题",
+                "titleUrl" : "http://www.mob.com",
+                "description" : "测试的描述",
+                "site" : "ShareSDK",
+                "siteUrl" : "http://www.mob.com",
+                "type" : $sharesdk.ContentType.Text
+            };
+
+            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+            });
+        }
+
+        function oneKeyShareContentClickHandler()
+        {
+            var params = {
+                "text" : "测试的文字",
+                "imageUrl" : "http://www.mob.com/mob/img/navproducts_03.png",
+                "title" : "测试的标题",
+                "titleUrl" : "http://www.mob.com",
+                "description" : "测试的描述",
+                "site" : "ShareSDK",
+                "siteUrl" : "http://www.mob.com",
+                "type" : 1
+            };
+
+            var platforms =
+            [
+                $sharesdk.PlatformID.SinaWeibo,
+                $sharesdk.PlatformID.TencentWeibo
+            ];
+
+            $sharesdk.oneKeyShareContent(platforms, params, function (platform, state, shareInfo, error) {
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+            });
+        }
+
+        function showShareMenuClickHandler()
+        {
+            var params = {
+                "text" : "测试的文字",
+                "imageUrl" : "http://www.mob.com/mob/img/navproducts_03.png",
+                "title" : "测试的标题",
+                "titleUrl" : "http://www.mob.com",
+                "description" : "测试的描述",
+                "site" : "ShareSDK",
+                "siteUrl" : "http://www.mob.com",
+                "type" : 1
+            };
+
+            $sharesdk.showShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+            });
+        }
+
+        function showShareViewClickHandler()
+        {
+            var params = {
+                "text" : "测试的文字",
+                "imageUrl" : "http://www.mob.com/mob/img/navproducts_03.png",
+                "title" : "测试的标题",
+                "titleUrl" : "http://www.mob.com",
+                "description" : "测试的描述",
+                "site" : "ShareSDK",
+                "siteUrl" : "http://www.mob.com",
+                "type" : 1
+            };
+
+            $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+            });
+        }
+
+        function getFriendListBtnClickHandler()
+        {
+            var page = 1;
+            var count = 10;
+            var account = "Mob移动开发者服务平台";
+            $sharesdk.getFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (platform, state, friendList, error) {
+                alert("state = " + state + "\n friendList = " + friendList + "\n error = " + error);
+            });
+        }
+        
+        function addFriendBtnClickHandler()
+        {
+            //测试账号
+            var account = "ShareSDK";
+            $sharesdk.addFriend($sharesdk.PlatformID.TencentWeibo, account, function (platform, state, error) {
+                alert("state = " + state +  "\n error = " + error);
+            });
+        }
+
+    </script>
+</head>
+<body onload="init()" style="text-align: center">
+    <br/><br/>
+    <input type="button" value="授权" onclick="authBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="是否授权" onclick="isAuthValidBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="取消授权" onclick="cancelAuthBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="是否安装客户端" onclick="isClientValidBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="获取用户信息" onclick="userInfoBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="分享内容" onclick="shareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="一键分享内容" onclick="oneKeyShareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="显示分享菜单" onclick="showShareMenuClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="获取好友列表" onclick="getFriendListBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="关注好友" onclick="addFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+</body>
+</html>
