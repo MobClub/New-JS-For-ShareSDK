@@ -193,7 +193,7 @@ function ShareSDK()
                             callbackFunc(response.platform, response.state, response.error);
                             break;
                         case ShareSDKMethodName.GetUserInfo:
-                            callbackFunc(response.platform, response.state, response.data, response.platformDb, response.error);
+                            callbackFunc(response.platform, response.state, response.data, response.error);
                             break;
                         case ShareSDKMethodName.IsAuthorizedValid:
                             callbackFunc(response.platform, response.data);
