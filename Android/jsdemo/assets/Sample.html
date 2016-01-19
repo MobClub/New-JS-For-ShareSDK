@@ -4,7 +4,7 @@
     <title>ShareSDK for JS Sample</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <script language="javascript" type="text/javascript" src="JSShareSDK.js"></script>
+    <script language="javascript" type="text/javascript" src="ShareSDK.js"></script>
     <script language="javascript" type="text/javascript">
         function init()
         {          
@@ -22,12 +22,13 @@
         	//platformConfig平台配置信息可为null，此时用ShareSDK.xml
 			var platformConfig = {}; 
 			platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
-            $sharesdk.InitSDKAndSetPlatfromConfig("androidv1101", platformConfig);
+            $sharesdk.initSDKAndSetPlatfromConfig("androidv1101", platformConfig);
+            alert("Init ShareSDK");
         }
 
         function authBtnClickHandler()
         {
-            $sharesdk.Authorize($sharesdk.PlatformID.QQ, function (platform, state, error){
+            $sharesdk.authorize($sharesdk.PlatformID.QQ, function (platform, state, error){
 
                 alert("state = " + state + "\n error = " + error);
 
@@ -36,7 +37,7 @@
 
         function isAuthValidBtnClickHandler()
         {
-            $sharesdk.IsAuthorizedValid($sharesdk.PlatformID.QQ, function (platform, hasAuth) {
+            $sharesdk.isAuthorizedValid($sharesdk.PlatformID.QQ, function (platform, hasAuth) {
 
                 alert("hasAuth = " + hasAuth);
 
@@ -45,12 +46,21 @@
         
         function cancelAuthBtnClickHandler()
         {
-        	 $sharesdk.CancelAuthorize($sharesdk.PlatformID.SinaWeibo);
+        	 $sharesdk.cancelAuthorize($sharesdk.PlatformID.SinaWeibo);
+        }
+
+        function isClientValidBtnClickHandler()
+        {
+            $sharesdk.isClientValid($sharesdk.PlatformID.WeChatMoments, function (platform, isClientValid) {
+            	
+                alert("isClientValid = " + isClientValid);
+                
+            });
         }
 
         function userInfoBtnClickHandler()
         {
-            $sharesdk.GetUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, error) {
+            $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, error) {
 
                 alert("state = " + state + "\n user = " + user + "\n error = " + error);
 
@@ -59,7 +69,7 @@
         
         function authInfoBtnClickHandler()
         {
-            $sharesdk.GetAuthInfo($sharesdk.PlatformID.QQ, function (platform, authInfo) {
+            $sharesdk.getAuthInfo($sharesdk.PlatformID.QQ, function (platform, authInfo) {
 
                 alert("authInfo = " + authInfo);
 
@@ -78,7 +88,7 @@
                 "siteUrl" : "http://sharesdk.cn",
                 "type" : $sharesdk.ContentType.Text
             };
-            $sharesdk.ShareContent($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
@@ -103,7 +113,7 @@
             	$sharesdk.PlatformID.TencentWeibo
             ];
             
-            $sharesdk.OneKeyShareContent(platforms, params, function (platform, state, shareInfo, error) {
+            $sharesdk.oneKeyShareContent(platforms, params, function (platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
@@ -123,7 +133,7 @@
                 "type" : 1
             };
 
-            $sharesdk.ShowShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
+            $sharesdk.showShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
@@ -143,19 +153,19 @@
                 "type" : 1
             };
 
-            $sharesdk.ShowShareView($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
             });
         }
         
-        function friendListBtnClickHandler()
+        function getFriendListBtnClickHandler()
         {
         	var page = 1;
         	var count = 10;
         	var account = "沂谋大爱蓝军";
-            $sharesdk.GetFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (platform, state, friendList, error) {
+            $sharesdk.getFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (platform, state, friendList, error) {
 
                 alert("state = " + state + "\n friendList = " + friendList + "\n error = " + error);
 
@@ -165,7 +175,7 @@
         function addFriendBtnClickHandler()
         {	//测试的一个账号
         	var account = "蜜思Louisette";
-            $sharesdk.AddFriend($sharesdk.PlatformID.SinaWeibo, account, function (platform, state, error) {
+            $sharesdk.addFriend($sharesdk.PlatformID.SinaWeibo, account, function (platform, state, error) {
 
                 alert("state = " + state +  "\n error = " + error);
 
@@ -179,12 +189,13 @@
     <input type="button" value="授权" onclick="authBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="是否授权" onclick="isAuthValidBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="取消授权" onclick="cancelAuthBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="是否安装客户端" onclick="isClientValidBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="获取用户信息" onclick="userInfoBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="分享内容" onclick="shareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="一键分享内容" onclick="oneKeyShareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="显示分享菜单" onclick="showShareMenuClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
-    <input type="button" value="获取好友列表" onclick="friendListBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="获取好友列表" onclick="getFriendListBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="关注好友" onclick="addFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
 </body>
 </html>
