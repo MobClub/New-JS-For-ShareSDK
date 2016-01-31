@@ -364,25 +364,6 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		}
 		return authInfo;
 	}
-		
-	/**
-	 * The ios type into android type
-	 * @param type
-	 * @return
-	 */
-	private int iosTypeToAndroidType(int type) {
-		switch (type) {
-			case 1: return Platform.SHARE_IMAGE;
-			case 2: return Platform.SHARE_WEBPAGE;
-			case 3: return Platform.SHARE_MUSIC;
-			case 4: return Platform.SHARE_VIDEO;
-			case 5: return Platform.SHARE_APPS;
-			case 6: 
-			case 7: return Platform.SHARE_EMOJI;
-			case 8: return Platform.SHARE_FILE;
-		}
-        return Platform.SHARE_TEXT;
-	}
 	
 	@SuppressWarnings("unchecked")
 	private void multishare(String seqId, String api, String callback, String oriCallback, HashMap<String, Object> params) {
@@ -398,7 +379,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		HashMap<String, Object> shareParams = (HashMap<String, Object>) params.get("shareParams");
 		ShareParams sp = new ShareParams(shareParams);
 		int shareType = sp.getShareType();
-		sp.setShareType(iosTypeToAndroidType(shareType));
+		if (shareType == 0) {
+			shareType = 1;
+		}
+		sp.setShareType(shareType);
 		for (Integer platformId : platforms) {
 			String platformName = ShareSDK.platformIdToName(platformId.intValue());
 			Platform platform = ShareSDK.getPlatform(context, platformName);

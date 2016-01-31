@@ -28,7 +28,7 @@
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.PlatformID.QQ, function (platform, state, error){
+            $sharesdk.authorize($sharesdk.PlatformID.QQ, function (reqId, platform, state, error){
 
                 alert("state = " + state + "\n error = " + error);
 
@@ -37,7 +37,7 @@
 
         function isAuthValidBtnClickHandler()
         {
-            $sharesdk.isAuthorizedValid($sharesdk.PlatformID.QQ, function (platform, hasAuth) {
+        	$sharesdk.isAuthorizedValid($sharesdk.PlatformID.QQ, function (reqId, platform, hasAuth) {
 
                 alert("hasAuth = " + hasAuth);
 
@@ -51,7 +51,7 @@
 
         function isClientValidBtnClickHandler()
         {
-            $sharesdk.isClientValid($sharesdk.PlatformID.WeChatMoments, function (platform, isClientValid) {
+            $sharesdk.isClientValid($sharesdk.PlatformID.WeChatMoments, function (reqId, platform, isClientValid) {
             	
                 alert("isClientValid = " + isClientValid);
                 
@@ -60,7 +60,7 @@
 
         function userInfoBtnClickHandler()
         {
-            $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, error) {
+            $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (reqId, platform, state, user, error) {
 
                 alert("state = " + state + "\n user = " + user + "\n error = " + error);
 
@@ -69,7 +69,7 @@
         
         function authInfoBtnClickHandler()
         {
-            $sharesdk.getAuthInfo($sharesdk.PlatformID.QQ, function (platform, authInfo) {
+            $sharesdk.getAuthInfo($sharesdk.PlatformID.QQ, function (reqId, platform, authInfo) {
 
                 alert("authInfo = " + authInfo);
 
@@ -88,7 +88,7 @@
                 "siteUrl" : "http://sharesdk.cn",
                 "type" : $sharesdk.ContentType.Text
             };
-            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (reqId, platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
@@ -113,7 +113,7 @@
             	$sharesdk.PlatformID.TencentWeibo
             ];
             
-            $sharesdk.oneKeyShareContent(platforms, params, function (platform, state, shareInfo, error) {
+            $sharesdk.oneKeyShareContent(platforms, params, function (reqId, platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
@@ -133,7 +133,7 @@
                 "type" : 1
             };
 
-            $sharesdk.showShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
+            $sharesdk.showShareMenu(null, params, 100, 100, function (reqId, platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
@@ -153,7 +153,7 @@
                 "type" : 1
             };
 
-            $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (reqId, platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
 
@@ -165,7 +165,7 @@
         	var page = 1;
         	var count = 10;
         	var account = "沂谋大爱蓝军";
-            $sharesdk.getFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (platform, state, friendList, error) {
+            $sharesdk.getFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (reqId, platform, state, friendList, error) {
 
                 alert("state = " + state + "\n friendList = " + friendList + "\n error = " + error);
 
@@ -175,7 +175,7 @@
         function addFriendBtnClickHandler()
         {	//测试的一个账号
         	var account = "蜜思Louisette";
-            $sharesdk.addFriend($sharesdk.PlatformID.SinaWeibo, account, function (platform, state, error) {
+            $sharesdk.addFriend($sharesdk.PlatformID.SinaWeibo, account, function (reqId, platform, state, error) {
 
                 alert("state = " + state +  "\n error = " + error);
 

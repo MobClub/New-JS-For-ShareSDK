@@ -1,4 +1,3 @@
-
 function ShareSDK()
 {
     var isRunning = false;         //是否正在与本地进行交互
@@ -183,32 +182,32 @@ function ShareSDK()
                     switch (method)
                     {
                         case ShareSDKMethodName.Authorize:
-                            callbackFunc(response.platform, response.state, response.error);
+                            callbackFunc(response.seqId, response.platform, response.state, response.error);
                             break;
                         case ShareSDKMethodName.GetUserInfo:
-                            callbackFunc(response.platform, response.state, response.data, response.error);
+                            callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
                             break;
                         case ShareSDKMethodName.IsAuthorizedValid:
-                            callbackFunc(response.platform, response.data);
+                            callbackFunc(response.seqId, response.platform, response.data);
                             break;
                         case ShareSDKMethodName.IsClientValid:
-	                        callbackFunc(response.platform, response.data);
+	                        callbackFunc(response.seqId, response.platform, response.data);
 	                        break;
                         case ShareSDKMethodName.ShareContent:
                         case ShareSDKMethodName.OneKeyShareContent:
                         case ShareSDKMethodName.ShowShareMenu:
                         case ShareSDKMethodName.ShowShareView:
                             isShare = true;
-                            callbackFunc(response.platform, response.state, response.data, response.error, response.end);
+                            callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
                             break;
                         case ShareSDKMethodName.GetFriendList:
-                        	callbackFunc(response.platform, response.state, response.data, response.error);
+                        	callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
                         	break;
                         case ShareSDKMethodName.AddFriend:
-                        	callbackFunc(response.platform, response.state, response.error);
+                        	callbackFunc(response.seqId, response.platform, response.state, response.error);
                         	break;
                         case ShareSDKMethodName.GetAuthInfo:
-                        	callbackFunc(response.platform, response.data);
+                        	callbackFunc(response.seqId, response.platform, response.data);
                         	break;
                     }
                 }
@@ -262,31 +261,31 @@ function ShareSDK()
                     switch (method)
                     {
                         case ShareSDKMethodName.Authorize:
-                            callbackFunc(response.platform, response.state, response.error);
+                            callbackFunc(response.seqId, response.platform, response.state, response.error);
                             break;
                         case ShareSDKMethodName.GetUserInfo:
-                            callbackFunc(response.platform, response.state, response.data, response.error);
+                            callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
                             break;
                         case ShareSDKMethodName.IsAuthorizedValid:
-                            callbackFunc(response.platform, response.data);
+                            callbackFunc(response.seqId, response.platform, response.data);
                             break;
                         case ShareSDKMethodName.IsClientValid:
-	                        callbackFunc(response.platform, response.data);
+	                        callbackFunc(response.seqId, response.platform, response.data);
 	                        break;
                         case ShareSDKMethodName.ShareContent:
                         case ShareSDKMethodName.OneKeyShareContent:
                         case ShareSDKMethodName.ShowShareMenu:
                         case ShareSDKMethodName.ShowShareView:
-                            callbackFunc(response.platform, response.state, response.data, response.error, response.end);
+                            callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
                             break;
                         case ShareSDKMethodName.GetFriendList:
-                            callbackFunc(response.platform, response.state, response.data, response.error);
+                            callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
                         	break;
                         case ShareSDKMethodName.AddFriend:
-                            callbackFunc(response.platform, response.state, response.error);
+                            callbackFunc(response.seqId, response.platform, response.state, response.error);
                         	break;
                         case ShareSDKMethodName.GetAuthInfo:
-                            callbackFunc(response.platform, response.data);
+                            callbackFunc(response.seqId, response.platform, response.data);
                         	break;
                     }
                 }
@@ -379,15 +378,15 @@ function ShareSDK()
      * @type {object}
      */
     this.ContentType = {
-        Text : 0,
-        Image : 1,
-        WebPage : 2,
-        Music : 3,
-        Video : 4,
-        Apps : 5,
-        NonGif : 6,
-        Gif : 7,
-        File : 8
+    	Auto : 0,
+        Text : 1,
+        Image : 2,
+        WebPage : 4,
+        Music : 5,
+        Video : 6,
+        App : 7,
+        File : 8,
+        Emoji : 9
     };
 
     /**
@@ -445,6 +444,7 @@ function ShareSDK()
 
             SendRequest();
         });
+        return seqId;
     };
                                                          
     /**
@@ -575,7 +575,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
                                                          
-        CallMethod(ShareSDKMethodName.Authorize, params);
+        return CallMethod(ShareSDKMethodName.Authorize, params);
     };
 
     /**
@@ -606,7 +606,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
 
-        CallMethod(ShareSDKMethodName.IsAuthorizedValid, params);
+        return CallMethod(ShareSDKMethodName.IsAuthorizedValid, params);
     };
 
     /**
@@ -623,7 +623,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
 
-        CallMethod(ShareSDKMethodName.IsClientValid, params);
+        return CallMethod(ShareSDKMethodName.IsClientValid, params);
     };
     
     /**
@@ -639,7 +639,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
 
-        CallMethod(ShareSDKMethodName.GetUserInfo, params);
+        return CallMethod(ShareSDKMethodName.GetUserInfo, params);
     };
     
     /**
@@ -655,7 +655,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
 
-        CallMethod(ShareSDKMethodName.GetAuthInfo, params);
+        return CallMethod(ShareSDKMethodName.GetAuthInfo, params);
     };
 
     /**
@@ -673,7 +673,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
 
-        CallMethod(ShareSDKMethodName.ShareContent, params);
+        return CallMethod(ShareSDKMethodName.ShareContent, params);
     };       
 
     /**
@@ -691,7 +691,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
 
-        CallMethod(ShareSDKMethodName.OneKeyShareContent, params);
+        return CallMethod(ShareSDKMethodName.OneKeyShareContent, params);
     };
     
     /**
@@ -714,7 +714,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
 
-        CallMethod(ShareSDKMethodName.ShowShareMenu, params);
+        return CallMethod(ShareSDKMethodName.ShowShareMenu, params);
     };
 
     /**
@@ -732,7 +732,7 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
 
-        CallMethod(ShareSDKMethodName.ShowShareView, params);
+        return CallMethod(ShareSDKMethodName.ShowShareView, params);
     };
     
     /**
@@ -753,7 +753,7 @@ function ShareSDK()
              "account" : account,
              "callback" : "(" + callback.toString() + ")"
          };
-    	CallMethod(ShareSDKMethodName.GetFriendList, params);
+    	 return CallMethod(ShareSDKMethodName.GetFriendList, params);
     };
     
     /**
@@ -769,7 +769,7 @@ function ShareSDK()
                 "friendName" : friendName,
                 "callback" : "(" + callback.toString() + ")"	
     	}
-    	CallMethod(ShareSDKMethodName.AddFriend, params);
+    	return CallMethod(ShareSDKMethodName.AddFriend, params);
     };
     
     /**
@@ -789,6 +789,3 @@ function ShareSDK()
 };
                                                          
 var $sharesdk = new ShareSDK();
-                                                         
-//   window.$sharesdk = ShareSDK;
-//})(window)
