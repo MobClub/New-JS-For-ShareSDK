@@ -112,7 +112,7 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
-                "type" : $sharesdk.ContentType.Text
+                "type" : $sharesdk.ContentType.Auto
             };
 
             $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
@@ -130,7 +130,7 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
-                "type" : 1
+                "type" : $sharesdk.ContentType.Auto
             };
 
             var platforms =
@@ -154,7 +154,7 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
-                "type" : 1
+                "type" : $sharesdk.ContentType.Auto
             };
 
             $sharesdk.showShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
@@ -172,7 +172,7 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
-                "type" : 1
+                "type" : $sharesdk.ContentType.Auto
             };
 
             $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
