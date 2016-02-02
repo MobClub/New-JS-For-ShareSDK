@@ -61,42 +61,42 @@
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.PlatformID.SinaWeibo, function (platform, state, error) {
+            $sharesdk.authorize($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, state, error) {
                 alert("state = " + state + "\n error = " + error);
             });
         }
 
         function isAuthValidBtnClickHandler()
         {
-            $sharesdk.isAuthorizedValid($sharesdk.PlatformID.SinaWeibo, function (platform, hasAuth) {
+            $sharesdk.isAuthorizedValid($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, hasAuth) {
                 alert("hasAuth = " + hasAuth);
             });
         }
 
         function cancelAuthBtnClickHandler()
         {
-             $sharesdk.cancelAuthorize($sharesdk.PlatformID.SinaWeibo, function (platform, isCancelAuth) {
+             $sharesdk.cancelAuthorize($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, isCancelAuth) {
                 alert("hasAuth = " + isCancelAuth);
             });
         }
 
         function isClientValidBtnClickHandler()
         {
-            $sharesdk.isClientValid($sharesdk.PlatformID.WeChatTimeline, function (platform, isClientValid) {
+            $sharesdk.isClientValid($sharesdk.PlatformID.WeChatTimeline, function (reqID, platform, isClientValid) {
                 alert("isClientValid = " + isClientValid);
             });
         }
 
         function userInfoBtnClickHandler()
         {
-            $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (platform, state, user, error) {
+            $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, state, user, error) {
                 alert("state = " + state + "\n user = " + user + "\n error = " + error);
             });
         }
 
         function authInfoBtnClickHandler()
         {
-            $sharesdk.getAuthInfo($sharesdk.PlatformID.SinaWeibo, function (platform, authInfo) {
+            $sharesdk.getAuthInfo($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, authInfo) {
                 alert("authInfo = " + authInfo);
             });
         }
@@ -115,7 +115,7 @@
                 "type" : $sharesdk.ContentType.Auto
             };
 
-            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (reqID, platform, state, shareInfo, error) {
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
             });
         }
@@ -139,7 +139,7 @@
                 $sharesdk.PlatformID.TencentWeibo
             ];
 
-            $sharesdk.oneKeyShareContent(platforms, params, function (platform, state, shareInfo, error) {
+            $sharesdk.oneKeyShareContent(platforms, params, function (reqID, platform, state, shareInfo, error) {
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
             });
         }
@@ -157,7 +157,7 @@
                 "type" : $sharesdk.ContentType.Auto
             };
 
-            $sharesdk.showShareMenu(null, params, 100, 100, function (platform, state, shareInfo, error) {
+            $sharesdk.showShareMenu(null, params, 100, 100, function (reqID, platform, state, shareInfo, error) {
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
             });
         }
@@ -175,7 +175,7 @@
                 "type" : $sharesdk.ContentType.Auto
             };
 
-            $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (platform, state, shareInfo, error) {
+            $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (reqID, platform, state, shareInfo, error) {
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
             });
         }
@@ -185,7 +185,7 @@
             var page = 1;
             var count = 10;
             var account = "Mob移动开发者服务平台";
-            $sharesdk.getFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (platform, state, friendList, error) {
+            $sharesdk.getFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (reqID, platform, state, friendList, error) {
                 alert("state = " + state + "\n friendList = " + friendList + "\n error = " + error);
             });
         }
@@ -194,7 +194,7 @@
         {
             //测试账号
             var account = "ShareSDK";
-            $sharesdk.addFriend($sharesdk.PlatformID.TencentWeibo, account, function (platform, state, error) {
+            $sharesdk.addFriend($sharesdk.PlatformID.TencentWeibo, account, function (reqID, platform, state, error) {
                 alert("state = " + state +  "\n error = " + error);
             });
         }
