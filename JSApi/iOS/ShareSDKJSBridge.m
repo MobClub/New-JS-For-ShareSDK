@@ -21,7 +21,6 @@
 #define IMPORT_SINA_WEIBO_LIB               //导入新浪微博库，如果不需要新浪微博客户端分享可以注释此行
 #define IMPORT_QZONE_QQ_LIB                 //导入腾讯开发平台库，如果不需要QQ空间分享、SSO或者QQ好友分享可以注释此行
 #define IMPORT_RENREN_LIB                   //导入人人库，如果不需要人人SSO，可以注释此行
-#define IMPORT_GOOGLE_PLUS_LIB              //导入Google+库，如果不需要Google+分享可以注释此行
 #define IMPORT_WECHAT_LIB                   //导入微信库，如果不需要微信分享可以注释此行
 #define IMPORT_ALIPAY_LIB                   //导入支付宝分享库，如果不需要易信分享可以注释此行
 #define IMPORT_KAKAO_LIB                    //导入Kakao库，如果不需要易信分享可以注释此行
@@ -37,10 +36,6 @@
 
 #ifdef IMPORT_RENREN_LIB
 #import <RennSDK/RennSDK.h>
-#endif
-
-#ifdef IMPORT_GOOGLE_PLUS_LIB
-#import <GooglePlus/GooglePlus.h>
 #endif
 
 #ifdef IMPORT_WECHAT_LIB
@@ -118,11 +113,6 @@ static UIView *_refView = nil;
         
 #ifdef IMPORT_RENREN_LIB
         [RennClient class];
-#endif
-        
-#ifdef IMPORT_GOOGLE_PLUS_LIB
-        [GPPSignIn class];
-        [GPPShare class];
 #endif
         
 #ifdef IMPORT_WECHAT_LIB
@@ -356,13 +346,6 @@ static UIView *_refView = nil;
 #ifdef IMPORT_RENREN_LIB
                          case SSDKPlatformTypeRenren:
                              [ShareSDKConnector connectRenren:[RennClient class]];
-                             break;
-#endif
-                             
-#ifdef IMPORT_GOOGLE_PLUS_LIB
-                         case SSDKPlatformTypeGooglePlus:
-                             [ShareSDKConnector connectGooglePlus:[GPPSignIn class]
-                                                       shareClass:[GPPShare class]];
                              break;
 #endif
                              
@@ -706,6 +689,44 @@ static UIView *_refView = nil;
            }];
 }
 
+
+-(NSUInteger)convertJSShareTypeToIOSShareType:(NSUInteger)JSShareType
+{
+//    this.ContentType = {
+//        Auto : 0,
+//        Text : 1,
+//        Image : 2,
+//        WebPage : 4,
+//        Music : 5,
+//        Video : 6,
+//        App : 7,
+//        File : 8,
+//        Emoji : 9
+//    };
+    switch (JSShareType)
+    {
+        case 1:
+            return SSDKContentTypeText;
+        case 2:
+        case 9:
+            return SSDKContentTypeImage;
+        case 4:
+            return SSDKContentTypeWebPage;
+        case 5:
+            return SSDKContentTypeAudio;
+        case 6:
+            return SSDKContentTypeVideo;
+        case 7:
+            return SSDKContentTypeApp;
+        case 0:
+        case 8:
+            return SSDKContentTypeAuto;
+        default:
+            return SSDKContentTypeAuto;
+            break;
+    }
+}
+
 - (NSMutableDictionary *)contentWithDict:(NSDictionary *)dict
 {
     NSString *message = nil;
@@ -745,7 +766,7 @@ static UIView *_refView = nil;
         
         if ([[dict objectForKey:@"type"] isKindOfClass:[NSNumber class]])
         {
-            type = [[dict objectForKey:@"type"] unsignedIntegerValue];
+            type = [self convertJSShareTypeToIOSShareType:[[dict objectForKey:@"type"] unsignedIntegerValue]];
         }
     }
     
