@@ -251,11 +251,16 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 			
 			//如果有平台信息，再初始化平台信息，否则调用ShareSDK.xml配置平台信息
 			if(params.containsKey("platformConfig") && params.get("platformConfig") != null){
-				HashMap<String, Object> devInfo = (HashMap<String, Object>) params.get("platformConfig");
-				for(Entry<String, Object> entry: devInfo.entrySet()){
-					String p = ShareSDK.platformIdToName(Integer.parseInt(entry.getKey()));
-					ShareSDK.setPlatformDevInfo(p, (HashMap<String, Object>)entry.getValue());
-				}
+				final HashMap<String, Object> devInfo = (HashMap<String, Object>) params.get("platformConfig");
+				UIHandler.sendEmptyMessageDelayed(1, 500, new Callback() {
+					public boolean handleMessage(Message msg) {		
+						for(Entry<String, Object> entry: devInfo.entrySet()){
+							String p = ShareSDK.platformIdToName(Integer.parseInt(entry.getKey()));
+							ShareSDK.setPlatformDevInfo(p, (HashMap<String, Object>)entry.getValue());
+						}
+						return true;
+					}
+				});
 			}
 		} catch (Throwable t) {
 			t.printStackTrace();
