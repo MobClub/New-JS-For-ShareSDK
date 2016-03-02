@@ -16,7 +16,6 @@ import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import cn.sharesdk.onekeyshare.OnekeyShareTheme;
 
 import com.mob.tools.utils.Hashon;
 import com.mob.tools.utils.UIHandler;
@@ -435,14 +434,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 			if (map.containsKey("siteUrl")) {
 				oks.setSiteUrl(String.valueOf(map.get("siteUrl")));
 			}
-			if (params.containsKey("shareTheme")){
-				String theme = (String) params.get("shareTheme");
-				if("shybule".equals(theme)){
-					oks.setTheme(OnekeyShareTheme.SKYBLUE);
-				}else {
-					oks.setTheme(OnekeyShareTheme.CLASSIC);
-				}
-			}			
+					
 			if (params.containsKey("platform") && params.get("platform") != null) { 
 				int platform = (Integer) params.get("platform");
 				String platformName = ShareSDK.platformIdToName(platform);
@@ -456,10 +448,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 			pa.setOriCallback(oriCallback);
 			pa.setApi(api);
 			oks.setCallback(pa);
-			oks.setDialogMode();
-			if (webview != null) {
-				oks.setEditPageBackground(webview);
-			}
+			
 			if (disableSSO){
 				oks.disableSSOWhenAuthorize();
 			}
