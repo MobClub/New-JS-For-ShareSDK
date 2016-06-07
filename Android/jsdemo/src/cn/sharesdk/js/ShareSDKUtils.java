@@ -383,6 +383,9 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		HashMap<String, Object> shareParams = (HashMap<String, Object>) params.get("shareParams");
 		ShareParams sp = new ShareParams(shareParams);
 		int shareType = sp.getShareType();
+		if (shareParams.containsKey("type")) {
+			shareType = (Integer) shareParams.get("type");
+		} 
 		if (shareType == 0) {
 			shareType = 1;
 		}
