@@ -701,17 +701,6 @@ static UIView *_refView = nil;
 
 -(NSUInteger)convertJSShareTypeToIOSShareType:(NSUInteger)JSShareType
 {
-//    this.ContentType = {
-//        Auto : 0,
-//        Text : 1,
-//        Image : 2,
-//        WebPage : 4,
-//        Music : 5,
-//        Video : 6,
-//        App : 7,
-//        File : 8,
-//        Emoji : 9
-//    };
     switch (JSShareType)
     {
         case 1:
@@ -801,17 +790,6 @@ static UIView *_refView = nil;
         {
             siteStr = site;
         }
-        
-//        if (siteUrlStr || siteStr)
-//        {
-//            [para SSDKSetupQQParamsByText:message
-//                                    title:title
-//                                      url:[NSURL URLWithString:url]
-//                               thumbImage:
-//                                    image:image
-//                                     type:type
-//                       forPlatformSubType:<#(SSDKPlatformType)#>];
-//        }
     }
     
     return para;
@@ -881,6 +859,32 @@ static UIView *_refView = nil;
                 params:(NSDictionary *)params
                webView:(UIWebView *)webView
 {
+    
+#ifdef IMPORT_SINA_WEIBO_LIB
+    [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+#endif
+    
+#ifdef IMPORT_QZONE_QQ_LIB
+    [ShareSDKConnector connectQQ:[QQApiInterface class]
+               tencentOAuthClass:[TencentOAuth class]];
+#endif
+    
+#ifdef IMPORT_RENREN_LIB
+    [ShareSDKConnector connectRenren:[RennClient class]];
+#endif
+    
+#ifdef IMPORT_WECHAT_LIB
+    [ShareSDKConnector connectWeChat:[WXApi class]];
+#endif
+    
+#ifdef IMPORT_ALIPAY_LIB
+    [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+#endif
+    
+#ifdef IMPORT_KAKAO_LIB
+    [ShareSDKConnector connectKaKao:[KOSession class]];
+#endif
+    
     NSString *contentName = nil;
     if ([[params objectForKey:@"contentName"] isKindOfClass:[NSString class]])
     {

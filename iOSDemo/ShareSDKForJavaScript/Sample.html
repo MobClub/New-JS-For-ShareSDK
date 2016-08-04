@@ -202,7 +202,7 @@
         function shareWithConFileBtnClickHandler()
         {
             //使用配置文件分享
-            $sharesdk.shareWithConfigurationFile("mob", $sharesdk.PlatformID.SinaWeibo , null, function (reqID, platform, state, shareInfo, error) {
+            $sharesdk.shareWithConfigurationFile("mob", $sharesdk.PlatformID.QQ , null, function (reqID, platform, state, shareInfo, error) {
                                                  alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
                                                  });
         }
