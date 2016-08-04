@@ -65,6 +65,8 @@ static NSString *const showShareMenu = @"showShareMenu";
 static NSString *const showShareView = @"showShareView";
 static NSString *const getFriendList = @"getFriendList";
 static NSString *const addFriend = @"addFriend";
+static NSString *const shareWithConfigurationFile = @"shareWithConfigurationFile";
+
 static ShareSDKJSBridge *_instance = nil;
 static UIView *_refView = nil;
 
@@ -247,6 +249,13 @@ static UIView *_refView = nil;
                 [self addFriendWithSeqId:seqId
                                   params:paramsDict
                                  webView:webView];
+            }
+            else if([methodName isEqualToString:shareWithConfigurationFile])
+            {
+                //使用配置文件分享
+                [self shareWithSeqId:seqId
+                              params:paramsDict
+                             webView:webView];
             }
         }
         
@@ -866,6 +875,72 @@ static UIView *_refView = nil;
          
          [self resultWithData:responseDict webView:webView];
      }];
+}
+
+- (void)shareWithSeqId:(NSString *)seqId
+                params:(NSDictionary *)params
+               webView:(UIWebView *)webView
+{
+    NSString *contentName = nil;
+    if ([[params objectForKey:@"contentName"] isKindOfClass:[NSString class]])
+    {
+        contentName = [params objectForKey:@"contentName"];
+    }
+    
+    SSDKPlatformType type = SSDKPlatformTypeAny;
+    
+    if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
+    {
+        type = [[params objectForKey:@"platform"] unsignedIntegerValue];
+    }
+    
+    NSMutableDictionary *customFields = nil;
+    if ([[params objectForKey:@"customFields"] isKindOfClass:[NSDictionary class]])
+    {
+        customFields = [params objectForKey:@"customFields"];
+    }
+    
+    NSString *callback = nil;
+    if ([[params objectForKey:@"callback"] isKindOfClass:[NSString class]])
+    {
+        callback = [params objectForKey:@"callback"];
+    }
+    
+    [ShareSDK shareWithContentName:contentName
+                          platform:type
+                      customFields:customFields
+                    onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                        //返回
+                        NSMutableDictionary *responseDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                             [NSNumber numberWithInteger:[seqId integerValue]],
+                                                             @"seqId",
+                                                             shareContent,
+                                                             @"method",
+                                                             [NSNumber numberWithInteger:state],
+                                                             @"state",
+                                                             [NSNumber numberWithInteger:type],
+                                                             @"platform",
+                                                             callback,
+                                                             @"callback",
+                                                             nil];
+                        if (error)
+                        {
+                            [responseDict setObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                     [NSNumber numberWithInteger:[error code]],
+                                                     @"error_code",
+                                                     [error userInfo],
+                                                     @"error_msg",
+                                                     nil]
+                                             forKey:@"error"];
+                        }
+                        
+                        if ([contentEntity rawData])
+                        {
+                            [responseDict setObject:[contentEntity rawData] forKey:@"data"];
+                        }
+                        
+                        [self resultWithData:responseDict webView:webView];
+                    }];
 }
 
 - (void)oneKeyShareContentWithSeqId:(NSString *)seqId

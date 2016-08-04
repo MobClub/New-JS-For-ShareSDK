@@ -32,7 +32,8 @@ function ShareSDK()
         "ShowShareView" : "showShareView",
         "GetFriendList" : "getFriendList",
         "AddFriend" : "addFriend",
-        "CloseSSOWhenAuthorize" : "closeSSOWhenAuthorize"
+        "CloseSSOWhenAuthorize" : "closeSSOWhenAuthorize",
+        "ShareWithConfigurationFile" : "shareWithConfigurationFile"
     };
 
     /**
@@ -228,6 +229,7 @@ function ShareSDK()
          */
         this.callMethod = function(request)
         {
+                                                         alert("callMethod = ");
             requestes[request.seqId] = request;
             window.location.href = "sharesdk://call?seqId=" + request.seqId + "&methodName=" + request.method;
         };
@@ -276,6 +278,7 @@ function ShareSDK()
                         case ShareSDKMethodName.OneKeyShareContent:
                         case ShareSDKMethodName.ShowShareMenu:
                         case ShareSDKMethodName.ShowShareView:
+                        case ShareSDKMethodName.ShareWithConfigurationFile:
                             callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
                             break;
                         case ShareSDKMethodName.GetFriendList:
@@ -675,6 +678,25 @@ function ShareSDK()
 
         return CallMethod(ShareSDKMethodName.ShareContent, params);
     };       
+    
+    /**
+     * 使用配置文件的方式分享
+     * @param contentName  ShareContent.xml内<Content>标签name属性的值
+     * @param platform     平台类型
+     * @param customFields 自定义字段
+     * @param callback     状态变更回调处理
+     */                         
+    this.shareWithConfigurationFile = function(contentName, platform , customFields, callback)
+    {
+        var params = 
+        {
+            "contentName" : contentName,
+            "platform" : platform,
+            "customFields" : customFields,
+            "callback" : "(" + callback.toString() + ")"
+        };
+        return CallMethod(ShareSDKMethodName.ShareWithConfigurationFile, params);
+    };
 
     /**
      * 一键分享

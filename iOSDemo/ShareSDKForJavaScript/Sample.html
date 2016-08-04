@@ -61,7 +61,7 @@
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, state, error) {
+            $sharesdk.authorize($sharesdk.PlatformID.WhatsApp, function (reqID, platform, state, error) {
                 alert("state = " + state + "\n error = " + error);
             });
         }
@@ -199,6 +199,26 @@
             });
         }
 
+        function shareWithConFileBtnClickHandler()
+        {
+            //使用配置文件分享
+            $sharesdk.shareWithConfigurationFile("mob", $sharesdk.PlatformID.SinaWeibo , null, function (reqID, platform, state, shareInfo, error) {
+                                                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+                                                 });
+        }
+
+        function customShareWithConFileBtnClickHandler()
+        {
+            var customFields = {
+                "imgUrl" : "http://www.mob.com/mob/images/sharesdk/analysis-logo.png"
+            };
+
+            //自定义配置文件分享
+            $sharesdk.shareWithConfigurationFile("sharesdk", $sharesdk.PlatformID.SinaWeibo , customFields, function (reqID, platform, state, shareInfo, error) {
+                                                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+                                                 });
+        }
+
     </script>
 </head>
 <body onload="init()" style="text-align: center">
@@ -214,5 +234,7 @@
     <input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="获取好友列表" onclick="getFriendListBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="关注好友" onclick="addFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="使用配置文件分享" onclick="shareWithConFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="自定义配置文件分享" onclick="customShareWithConFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
 </body>
 </html>

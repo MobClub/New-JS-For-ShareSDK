@@ -23,11 +23,12 @@
 		DE43B3011C6053D3000471F5 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2D91C6053D3000471F5 /* libWeiboSDK.a */; };
 		DE43B3021C6053D3000471F5 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE43B2E31C6053D3000471F5 /* WeiboSDK.bundle */; };
 		DE43B3031C6053D3000471F5 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2E71C6053D3000471F5 /* libWeChatSDK.a */; };
-		DE43B3041C6053D3000471F5 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = DE43B2E81C6053D3000471F5 /* read_me.txt */; };
 		DE43B3051C6053D3000471F5 /* libYixinSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2ED1C6053D3000471F5 /* libYixinSDK.a */; };
 		DE43B3061C6053D3000471F5 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2F11C6053D3000471F5 /* MOBFoundation.framework */; };
 		DE43B3071C6053D3000471F5 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE43B2F21C6053D3000471F5 /* ShareSDK.bundle */; };
 		DE43B3081C6053D3000471F5 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2F31C6053D3000471F5 /* ShareSDKConnector.framework */; };
+		DE634FB81D50934800EA3396 /* ShareContent.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE634FB61D50934800EA3396 /* ShareContent.xml */; };
+		DE634FB91D50934800EA3396 /* ShareSDK.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE634FB71D50934800EA3396 /* ShareSDK.xml */; };
 		DE9902511BECAB2F00F3AD45 /* Sample.html in Resources */ = {isa = PBXBuildFile; fileRef = DE99024F1BECAB2F00F3AD45 /* Sample.html */; };
 		DEC9E6771BFDA700007C3848 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC9E6761BFDA700007C3848 /* AddressBook.framework */; };
 		DEC9E6781BFDA71A007C3848 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDD3BB61BF9BA2A00575AF7 /* ImageIO.framework */; };
@@ -79,7 +80,6 @@
 		DE43B2E41C6053D3000471F5 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		DE43B2E51C6053D3000471F5 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
 		DE43B2E71C6053D3000471F5 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		DE43B2E81C6053D3000471F5 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		DE43B2E91C6053D3000471F5 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		DE43B2EA1C6053D3000471F5 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		DE43B2EB1C6053D3000471F5 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -89,6 +89,8 @@
 		DE43B2F11C6053D3000471F5 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		DE43B2F21C6053D3000471F5 /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
 		DE43B2F31C6053D3000471F5 /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
+		DE634FB61D50934800EA3396 /* ShareContent.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ShareContent.xml; sourceTree = "<group>"; };
+		DE634FB71D50934800EA3396 /* ShareSDK.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ShareSDK.xml; sourceTree = "<group>"; };
 		DE99024F1BECAB2F00F3AD45 /* Sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Sample.html; sourceTree = "<group>"; };
 		DEC9E6761BFDA700007C3848 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		DEC9E6791BFDA739007C3848 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -264,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				DE43B2E71C6053D3000471F5 /* libWeChatSDK.a */,
-				DE43B2E81C6053D3000471F5 /* read_me.txt */,
 				DE43B2E91C6053D3000471F5 /* WechatAuthSDK.h */,
 				DE43B2EA1C6053D3000471F5 /* WXApi.h */,
 				DE43B2EB1C6053D3000471F5 /* WXApiObject.h */,
@@ -316,6 +317,8 @@
 			isa = PBXGroup;
 			children = (
 				DEF93AAF1C2BF6E600295FBA /* JSApi */,
+				DE634FB61D50934800EA3396 /* ShareContent.xml */,
+				DE634FB71D50934800EA3396 /* ShareSDK.xml */,
 				DE99024F1BECAB2F00F3AD45 /* Sample.html */,
 				DEE33CEB1BE7380300B1089C /* AppDelegate.h */,
 				DEE33CEC1BE7380300B1089C /* AppDelegate.m */,
@@ -423,12 +426,13 @@
 			files = (
 				DE9902511BECAB2F00F3AD45 /* Sample.html in Resources */,
 				DEE33CF81BE7380300B1089C /* LaunchScreen.storyboard in Resources */,
+				DE634FB81D50934800EA3396 /* ShareContent.xml in Resources */,
 				DEE33CF51BE7380300B1089C /* Assets.xcassets in Resources */,
 				DE43B2FF1C6053D3000471F5 /* RennSDK.bundle in Resources */,
 				DE43B3071C6053D3000471F5 /* ShareSDK.bundle in Resources */,
-				DE43B3041C6053D3000471F5 /* read_me.txt in Resources */,
 				DEE33CF31BE7380300B1089C /* Main.storyboard in Resources */,
 				DE43B3021C6053D3000471F5 /* WeiboSDK.bundle in Resources */,
+				DE634FB91D50934800EA3396 /* ShareSDK.xml in Resources */,
 				DE43B2FE1C6053D3000471F5 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				DE43B2F71C6053D3000471F5 /* ShareSDKUI.bundle in Resources */,
 				DEF93ACC1C2BF6E600295FBA /* ShareSDK.js in Resources */,
