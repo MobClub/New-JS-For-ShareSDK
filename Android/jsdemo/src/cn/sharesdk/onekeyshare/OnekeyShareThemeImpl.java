@@ -135,6 +135,7 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 					ri = platform.getContext().getPackageManager().resolveActivity(test, 0);
 				}
 				return (ri != null);
+				
 			}
 		}
 
