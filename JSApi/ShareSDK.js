@@ -229,7 +229,6 @@ function ShareSDK()
          */
         this.callMethod = function(request)
         {
-                                                         alert("callMethod = ");
             requestes[request.seqId] = request;
             window.location.href = "sharesdk://call?seqId=" + request.seqId + "&methodName=" + request.method;
         };
