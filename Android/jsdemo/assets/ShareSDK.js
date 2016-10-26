@@ -355,6 +355,7 @@ function ShareSDK()
     		FacebookMessenger : 46, //FacebookMessenger
     		Bluetooth : 48,         //Bluetooth
     		Alipay : 50,            //Alipay
+    		AlipayMoments : 51,     //AlipayMoments
             KakaoPlatform : 995,    //Kakao Series
             EvernotePlatform : 996, //Evernote Series
     		WechatPlatform : 997,   //Wechat Series
