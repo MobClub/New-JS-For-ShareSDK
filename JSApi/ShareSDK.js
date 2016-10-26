@@ -33,7 +33,10 @@ function ShareSDK()
         "GetFriendList" : "getFriendList",
         "AddFriend" : "addFriend",
         "CloseSSOWhenAuthorize" : "closeSSOWhenAuthorize",
-        "ShareWithConfigurationFile" : "shareWithConfigurationFile"
+        "ShareWithConfigurationFile" : "shareWithConfigurationFile",
+        
+        "ShowShareMenuWithConfigurationFile":"showShareMenuWithConfigurationFile",
+        "ShowShareViewWithConfigurationFile":"showShareViewWithConfigurationFile"
     };
 
     /**
@@ -695,6 +698,53 @@ function ShareSDK()
             "callback" : "(" + callback.toString() + ")"
         };
         return CallMethod(ShareSDKMethodName.ShareWithConfigurationFile, params);
+    };
+
+    /**
+     * 显示分享菜单
+     * @param platforms         分享的目标平台类型集合
+     * @param shareParams       分享内容
+     * @param x                 弹出菜单的原点横坐标（仅用于iPad）
+     * @param y                 弹出菜单的原点纵坐标（仅用于iPad）
+     * @param contentName  ShareContent.xml内<Content>标签name属性的值
+     * @param customFields 自定义字段
+     * @param callback          回调方法
+     */
+    this.showShareMenuWithConfigurationFile = function (platforms, x, y,contentName,customFields,callback)
+    {
+        var params =
+        {
+            "platforms" : platforms,
+            "x" : x,
+            "y" : y,
+            "contentName" : contentName,
+            "customFields" : customFields,
+            "theme" : "skyblue",
+            "callback" : "(" + callback.toString() + ")"
+        };
+
+        return CallMethod(ShareSDKMethodName.ShowShareMenuWithConfigurationFile, params);
+    };
+
+    /**
+     * 显示分享视图
+     * @param platform
+     * @param shareParams
+     * @param contentName  ShareContent.xml内<Content>标签name属性的值
+     * @param customFields 自定义字段
+     * @param callback
+     */
+    this.showShareViewWithConfigurationFile = function (platform, contentName , customFields , callback)
+    {
+        var params =
+        {
+            "platform" : platform,
+            "contentName" : contentName,
+            "customFields" : customFields,
+            "callback" : "(" + callback.toString() + ")"
+        };
+
+        return CallMethod(ShareSDKMethodName.ShowShareViewWithConfigurationFile, params);
     };
 
     /**

@@ -16,7 +16,9 @@
 #import <ShareSDKExtension/ShareSDK+Extension.h>
 #import <ShareSDKExtension/SSEShareHelper.h>
 #import <ShareSDK/NSMutableDictionary+SSDKShare.h>
-#import <ShareSDK/SSDKFriendsPaging.h>
+#import <ShareSDKExtension/SSDKFriendsPaging.h>
+
+#import <ShareSDKConfigFile/ShareSDK+XML.h>
 
 #define IMPORT_SINA_WEIBO_LIB               //导入新浪微博库，如果不需要新浪微博客户端分享可以注释此行
 #define IMPORT_QZONE_QQ_LIB                 //导入腾讯开发平台库，如果不需要QQ空间分享、SSO或者QQ好友分享可以注释此行
@@ -66,7 +68,9 @@ static NSString *const showShareView = @"showShareView";
 static NSString *const getFriendList = @"getFriendList";
 static NSString *const addFriend = @"addFriend";
 static NSString *const shareWithConfigurationFile = @"shareWithConfigurationFile";
+static NSString *const showShareMenuWithConfigurationFile = @"showShareMenuWithConfigurationFile";
 
+static NSString *const showShareViewWithConfigurationFile = @"showShareViewWithConfigurationFile";
 static ShareSDKJSBridge *_instance = nil;
 static UIView *_refView = nil;
 
@@ -256,6 +260,20 @@ static UIView *_refView = nil;
                 [self shareWithSeqId:seqId
                               params:paramsDict
                              webView:webView];
+            }
+            else if([methodName isEqualToString:showShareMenuWithConfigurationFile])
+            {
+                //使用配置文件＋显示分享菜单栏方式分享
+                [self shareUsingShareMenuWithSeqId:seqId
+                                            params:paramsDict
+                                           webView:webView];
+            }
+            else if ([methodName isEqualToString:showShareViewWithConfigurationFile])
+            {
+                //使用配置文件＋显示分享编辑方式分享
+                [self shareUsingShareViewWithSeqId:seqId
+                                            params:paramsDict
+                                           webView:webView];
             }
         }
         
@@ -853,6 +871,226 @@ static UIView *_refView = nil;
          
          [self resultWithData:responseDict webView:webView];
      }];
+}
+
+- (void)shareUsingShareMenuWithSeqId:(NSString *)seqId
+                              params:(NSDictionary *)params
+                             webView:(UIWebView *)webView
+{
+#ifdef IMPORT_SINA_WEIBO_LIB
+    [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+#endif
+    
+#ifdef IMPORT_QZONE_QQ_LIB
+    [ShareSDKConnector connectQQ:[QQApiInterface class]
+               tencentOAuthClass:[TencentOAuth class]];
+#endif
+    
+#ifdef IMPORT_RENREN_LIB
+    [ShareSDKConnector connectRenren:[RennClient class]];
+#endif
+    
+#ifdef IMPORT_WECHAT_LIB
+    [ShareSDKConnector connectWeChat:[WXApi class]];
+#endif
+    
+#ifdef IMPORT_ALIPAY_LIB
+    [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+#endif
+    
+#ifdef IMPORT_KAKAO_LIB
+    [ShareSDKConnector connectKaKao:[KOSession class]];
+#endif
+    
+    NSArray *types = nil;
+    if ([[params objectForKey:@"platforms"] isKindOfClass:[NSArray class]])
+    {
+        types = [params objectForKey:@"platforms"];
+    }
+    
+    CGFloat x = 0;
+    if ([[params objectForKey:@"x"] isKindOfClass:[NSNumber class]])
+    {
+        x = [[params objectForKey:@"x"] floatValue];
+    }
+    
+    CGFloat y = 0;
+    if ([[params objectForKey:@"y"] isKindOfClass:[NSNumber class]])
+    {
+        y = [[params objectForKey:@"y"] floatValue];
+    }
+    
+    UIViewController *vc = [MOBFViewController currentViewController];
+    if ([MOBFDevice isPad])
+    {
+        if (!_refView)
+        {
+            _refView = [[UIView alloc] initWithFrame:CGRectMake(x, y, 1, 1)];
+        }
+        else
+        {
+            _refView.frame = CGRectMake(x, y, 1, 1);
+        }
+        
+        [vc.view addSubview:_refView];
+    }
+    
+    NSString *contentName = nil;
+    if ([[params objectForKey:@"contentName"] isKindOfClass:[NSString class]])
+    {
+        contentName = [params objectForKey:@"contentName"];
+    }
+
+    NSMutableDictionary *customFields = nil;
+    if ([[params objectForKey:@"customFields"] isKindOfClass:[NSDictionary class]])
+    {
+        customFields = [params objectForKey:@"customFields"];
+    }
+    
+    NSString *callback = nil;
+    if ([[params objectForKey:@"callback"] isKindOfClass:[NSString class]])
+    {
+        callback = [params objectForKey:@"callback"];
+    }
+
+    [ShareSDK showShareActionSheet:_refView
+                             items:types
+                       contentName:contentName
+                      customFields:customFields
+               onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                   //返回
+                   NSMutableDictionary *responseDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                        [NSNumber numberWithInteger:[seqId integerValue]],
+                                                        @"seqId",
+                                                        showShareMenu,
+                                                        @"method",
+                                                        [NSNumber numberWithInteger:state],
+                                                        @"state",
+                                                        [NSNumber numberWithInteger:platformType],
+                                                        @"platform",
+                                                        [NSNumber numberWithBool:end],
+                                                        @"end",
+                                                        callback,
+                                                        @"callback",
+                                                        nil];
+                   if (error)
+                   {
+                       [responseDict setObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                [NSNumber numberWithInteger:[error code]],
+                                                @"error_code",
+                                                [error userInfo],
+                                                @"error_msg",
+                                                nil]
+                                        forKey:@"error"];
+                   }
+                   
+                   if ([contentEntity rawData])
+                   {
+                       [responseDict setObject:[contentEntity rawData] forKey:@"data"];
+                   }
+                   
+                   [self resultWithData:responseDict webView:webView];
+                   
+                   if (_refView)
+                   {
+                       [_refView removeFromSuperview];
+                   }
+               }];
+}
+
+- (void)shareUsingShareViewWithSeqId:(NSString *)seqId
+                              params:(NSDictionary *)params
+                             webView:(UIWebView *)webView
+{
+#ifdef IMPORT_SINA_WEIBO_LIB
+    [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+#endif
+    
+#ifdef IMPORT_QZONE_QQ_LIB
+    [ShareSDKConnector connectQQ:[QQApiInterface class]
+               tencentOAuthClass:[TencentOAuth class]];
+#endif
+    
+#ifdef IMPORT_RENREN_LIB
+    [ShareSDKConnector connectRenren:[RennClient class]];
+#endif
+    
+#ifdef IMPORT_WECHAT_LIB
+    [ShareSDKConnector connectWeChat:[WXApi class]];
+#endif
+    
+#ifdef IMPORT_ALIPAY_LIB
+    [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+#endif
+    
+#ifdef IMPORT_KAKAO_LIB
+    [ShareSDKConnector connectKaKao:[KOSession class]];
+#endif
+    
+    SSDKPlatformType type = SSDKPlatformTypeAny;
+    if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
+    {
+        type = [[params objectForKey:@"platform"] unsignedIntegerValue];
+    }
+    
+    NSString *contentName = nil;
+    if ([[params objectForKey:@"contentName"] isKindOfClass:[NSString class]])
+    {
+        contentName = [params objectForKey:@"contentName"];
+    }
+    
+    NSMutableDictionary *customFields = nil;
+    if ([[params objectForKey:@"customFields"] isKindOfClass:[NSDictionary class]])
+    {
+        customFields = [params objectForKey:@"customFields"];
+    }
+    
+    NSString *callback = nil;
+    if ([[params objectForKey:@"callback"] isKindOfClass:[NSString class]])
+    {
+        callback = [params objectForKey:@"callback"];
+    }
+    
+    [ShareSDK showShareEditor:type
+           otherPlatformTypes:nil
+                  contentName:contentName
+                 customFields:customFields
+          onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+              
+              //返回
+              NSMutableDictionary *responseDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                   [NSNumber numberWithInteger:[seqId integerValue]],
+                                                   @"seqId",
+                                                   showShareView,
+                                                   @"method",
+                                                   [NSNumber numberWithInteger:state],
+                                                   @"state",
+                                                   @(platformType),
+                                                   @"platform",
+                                                   [NSNumber numberWithBool:end],
+                                                   @"end",
+                                                   callback,
+                                                   @"callback",
+                                                   nil];
+              if (error)
+              {
+                  [responseDict setObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                           [NSNumber numberWithInteger:[error code]],
+                                           @"error_code",
+                                           [error userInfo],
+                                           @"error_msg",
+                                           nil]
+                                   forKey:@"error"];
+              }
+              
+              if ([contentEntity rawData])
+              {
+                  [responseDict setObject:[contentEntity rawData] forKey:@"data"];
+              }
+              
+              [self resultWithData:responseDict webView:webView];
+          }];
+    
 }
 
 - (void)shareWithSeqId:(NSString *)seqId
