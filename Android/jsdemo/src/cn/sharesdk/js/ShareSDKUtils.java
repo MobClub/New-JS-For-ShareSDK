@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.util.Log;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import cn.sharesdk.framework.Platform;
@@ -91,6 +92,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
      *   }
      * }
 	 */
+	@JavascriptInterface
 	public void jsCallback(String seqId, String api, String data, String callback) {
 		// this is in webview core thread, not in ui thread
 		Message msg = new Message();
@@ -100,6 +102,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	}
 	
 	/** receive js log */
+	@JavascriptInterface
 	public void jsLog(String msg) {
 		Log.w("ShareSDK for JS", msg == null ? "" : msg);
 	}
