@@ -219,6 +219,30 @@
                                                  });
         }
 
+        function showShareMenuWithConfigurationFileBtnClickHandler()
+        {
+            var customFields = {
+                "imgUrl" : "http://www.mob.com/mob/images/sharesdk/analysis-logo.png"
+            };
+            
+            $sharesdk.showShareMenuWithConfigurationFile(null, 100, 100,"sharesdk", customFields,function (reqID, platform, state, shareInfo, error)
+                                                         {
+                                                         alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+                                                         });
+        }
+
+        function showShareViewWithConfigurationFileBtnClickHandler()
+        {
+            var customFields = {
+                "imgUrl" : "http://www.mob.com/mob/images/sharesdk/analysis-logo.png"
+            };
+            
+            $sharesdk.showShareViewWithConfigurationFile($sharesdk.PlatformID.SinaWeibo,"sharesdk",customFields,function (reqID, platform, state, shareInfo, error)
+                                                         {
+                                                         alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+                                                         });
+        }
+
     </script>
 </head>
 <body onload="init()" style="text-align: center">
@@ -236,5 +260,7 @@
     <input type="button" value="关注好友" onclick="addFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="使用配置文件分享" onclick="shareWithConFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="自定义配置文件分享" onclick="customShareWithConFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="使用配置文件＋分享菜单栏分享" onclick="showShareMenuWithConfigurationFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="使用配置文件＋分享编辑页面分享" onclick="showShareViewWithConfigurationFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
 </body>
 </html>
