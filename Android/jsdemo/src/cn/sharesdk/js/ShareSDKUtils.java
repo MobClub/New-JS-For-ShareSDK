@@ -365,6 +365,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 			platformDbMap.put("userGender", db.getUserGender());
 			platformDbMap.put("userID", db.getUserId());
 			platformDbMap.put("openID", db.get("openid"));
+			platformDbMap.put("unionID", db.get("unionid"));
 			platformDbMap.put("userName", db.getUserName());
 			platformDbMap.put("userIcon", db.getUserIcon());
 			authInfo = hashon.fromHashMap(platformDbMap);
