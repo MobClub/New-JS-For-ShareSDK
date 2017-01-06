@@ -26,6 +26,7 @@
 #define IMPORT_WECHAT_LIB                   //导入微信库，如果不需要微信分享可以注释此行
 #define IMPORT_ALIPAY_LIB                   //导入支付宝分享库，如果不需要易信分享可以注释此行
 #define IMPORT_KAKAO_LIB                    //导入Kakao库，如果不需要易信分享可以注释此行
+#define IMPORT_MESSENGER_LIB                //导入Facebook Messenger库，如果不需要Facebook Messenger分享可以注释此行
 
 #ifdef IMPORT_SINA_WEIBO_LIB
 #import "WeiboSDK.h"
@@ -50,6 +51,10 @@
 
 #ifdef IMPORT_KAKAO_LIB
 #import <KakaoOpenSDK/KakaoOpenSDK.h>
+#endif
+
+#ifdef IMPORT_MESSENGER_LIB
+#import <FBSDKMessengerShareKit/FBSDKMessengerSharer.h>
 #endif
 
 static NSString *const initSDKAndSetPlatfromConfig = @"initSDKAndSetPlatfromConfig";
@@ -131,6 +136,10 @@ static UIView *_refView = nil;
         
 #ifdef IMPORT_KAKAO_LIB
         [KOSession class];
+#endif
+        
+#ifdef IMPORT_MESSENGER_LIB
+        [FBSDKMessengerSharer class];
 #endif
         _webViewDelegate = webView.delegate;
         webView.delegate = self;
@@ -391,6 +400,12 @@ static UIView *_refView = nil;
 #ifdef IMPORT_KAKAO_LIB
                          case SSDKPlatformTypeKakao:
                              [ShareSDKConnector connectKaKao:[KOSession class]];
+                             break;
+#endif
+                             
+#ifdef IMPORT_MESSENGER_LIB
+                         case SSDKPlatformTypeFacebookMessenger:
+                             [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
                              break;
 #endif
                         
@@ -902,6 +917,10 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectKaKao:[KOSession class]];
 #endif
     
+#ifdef IMPORT_MESSENGER_LIB
+    [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+#endif
+    
     NSArray *types = nil;
     if ([[params objectForKey:@"platforms"] isKindOfClass:[NSArray class]])
     {
@@ -1027,6 +1046,10 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectKaKao:[KOSession class]];
 #endif
     
+#ifdef IMPORT_MESSENGER_LIB
+    [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+#endif
+    
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -1121,6 +1144,10 @@ static UIView *_refView = nil;
     
 #ifdef IMPORT_KAKAO_LIB
     [ShareSDKConnector connectKaKao:[KOSession class]];
+#endif
+    
+#ifdef IMPORT_MESSENGER_LIB
+    [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
 #endif
     
     NSString *contentName = nil;

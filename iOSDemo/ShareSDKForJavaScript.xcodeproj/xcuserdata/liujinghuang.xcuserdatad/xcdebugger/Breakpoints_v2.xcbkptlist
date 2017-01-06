@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JSApi/iOS/ShareSDKJSBridge.m"
-            timestampString = "498972537.5369"
+            timestampString = "505384574.591223"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "-captureRequest:webView:"
-            landmarkType = "7">
+            startingLineNumber = "853"
+            endingLineNumber = "853"
+            landmarkName = "-shareContentWithSeqId:params:webView:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,14 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ShareSDKForJavaScript/ViewController.m"
-            timestampString = "498972886.39352"
+            filePath = "../JSApi/iOS/ShareSDKJSBridge.m"
+            timestampString = "505386914.622772"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-captureRequest:webView:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

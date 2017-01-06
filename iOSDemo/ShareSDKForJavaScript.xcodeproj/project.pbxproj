@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DE43B2F41C6053D3000471F5 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2C11C6053D3000471F5 /* ShareSDK.framework */; };
 		DE43B2F51C6053D3000471F5 /* ShareSDKExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2C41C6053D3000471F5 /* ShareSDKExtension.framework */; };
-		DE43B2F61C6053D3000471F5 /* ShareSDKInterfaceAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2C51C6053D3000471F5 /* ShareSDKInterfaceAdapter.framework */; };
 		DE43B2F71C6053D3000471F5 /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE43B2C61C6053D3000471F5 /* ShareSDKUI.bundle */; };
 		DE43B2F81C6053D3000471F5 /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2C71C6053D3000471F5 /* ShareSDKUI.framework */; };
 		DE43B2F91C6053D3000471F5 /* libAPOpenSdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2CC1C6053D3000471F5 /* libAPOpenSdk.a */; };
@@ -70,7 +69,6 @@
 /* Begin PBXFileReference section */
 		DE43B2C11C6053D3000471F5 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		DE43B2C41C6053D3000471F5 /* ShareSDKExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKExtension.framework; sourceTree = "<group>"; };
-		DE43B2C51C6053D3000471F5 /* ShareSDKInterfaceAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKInterfaceAdapter.framework; sourceTree = "<group>"; };
 		DE43B2C61C6053D3000471F5 /* ShareSDKUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKUI.bundle; sourceTree = "<group>"; };
 		DE43B2C71C6053D3000471F5 /* ShareSDKUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKUI.framework; sourceTree = "<group>"; };
 		DE43B2CA1C6053D3000471F5 /* APOpenAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APOpenAPI.h; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 				DEE12C161DB8A992009B2C83 /* CopyConnector.framework in Frameworks */,
 				DEE12C261DB8A992009B2C83 /* YiXinConnector.framework in Frameworks */,
 				DEE12C1C1DB8A992009B2C83 /* KakaoConnector.framework in Frameworks */,
-				DE43B2F61C6053D3000471F5 /* ShareSDKInterfaceAdapter.framework in Frameworks */,
 				DEC9E67C1BFDA74A007C3848 /* AssetsLibrary.framework in Frameworks */,
 				DEC9E67A1BFDA739007C3848 /* MediaPlayer.framework in Frameworks */,
 				DEC9E6781BFDA71A007C3848 /* ImageIO.framework in Frameworks */,
@@ -231,7 +228,6 @@
 				DEE12C271DB8A99E009B2C83 /* ShareSDKConfigFile.bundle */,
 				DEE12C281DB8A99E009B2C83 /* ShareSDKConfigFile.framework */,
 				DE43B2C41C6053D3000471F5 /* ShareSDKExtension.framework */,
-				DE43B2C51C6053D3000471F5 /* ShareSDKInterfaceAdapter.framework */,
 				DE43B2C61C6053D3000471F5 /* ShareSDKUI.bundle */,
 				DE43B2C71C6053D3000471F5 /* ShareSDKUI.framework */,
 			);

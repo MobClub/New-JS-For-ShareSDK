@@ -54,6 +54,10 @@
             //Mail
             var mailConf = {};
             platformConfig[$sharesdk.PlatformID.Mail] = mailConf;
+            
+            //Facebook Messenger
+            var fbMessengerConf = {};
+            platformConfig[$sharesdk.PlatformID.FacebookMessenger] = fbMessengerConf;
 
             //2、初始化ShareSDK
             $sharesdk.initSDKAndSetPlatfromConfig("iosv1101", platformConfig);
@@ -115,7 +119,7 @@
                 "type" : $sharesdk.ContentType.Auto
             };
 
-            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (reqID, platform, state, shareInfo, error) {
+            $sharesdk.shareContent($sharesdk.PlatformID.FacebookMessenger, params, function (reqID, platform, state, shareInfo, error) {
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
             });
         }
