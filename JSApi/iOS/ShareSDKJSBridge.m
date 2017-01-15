@@ -27,6 +27,7 @@
 #define IMPORT_ALIPAY_LIB                   //导入支付宝分享库，如果不需要易信分享可以注释此行
 #define IMPORT_KAKAO_LIB                    //导入Kakao库，如果不需要易信分享可以注释此行
 #define IMPORT_MESSENGER_LIB                //导入Facebook Messenger库，如果不需要Facebook Messenger分享可以注释此行
+#define IMPORT_DINGTALK_LIB                 //导入钉钉（Ding Talk）库，如果不需要钉钉（Ding Talk）分享可以注释此行
 
 #ifdef IMPORT_SINA_WEIBO_LIB
 #import "WeiboSDK.h"
@@ -55,6 +56,10 @@
 
 #ifdef IMPORT_MESSENGER_LIB
 #import <FBSDKMessengerShareKit/FBSDKMessengerSharer.h>
+#endif
+
+#ifdef IMPORT_DINGTALK_LIB
+#import <DTShareKit/DTOpenAPI.h>
 #endif
 
 static NSString *const initSDKAndSetPlatfromConfig = @"initSDKAndSetPlatfromConfig";
@@ -140,6 +145,10 @@ static UIView *_refView = nil;
         
 #ifdef IMPORT_MESSENGER_LIB
         [FBSDKMessengerSharer class];
+#endif
+        
+#ifdef IMPORT_DINGTALK_LIB
+        [DTOpenAPI class];
 #endif
         _webViewDelegate = webView.delegate;
         webView.delegate = self;
@@ -406,6 +415,12 @@ static UIView *_refView = nil;
 #ifdef IMPORT_MESSENGER_LIB
                          case SSDKPlatformTypeFacebookMessenger:
                              [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+                             break;
+#endif
+                             
+#ifdef IMPORT_DINGTALK_LIB
+                         case SSDKPlatformTypeDingTalk:
+                             [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
                              break;
 #endif
                         
@@ -921,6 +936,10 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
 #endif
     
+#ifdef IMPORT_DINGTALK_LIB
+    [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+#endif
+    
     NSArray *types = nil;
     if ([[params objectForKey:@"platforms"] isKindOfClass:[NSArray class]])
     {
@@ -1050,6 +1069,10 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
 #endif
     
+#ifdef IMPORT_DINGTALK_LIB
+    [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+#endif
+    
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -1148,6 +1171,10 @@ static UIView *_refView = nil;
     
 #ifdef IMPORT_MESSENGER_LIB
     [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+#endif
+    
+#ifdef IMPORT_DINGTALK_LIB
+    [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
 #endif
     
     NSString *contentName = nil;

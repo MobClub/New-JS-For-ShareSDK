@@ -58,6 +58,11 @@
             //Facebook Messenger
             var fbMessengerConf = {};
             platformConfig[$sharesdk.PlatformID.FacebookMessenger] = fbMessengerConf;
+            
+            //Ding Talk
+            var dingTalkConf = {};
+            dingTalkConf["app_id"] = "dingoanxyrpiscaovl4qlw";
+            platformConfig[$sharesdk.PlatformID.DingTalk] = dingTalkConf;
 
             //2、初始化ShareSDK
             $sharesdk.initSDKAndSetPlatfromConfig("iosv1101", platformConfig);

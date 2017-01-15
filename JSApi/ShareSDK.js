@@ -360,6 +360,8 @@ function ShareSDK()
     		FacebookMessenger : 46, //FacebookMessenger
     		Bluetooth : 48,         //Bluetooth
     		Alipay : 50,            //Alipay
+            AliPaySocialTimeline:51,//AliPaySocial Timeline
+            DingTalk:52,            //DingTalk
             KakaoPlatform : 995,    //Kakao Series
             EvernotePlatform : 996, //Evernote Series
     		WechatPlatform : 997,   //Wechat Series

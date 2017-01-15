@@ -4,6 +4,8 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>dingtalk-open</string>
+		<string>dingtalk</string>
 		<string>mqzoneopensdkapi</string>
 		<string>mqzoneopensdkapiV2</string>
 		<string>mqqopensdkapiV4</string>
@@ -53,6 +55,14 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>dingtalk</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>dingoanxyrpiscaovl4qlw</string>
+			</array>
+		</dict>
+		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ap2015072400185895</string>
@@ -90,7 +100,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>com.mob.demoShareSDK</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

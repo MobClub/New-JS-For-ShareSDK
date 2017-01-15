@@ -25,6 +25,8 @@
 		DE43B3061C6053D3000471F5 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2F11C6053D3000471F5 /* MOBFoundation.framework */; };
 		DE43B3071C6053D3000471F5 /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DE43B2F21C6053D3000471F5 /* ShareSDK.bundle */; };
 		DE43B3081C6053D3000471F5 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE43B2F31C6053D3000471F5 /* ShareSDKConnector.framework */; };
+		DE76AB1A1E2B5723000FDA6C /* DTShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE76AB191E2B5723000FDA6C /* DTShareKit.framework */; };
+		DE76AB1C1E2B572D000FDA6C /* DingTalkConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE76AB1B1E2B572D000FDA6C /* DingTalkConnector.framework */; };
 		DE9902511BECAB2F00F3AD45 /* Sample.html in Resources */ = {isa = PBXBuildFile; fileRef = DE99024F1BECAB2F00F3AD45 /* Sample.html */; };
 		DEC9E6771BFDA700007C3848 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC9E6761BFDA700007C3848 /* AddressBook.framework */; };
 		DEC9E6781BFDA71A007C3848 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDD3BB61BF9BA2A00575AF7 /* ImageIO.framework */; };
@@ -103,6 +105,8 @@
 		DE43B2F11C6053D3000471F5 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		DE43B2F21C6053D3000471F5 /* ShareSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDK.bundle; sourceTree = "<group>"; };
 		DE43B2F31C6053D3000471F5 /* ShareSDKConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConnector.framework; sourceTree = "<group>"; };
+		DE76AB191E2B5723000FDA6C /* DTShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DTShareKit.framework; sourceTree = "<group>"; };
+		DE76AB1B1E2B572D000FDA6C /* DingTalkConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DingTalkConnector.framework; sourceTree = "<group>"; };
 		DE99024F1BECAB2F00F3AD45 /* Sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Sample.html; sourceTree = "<group>"; };
 		DEC9E6761BFDA700007C3848 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		DEC9E6791BFDA739007C3848 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -156,6 +160,7 @@
 			files = (
 				DEE12C181DB8A992009B2C83 /* FacebookConnector.framework in Frameworks */,
 				DEE12C2A1DB8A99E009B2C83 /* ShareSDKConfigFile.framework in Frameworks */,
+				DE76AB1A1E2B5723000FDA6C /* DTShareKit.framework in Frameworks */,
 				DEE12C171DB8A992009B2C83 /* EvernoteConnector.framework in Frameworks */,
 				DE43B2FC1C6053D3000471F5 /* KakaoOpenSDK.framework in Frameworks */,
 				DE43B2FD1C6053D3000471F5 /* TencentOpenAPI.framework in Frameworks */,
@@ -165,6 +170,7 @@
 				DEE12C1C1DB8A992009B2C83 /* KakaoConnector.framework in Frameworks */,
 				DEC9E67C1BFDA74A007C3848 /* AssetsLibrary.framework in Frameworks */,
 				DEC9E67A1BFDA739007C3848 /* MediaPlayer.framework in Frameworks */,
+				DE76AB1C1E2B572D000FDA6C /* DingTalkConnector.framework in Frameworks */,
 				DEC9E6781BFDA71A007C3848 /* ImageIO.framework in Frameworks */,
 				DEE12C191DB8A992009B2C83 /* GooglePlusConnector.framework in Frameworks */,
 				DEE12C221DB8A992009B2C83 /* SinaWeiboConnector.framework in Frameworks */,
@@ -237,6 +243,7 @@
 		DE43B2C81C6053D3000471F5 /* PlatformSDK */ = {
 			isa = PBXGroup;
 			children = (
+				DE76AB181E2B5723000FDA6C /* DingTalkSDK */,
 				DE43B2C91C6053D3000471F5 /* APSocialSDK */,
 				DE43B2CE1C6053D3000471F5 /* FacebookMessengerSDK */,
 				DE43B2D01C6053D3000471F5 /* KaKaoSDK */,
@@ -344,9 +351,18 @@
 			path = Required;
 			sourceTree = "<group>";
 		};
+		DE76AB181E2B5723000FDA6C /* DingTalkSDK */ = {
+			isa = PBXGroup;
+			children = (
+				DE76AB191E2B5723000FDA6C /* DTShareKit.framework */,
+			);
+			path = DingTalkSDK;
+			sourceTree = "<group>";
+		};
 		DEE12C021DB8A992009B2C83 /* PlatformConnector */ = {
 			isa = PBXGroup;
 			children = (
+				DE76AB1B1E2B572D000FDA6C /* DingTalkConnector.framework */,
 				DEE12C031DB8A992009B2C83 /* AliPayConnector.framework */,
 				DEE12C041DB8A992009B2C83 /* CopyConnector.framework */,
 				DEE12C051DB8A992009B2C83 /* EvernoteConnector.framework */,
@@ -652,6 +668,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/RenRenSDK",
 					"$(PROJECT_DIR)/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/DingTalkSDK",
 				);
 				INFOPLIST_FILE = ShareSDKForJavaScript/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -692,6 +709,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/RenRenSDK",
 					"$(PROJECT_DIR)/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/DingTalkSDK",
 				);
 				INFOPLIST_FILE = ShareSDKForJavaScript/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

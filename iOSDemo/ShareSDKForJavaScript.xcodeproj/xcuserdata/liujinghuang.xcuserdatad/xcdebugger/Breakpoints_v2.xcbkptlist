@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JSApi/iOS/ShareSDKJSBridge.m"
-            timestampString = "505384574.591223"
+            timestampString = "506158230.610546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "853"
-            endingLineNumber = "853"
+            startingLineNumber = "868"
+            endingLineNumber = "868"
             landmarkName = "-shareContentWithSeqId:params:webView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,12 +26,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../JSApi/iOS/ShareSDKJSBridge.m"
-            timestampString = "505386914.622772"
+            timestampString = "506158600.60391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-captureRequest:webView:"
+            startingLineNumber = "999"
+            endingLineNumber = "999"
+            landmarkName = "-shareUsingShareMenuWithSeqId:params:webView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../JSApi/iOS/ShareSDKJSBridge.m"
+            timestampString = "506158614.321562"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "993"
+            endingLineNumber = "993"
+            landmarkName = "-shareUsingShareMenuWithSeqId:params:webView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../JSApi/iOS/ShareSDKJSBridge.m"
+            timestampString = "506158631.127131"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1355"
+            endingLineNumber = "1355"
+            landmarkName = "-showShareMenuWithSeqId:params:webView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
