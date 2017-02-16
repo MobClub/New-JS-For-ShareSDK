@@ -28,7 +28,7 @@
 #define IMPORT_KAKAO_LIB                    //导入Kakao库，如果不需要易信分享可以注释此行
 #define IMPORT_MESSENGER_LIB                //导入Facebook Messenger库，如果不需要Facebook Messenger分享可以注释此行
 #define IMPORT_DINGTALK_LIB                 //导入钉钉（Ding Talk）库，如果不需要钉钉（Ding Talk）分享可以注释此行
-#define IMPORT_MeiPai_LIB                   //导入美拍库，如果不需要美拍分享可以注释此行
+#define IMPORT_MEIPAI_LIB                   //导入美拍库，如果不需要美拍分享可以注释此行
 
 #ifdef IMPORT_SINA_WEIBO_LIB
 #import "WeiboSDK.h"
@@ -63,7 +63,7 @@
 #import <DTShareKit/DTOpenAPI.h>
 #endif
 
-#ifdef IMPORT_MeiPai_LIB
+#ifdef IMPORT_MEIPAI_LIB
 #import <MPShareSDK/MPShareSDK.h>
 #endif
 
@@ -156,7 +156,7 @@ static UIView *_refView = nil;
         [DTOpenAPI class];
 #endif
         
-#ifdef IMPORT_MeiPai_LIB
+#ifdef IMPORT_MEIPAI_LIB
         [MPShareSDK class];
 #endif
         
@@ -433,7 +433,7 @@ static UIView *_refView = nil;
                              [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
                              break;
 #endif
-#ifdef IMPORT_MeiPai_LIB
+#ifdef IMPORT_MEIPAI_LIB
                          case SSDKPlatformTypeMeiPai:
                              [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
                              break;
@@ -956,7 +956,7 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
 #endif
     
-#ifdef IMPORT_MeiPai_LIB
+#ifdef IMPORT_MEIPAI_LIB
     [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
 #endif
     
@@ -1093,7 +1093,7 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
 #endif
     
-#ifdef IMPORT_MeiPai_LIB
+#ifdef IMPORT_MEIPAI_LIB
     [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
 #endif
     
@@ -1201,7 +1201,7 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
 #endif
     
-#ifdef IMPORT_MeiPai_LIB
+#ifdef IMPORT_MEIPAI_LIB
     [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
 #endif
     
