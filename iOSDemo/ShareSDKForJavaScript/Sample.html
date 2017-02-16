@@ -63,7 +63,20 @@
             var dingTalkConf = {};
             dingTalkConf["app_id"] = "dingoanxyrpiscaovl4qlw";
             platformConfig[$sharesdk.PlatformID.DingTalk] = dingTalkConf;
+            
+            
+            //MeiPai
+            var meiPaiConf = {};
+            meiPaiConf["app_key"] = "1089867596";
+            platformConfig[$sharesdk.PlatformID.MeiPai] = meiPaiConf;
+            
+            //YouTube
+            var youTubeConf = {};
+            youTubeConf["client_id"] = "906418427202-jinnbqal1niq4s8isbg2ofsqc5ddkcgr.apps.googleusercontent.com";
+            youTubeConf["redirect_uri"] = "http://localhost";
+            platformConfig[$sharesdk.PlatformID.YouTube] = youTubeConf;
 
+            
             //2、初始化ShareSDK
             $sharesdk.initSDKAndSetPlatfromConfig("iosv1101", platformConfig);
         }

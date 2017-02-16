@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ShareSDKJSBridge.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface ViewController ()<UIWebViewDelegate>
 {

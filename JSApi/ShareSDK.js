@@ -362,6 +362,8 @@ function ShareSDK()
     		Alipay : 50,            //Alipay
             AliPaySocialTimeline:51,//AliPaySocial Timeline
             DingTalk:52,            //DingTalk
+            YouTube:53,             //youtube
+            MeiPai:54,              //美拍
             KakaoPlatform : 995,    //Kakao Series
             EvernotePlatform : 996, //Evernote Series
     		WechatPlatform : 997,   //Wechat Series

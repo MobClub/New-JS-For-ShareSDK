@@ -28,6 +28,7 @@
 #define IMPORT_KAKAO_LIB                    //导入Kakao库，如果不需要易信分享可以注释此行
 #define IMPORT_MESSENGER_LIB                //导入Facebook Messenger库，如果不需要Facebook Messenger分享可以注释此行
 #define IMPORT_DINGTALK_LIB                 //导入钉钉（Ding Talk）库，如果不需要钉钉（Ding Talk）分享可以注释此行
+#define IMPORT_MeiPai_LIB                   //导入美拍库，如果不需要美拍分享可以注释此行
 
 #ifdef IMPORT_SINA_WEIBO_LIB
 #import "WeiboSDK.h"
@@ -60,6 +61,10 @@
 
 #ifdef IMPORT_DINGTALK_LIB
 #import <DTShareKit/DTOpenAPI.h>
+#endif
+
+#ifdef IMPORT_MeiPai_LIB
+#import <MPShareSDK/MPShareSDK.h>
 #endif
 
 static NSString *const initSDKAndSetPlatfromConfig = @"initSDKAndSetPlatfromConfig";
@@ -150,6 +155,11 @@ static UIView *_refView = nil;
 #ifdef IMPORT_DINGTALK_LIB
         [DTOpenAPI class];
 #endif
+        
+#ifdef IMPORT_MeiPai_LIB
+        [MPShareSDK class];
+#endif
+        
         _webViewDelegate = webView.delegate;
         webView.delegate = self;
     }
@@ -421,6 +431,11 @@ static UIView *_refView = nil;
 #ifdef IMPORT_DINGTALK_LIB
                          case SSDKPlatformTypeDingTalk:
                              [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+                             break;
+#endif
+#ifdef IMPORT_MeiPai_LIB
+                         case SSDKPlatformTypeMeiPai:
+                             [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
                              break;
 #endif
                         
@@ -865,7 +880,7 @@ static UIView *_refView = nil;
     {
         callback = [params objectForKey:@"callback"];
     }
-    
+    NSLog(@"%@",content);
     [ShareSDK share:type
          parameters:content
      onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
@@ -885,6 +900,7 @@ static UIView *_refView = nil;
                                               nil];
          if (error)
          {
+             NSLog(@"%@",error);
              [responseDict setObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                       [NSNumber numberWithInteger:[error code]],
                                       @"error_code",
@@ -938,6 +954,10 @@ static UIView *_refView = nil;
     
 #ifdef IMPORT_DINGTALK_LIB
     [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+#endif
+    
+#ifdef IMPORT_MeiPai_LIB
+    [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
 #endif
     
     NSArray *types = nil;
@@ -1073,6 +1093,10 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
 #endif
     
+#ifdef IMPORT_MeiPai_LIB
+    [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+#endif
+    
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -1175,6 +1199,10 @@ static UIView *_refView = nil;
     
 #ifdef IMPORT_DINGTALK_LIB
     [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+#endif
+    
+#ifdef IMPORT_MeiPai_LIB
+    [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
 #endif
     
     NSString *contentName = nil;

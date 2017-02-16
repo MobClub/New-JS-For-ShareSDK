@@ -4,6 +4,10 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>youtube</string>
+		<string>mpsharesdk11</string>
+		<string>mpsharesdk10</string>
+		<string>mtmv</string>
 		<string>dingtalk-open</string>
 		<string>dingtalk</string>
 		<string>mqzoneopensdkapi</string>
@@ -73,6 +77,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>mp1089867596</string>
 				<string>pin4799618093317899411</string>
 				<string>kakao48d3f524e4a636b08d81b3ceb50f1003</string>
 				<string>pdk4799618093317899411</string>
@@ -138,5 +143,7 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>从手机相册中选择</string>
 </dict>
 </plist>
