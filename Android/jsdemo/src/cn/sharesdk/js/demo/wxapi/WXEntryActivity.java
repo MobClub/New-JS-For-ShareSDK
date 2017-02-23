@@ -6,7 +6,7 @@
  * Copyright (c) 2013年 mob.com. All rights reserved.
  */
 
-package cn.sharesdk.js.demo.wxapi;
+package cn.sharesdk.demo.wxapi;
 
 import android.content.Intent;
 import android.widget.Toast;
@@ -25,8 +25,10 @@ public class WXEntryActivity extends WechatHandlerActivity {
 	 * 做点其他的事情，包括根本不打开任何页面
 	 */
 	public void onGetMessageFromWXReq(WXMediaMessage msg) {
-		Intent iLaunchMyself = getPackageManager().getLaunchIntentForPackage(getPackageName());
-		startActivity(iLaunchMyself);
+		if (msg != null) {
+			Intent iLaunchMyself = getPackageManager().getLaunchIntentForPackage(getPackageName());
+			startActivity(iLaunchMyself);
+		}
 	}
 
 	/**
