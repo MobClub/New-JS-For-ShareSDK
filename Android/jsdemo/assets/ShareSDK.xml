@@ -54,7 +54,7 @@
     -->
     
     <ShareSDK 
-        AppKey = "androidv1101"/> <!-- 修改成你在sharesdk后台注册的应用的appkey"-->
+        AppKey = "1b45a03014ef7"/> <!-- androidv1101 修改成你在sharesdk后台注册的应用的appkey"-->//
     
     <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
     <SinaWeibo
@@ -131,7 +131,8 @@
         ConsumerKey="107704292745179"
         ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
         RedirectUrl="http://mob.com"
-        Enable="true" />
+		ShareByAppClient="true"
+		Enable="true" />
 
     <Twitter
         Id="9"
@@ -364,5 +365,29 @@
         SortId="51"  
         AppId="2015072400185895"
         Enable="true"/>
+     
+     <Dingding
+        Id="52"
+        SortId="52"
+        AppId="dingoanxyrpiscaovl4qlw"
+        BypassApproval="false"
+        Enable="true"/>
 
+    <Youtube
+        Id="53"
+        SortId="53"
+        ClientID="370141748022-bicrnsjfiije93bvdt63dh3728m4shas.apps.googleusercontent.com"
+        AppSecret="AIzaSyAO06g-0TDpHcsXXO918a7QE3Zdct2bB5E"
+        RedirectUrl="http://localhost"
+        ShareByAppClient = "true"
+        Enable="true" />
+	
+	<Meipai
+		Id="54"
+		SortId="54"
+		ClientID="1089867596"
+		AppSecret="y9ym6rrjjijtkt23qtsc"
+		ShareByAppClient = "true"
+		Enable="true"/>
+	
 </DevInfor>

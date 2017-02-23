@@ -360,7 +360,10 @@ function ShareSDK()
             EvernotePlatform : 996, //Evernote Series
     		WechatPlatform : 997,   //Wechat Series
     		QQPlatform : 998,		//QQ Series
-    		Any : 999 				//Any Platform  
+    		Any : 999,				//Any Platform  
+    		Dingding:52,			//钉钉
+    		Youtube:53,				//YouTube
+    		Meipai:54 				//美拍
     };
 
     /**
