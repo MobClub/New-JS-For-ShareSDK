@@ -29,6 +29,7 @@
 #define IMPORT_MESSENGER_LIB                //导入Facebook Messenger库，如果不需要Facebook Messenger分享可以注释此行
 #define IMPORT_DINGTALK_LIB                 //导入钉钉（Ding Talk）库，如果不需要钉钉（Ding Talk）分享可以注释此行
 #define IMPORT_MEIPAI_LIB                   //导入美拍库，如果不需要美拍分享可以注释此行
+#define IMPORT_LINE_LIB                     //导入line库，如果不需要美拍分享可以注释此行
 
 #ifdef IMPORT_SINA_WEIBO_LIB
 #import "WeiboSDK.h"
@@ -65,6 +66,10 @@
 
 #ifdef IMPORT_MEIPAI_LIB
 #import <MPShareSDK/MPShareSDK.h>
+#endif
+
+#ifdef IMPORT_LINE_LIB
+#import <LineSDK/LineSDK.h>
 #endif
 
 static NSString *const initSDKAndSetPlatfromConfig = @"initSDKAndSetPlatfromConfig";
@@ -158,6 +163,10 @@ static UIView *_refView = nil;
         
 #ifdef IMPORT_MEIPAI_LIB
         [MPShareSDK class];
+#endif
+
+#ifdef IMPORT_LINE_LIB
+        [LineSDKLogin class];
 #endif
         
         _webViewDelegate = webView.delegate;
@@ -436,6 +445,12 @@ static UIView *_refView = nil;
 #ifdef IMPORT_MEIPAI_LIB
                          case SSDKPlatformTypeMeiPai:
                              [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+                             break;
+#endif
+                             
+#ifdef IMPORT_LINE_LIB
+                         case SSDKPlatformTypeLine:
+                             [ShareSDKConnector connectLine:[LineSDKLogin class]];
                              break;
 #endif
                         
@@ -959,6 +974,11 @@ static UIView *_refView = nil;
 #ifdef IMPORT_MEIPAI_LIB
     [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
 #endif
+
+#ifdef IMPORT_LINE_LIB
+    [ShareSDKConnector connectLine:[LineSDKLogin class]];
+#endif
+    
     
     NSArray *types = nil;
     if ([[params objectForKey:@"platforms"] isKindOfClass:[NSArray class]])
@@ -1097,6 +1117,10 @@ static UIView *_refView = nil;
     [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
 #endif
     
+#ifdef IMPORT_LINE_LIB
+    [ShareSDKConnector connectLine:[LineSDKLogin class]];
+#endif
+    
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -1203,6 +1227,10 @@ static UIView *_refView = nil;
     
 #ifdef IMPORT_MEIPAI_LIB
     [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+#endif
+
+#ifdef IMPORT_LINE_LIB
+    [ShareSDKConnector connectLine:[LineSDKLogin class]];
 #endif
     
     NSString *contentName = nil;
