@@ -2,8 +2,82 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>dingtalk</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>dingoanxyrpiscaovl4qlw</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>alipayShare</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>ap2015072400185895</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>mp1089867596</string>
+				<string>pin4799618093317899411</string>
+				<string>kakao48d3f524e4a636b08d81b3ceb50f1003</string>
+				<string>pdk4799618093317899411</string>
+				<string>tb2QUXqO9fcgGdtGG1FcvML6ZunIQzAEL8xY6hIaxdJnDti2DYwM</string>
+				<string>com.mob.demoShareSDK</string>
+				<string>rm226427com.mob.demoShareSDK</string>
+				<string>pocketapp1234</string>
+				<string>QQ05FB8B52</string>
+				<string>wx4868b35061f87885</string>
+				<string>tencent100371282</string>
+				<string>fb107704292745179</string>
+				<string>wb568898243</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>line</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>107704292745179</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>48d3f524e4a636b08d81b3ceb50f1003</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<string>lineauth</string>
+		<string>line</string>
 		<string>youtube</string>
 		<string>mpsharesdk11</string>
 		<string>mpsharesdk10</string>
@@ -56,70 +130,20 @@
 		<string>wechat</string>
 		<string>weixin</string>
 	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>dingtalk</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>dingoanxyrpiscaovl4qlw</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>ap2015072400185895</string>
-			</array>
-			<key>CFBundleURLName</key>
-			<string>alipayShare</string>
-		</dict>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>mp1089867596</string>
-				<string>pin4799618093317899411</string>
-				<string>kakao48d3f524e4a636b08d81b3ceb50f1003</string>
-				<string>pdk4799618093317899411</string>
-				<string>tb2QUXqO9fcgGdtGG1FcvML6ZunIQzAEL8xY6hIaxdJnDti2DYwM</string>
-				<string>com.mob.demoShareSDK</string>
-				<string>rm226427com.mob.demoShareSDK</string>
-				<string>pocketapp1234</string>
-				<string>QQ05FB8B52</string>
-				<string>wx4868b35061f87885</string>
-				<string>tencent100371282</string>
-				<string>fb107704292745179</string>
-				<string>wb568898243</string>
-			</array>
-		</dict>
-	</array>
-	<key>KAKAO_APP_KEY</key>
-	<string>48d3f524e4a636b08d81b3ceb50f1003</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>LineSDKConfig</key>
+	<dict>
+		<key>ChannelID</key>
+		<string>1502330683</string>
+	</dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.mob.demoShareSDK</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>从手机相册中选择</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -141,16 +165,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CFBundleDisplayName</key>
-	<string>${PRODUCT_NAME}</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>从手机相册中选择</string>
-	<key>LineSDKConfig</key>
-	<dict>
-		<key>ChannelID</key>
-		<string>1502330683</string>
-	</dict>
-	<key>FacebookAppID</key>
-	<string>107704292745179</string>
 </dict>
 </plist>

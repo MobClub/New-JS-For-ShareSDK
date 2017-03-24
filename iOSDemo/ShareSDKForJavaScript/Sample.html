@@ -59,7 +59,7 @@
             
             //Facebook Messenger
             /*
-            需在info.plist 中增加
+             iOS 需在info.plist 中增加
              <key>FacebookAppID</key>
              <string>107704292745179</string>
              */
@@ -77,13 +77,17 @@
             meiPaiConf["app_key"] = "1089867596";
             platformConfig[$sharesdk.PlatformID.MeiPai] = meiPaiConf;
             
+            //line 授权 分享暂只支持文字和本地图片
+            var lineConf = {};
+            platformConfig[$sharesdk.PlatformID.Line] = lineConf;
+            
             //2、初始化ShareSDK
             $sharesdk.initSDKAndSetPlatfromConfig("iosv1101", platformConfig);
         }
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.PlatformID.WhatsApp, function (reqID, platform, state, error) {
+            $sharesdk.authorize($sharesdk.PlatformID.Line, function (reqID, platform, state, error) {
                 alert("state = " + state + "\n error = " + error);
             });
         }
