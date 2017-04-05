@@ -174,7 +174,7 @@
         {
             var params = {
                 "text" : "测试的文字",
-                "imageUrl" : "http://m.360piaoyou.com/ToolImageText/Storage/1470885781061.jpg",
+                "imageUrl" : "http://www.mob.com/mob/img/navproducts_03.png",
                 "title" : "测试的标题",
                 "titleUrl" : "http://www.mob.com",
                 "description" : "测试的描述",
@@ -184,6 +184,7 @@
             };
 
             $sharesdk.showShareMenu(null, params, 100, 100, function (reqID, platform, state, shareInfo, error) {
+                                    alert(shareInfo);
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
             });
         }
