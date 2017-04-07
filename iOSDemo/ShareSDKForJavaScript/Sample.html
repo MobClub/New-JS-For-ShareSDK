@@ -205,8 +205,8 @@
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
                 "type" : $sharesdk.ContentType.Auto,
-                "@client_share" : true, //启用客户端分享接口
-                "@advanced_share" :true //启用微博高级分享接口 3.6.3以后版本支持
+                "@client_share" : true, //iOS 启用客户端分享接口
+                "@advanced_share" :true //iOS 启用微博高级分享接口 3.6.3以后版本支持
             };
 
             $sharesdk.showShareMenu(null, params, 100, 100, function (reqID, platform, state, shareInfo, error) {
