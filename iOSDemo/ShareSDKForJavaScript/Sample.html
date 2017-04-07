@@ -88,7 +88,11 @@
         function authBtnClickHandler()
         {
             $sharesdk.authorize($sharesdk.PlatformID.Line, function (reqID, platform, state, error) {
-                alert("state = " + state + "\n error = " + error);
+                  alert("state = " + state);
+                  alert("platform");
+                  showLog(platform);
+                  alert("error");
+                  showLog(error);
             });
         }
 
@@ -96,6 +100,8 @@
         {
             $sharesdk.isAuthorizedValid($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, hasAuth) {
                 alert("hasAuth = " + hasAuth);
+                alert("platform");
+                showLog(platform);
             });
         }
 
@@ -103,6 +109,8 @@
         {
              $sharesdk.cancelAuthorize($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, isCancelAuth) {
                 alert("hasAuth = " + isCancelAuth);
+                alert("platform");
+                showLog(platform);
             });
         }
 
@@ -110,13 +118,19 @@
         {
             $sharesdk.isClientValid($sharesdk.PlatformID.WeChatTimeline, function (reqID, platform, isClientValid) {
                 alert("isClientValid = " + isClientValid);
+                alert("platform");
+                showLog(platform);
             });
         }
 
         function userInfoBtnClickHandler()
         {
             $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, state, user, error) {
-                alert("state = " + state + "\n user = " + user + "\n error = " + error);
+                alert("state = " + state);
+                alert("user");
+                showLog(user);
+                alert("error");
+                showLog(error);
             });
         }
 
@@ -124,6 +138,8 @@
         {
             $sharesdk.getAuthInfo($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, authInfo) {
                 alert("authInfo = " + authInfo);
+                alert("platform");
+                showLog(platform);
             });
         }
 
@@ -142,7 +158,11 @@
             };
 
             $sharesdk.shareContent($sharesdk.PlatformID.FacebookMessenger, params, function (reqID, platform, state, shareInfo, error) {
-                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+                alert("state = " + state);
+                alert("shareInfo");
+                showLog(shareInfo);
+                alert("error");
+                showLog(error);
             });
         }
 
@@ -166,7 +186,11 @@
             ];
 
             $sharesdk.oneKeyShareContent(platforms, params, function (reqID, platform, state, shareInfo, error) {
-                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+                alert("state = " + state);
+                alert("shareInfo");
+                showLog(shareInfo);
+                alert("error");
+                showLog(error);
             });
         }
 
@@ -180,12 +204,17 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
-                "type" : $sharesdk.ContentType.Auto
+                "type" : $sharesdk.ContentType.Auto,
+                "@client_share" : true, //启用客户端分享接口
+                "@advanced_share" :true //启用微博高级分享接口 3.6.3以后版本支持
             };
 
             $sharesdk.showShareMenu(null, params, 100, 100, function (reqID, platform, state, shareInfo, error) {
-                                    alert(shareInfo);
-                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+                alert("state = " + state);
+                alert("shareInfo");
+                showLog(shareInfo);
+                alert("error");
+                showLog(error);
             });
         }
 
@@ -203,7 +232,11 @@
             };
 
             $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (reqID, platform, state, shareInfo, error) {
-                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+                alert("state = " + state);
+                alert("shareInfo");
+                showLog(shareInfo);
+                alert("error");
+                showLog(error);
             });
         }
 
@@ -222,40 +255,58 @@
             //测试账号
             var account = "ShareSDK";
             $sharesdk.addFriend($sharesdk.PlatformID.TencentWeibo, account, function (reqID, platform, state, error) {
-                alert("state = " + state +  "\n error = " + error);
+                alert("state = " + state);
+                alert("platform");
+                showLog(platform);
+                alert("error");
+                showLog(error);
             });
         }
 
         function shareWithConFileBtnClickHandler()
         {
             //使用配置文件分享
-            $sharesdk.shareWithConfigurationFile("mob", $sharesdk.PlatformID.QQ , null, function (reqID, platform, state, shareInfo, error) {
-                                                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
-                                                 });
+            $sharesdk.shareWithConfigurationFile("ShareSDK", $sharesdk.PlatformID.QQ , null, function (reqID, platform, state, shareInfo, error) {
+              alert("state = " + state);
+              alert("shareInfo");
+              showLog(shareInfo);
+              alert("error");
+              showLog(error);
+            });
         }
 
         function customShareWithConFileBtnClickHandler()
         {
             var customFields = {
-                "imgUrl" : "http://www.mob.com/mob/images/sharesdk/analysis-logo.png"
+                "imgUrl" : "http://www.mob.com/mob/images/sharesdk/analysis-logo.png",
+                "url" : "http://www.mob.com"
             };
 
             //自定义配置文件分享
-            $sharesdk.shareWithConfigurationFile("sharesdk", $sharesdk.PlatformID.SinaWeibo , customFields, function (reqID, platform, state, shareInfo, error) {
-                                                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
-                                                 });
+            $sharesdk.shareWithConfigurationFile("ShareSDK", $sharesdk.PlatformID.QQ , customFields, function (reqID, platform, state, shareInfo, error) {
+                alert("state = " + state);
+                alert("shareInfo");
+                showLog(shareInfo);
+                alert("error");
+                showLog(error);
+               });
         }
 
         function showShareMenuWithConfigurationFileBtnClickHandler()
         {
             var customFields = {
-                "imgUrl" : "http://www.mob.com/mob/images/sharesdk/analysis-logo.png"
+                "imgUrl" : "http://www.mob.com/mob/images/sharesdk/analysis-logo.png",
+                "url" : "http://www.mob.com"
             };
             
-            $sharesdk.showShareMenuWithConfigurationFile(null, 100, 100,"sharesdk", customFields,function (reqID, platform, state, shareInfo, error)
-                                                         {
-                                                         alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
-                                                         });
+            $sharesdk.showShareMenuWithConfigurationFile(null, 100, 100,"ShareSDK", customFields,function (reqID, platform, state, shareInfo, error)
+             {
+                alert("state = " + state);
+                alert("shareInfo");
+                showLog(shareInfo);
+                alert("error");
+                showLog(error);
+            });
         }
 
         function showShareViewWithConfigurationFileBtnClickHandler()
@@ -264,10 +315,28 @@
                 "imgUrl" : "http://www.mob.com/mob/images/sharesdk/analysis-logo.png"
             };
             
-            $sharesdk.showShareViewWithConfigurationFile($sharesdk.PlatformID.SinaWeibo,"sharesdk",customFields,function (reqID, platform, state, shareInfo, error)
-                                                         {
-                                                         alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
-                                                         });
+            $sharesdk.showShareViewWithConfigurationFile($sharesdk.PlatformID.SinaWeibo,"ShareSDK",customFields,function (reqID, platform, state, shareInfo, error)
+            {
+                alert("state = " + state);
+                alert("shareInfo");
+                showLog(shareInfo);
+                alert("error");
+                showLog(error);
+            });
+        }
+        function showLog(obj)
+        {
+            for (var prop in obj)
+            {
+                alert("[" + prop + "]=" + obj[prop]);
+                if(typeof obj[prop] == "object")
+                {
+                    for (var temp in obj[prop])
+                    {
+                        alert("["+prop+"][" + temp + "]=" + obj[prop][temp]);
+                    }
+                }
+            }
         }
 
     </script>
