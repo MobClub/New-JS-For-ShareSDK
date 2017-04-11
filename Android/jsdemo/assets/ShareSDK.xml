@@ -3,12 +3,7 @@
     <!--
     	说明：
     	
-    	1、表格中的第一项
-    		<ShareSDK 
-        		AppKey="api20" />
-    	是必须的，其中的AppKey是您在ShareSDK上注册的开发者帐号的AppKey
-    	
-    	2、所有集成到您项目的平台都应该为其在表格中填写相对应的开发者信息，以新浪微博为例：
+    	所有集成到您项目的平台都应该为其在表格中填写相对应的开发者信息，以新浪微博为例：
     	    <SinaWeibo
                 Id="1"
                 SortId="1"
@@ -52,9 +47,6 @@
 			KakaoStory     https://developers.kakao.com/
 			Plurk          http://www.plurk.com/API
     -->
-    
-    <ShareSDK 
-        AppKey = "1b45a03014ef7"/> <!-- androidv1101 修改成你在sharesdk后台注册的应用的appkey"-->//
     
     <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
     <SinaWeibo
@@ -309,7 +301,7 @@
 	<Line
 	    Id="32"
         SortId="32"
-        ChannelID = "1477692153"
+        ChannelID = "1506934625"
         ChannelSecret ="f30c036370f2e04ade71c52eef73a9af"
         Enable="true" />
 	
