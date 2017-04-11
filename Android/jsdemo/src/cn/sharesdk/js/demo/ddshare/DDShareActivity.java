@@ -1,4 +1,4 @@
-package cn.sharesdk.demo.ddshare;
+package cn.sharesdk.js.demo.ddshare;
 
 import cn.sharesdk.dingding.utils.DingdingHandlerActivity;
 

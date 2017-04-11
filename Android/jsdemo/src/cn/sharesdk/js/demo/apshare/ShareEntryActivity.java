@@ -1,4 +1,4 @@
-package cn.sharesdk.demo.apshare;
+package cn.sharesdk.js.demo.apshare;
 
 import cn.sharesdk.alipay.utils.AlipayHandlerActivity;
 
