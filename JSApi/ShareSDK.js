@@ -379,7 +379,7 @@ function ShareSDK()
         Begin : 0,              //开始
         Success: 1,             //成功
         Fail : 2,               //失败
-        Cancel :3               //取消
+        Cancel : 3             //取消
     };
 
     /**

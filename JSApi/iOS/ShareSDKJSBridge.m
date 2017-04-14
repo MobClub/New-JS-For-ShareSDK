@@ -797,6 +797,8 @@ static UIView *_refView = nil;
         case 0:
         case 8:
             return SSDKContentTypeAuto;
+        case 10:
+            return SSDKContentTypeMiniProgram;
         default:
             return SSDKContentTypeAuto;
             break;
@@ -811,6 +813,8 @@ static UIView *_refView = nil;
     NSString *url = nil;
     NSString *desc = nil;
     SSDKContentType type = SSDKContentTypeAuto;
+    BOOL clientShare = NO;
+    BOOL advancedShare = NO;
     NSMutableDictionary *para = [NSMutableDictionary dictionary];
     
     if (dict)
@@ -840,6 +844,16 @@ static UIView *_refView = nil;
             desc = [dict objectForKey:@"description"];
         }
         
+        if ([[dict objectForKey:@"client_share"] isKindOfClass:[NSNumber class]])
+        {
+            clientShare = [[dict objectForKey:@"client_share"] boolValue];
+        }
+        
+        if ([[dict objectForKey:@"advanced_share"] isKindOfClass:[NSNumber class]])
+        {
+            advancedShare = [[dict objectForKey:@"advanced_share"] boolValue];
+        }
+        
         if ([[dict objectForKey:@"type"] isKindOfClass:[NSNumber class]])
         {
             type = [self convertJSShareTypeToIOSShareType:[[dict objectForKey:@"type"] unsignedIntegerValue]];
@@ -851,6 +865,15 @@ static UIView *_refView = nil;
                                  url:[NSURL URLWithString:url]
                                title:title
                                 type:type];
+    if(clientShare)
+    {
+        [para SSDKEnableUseClientShare];
+    }
+    
+    if(advancedShare)
+    {
+        [para SSDKEnableAdvancedInterfaceShare];
+    }
     
     if (dict)
     {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		442F25D51E9CC87A00E5B56E /* TwitterConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442F25D41E9CC87A00E5B56E /* TwitterConnector.framework */; };
 		443262EE1E85428E00D4E153 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4432629C1E85428E00D4E153 /* ShareSDK.framework */; };
 		443262EF1E85428E00D4E153 /* ShareSDKConfigFile.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4432629F1E85428E00D4E153 /* ShareSDKConfigFile.bundle */; };
 		443262F01E85428E00D4E153 /* ShareSDKConfigFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443262A01E85428E00D4E153 /* ShareSDKConfigFile.framework */; };
@@ -49,7 +50,6 @@
 		443263151E85428E00D4E153 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 443262D21E85428E00D4E153 /* libWeiboSDK.a */; };
 		443263161E85428E00D4E153 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 443262DC1E85428E00D4E153 /* WeiboSDK.bundle */; };
 		443263171E85428E00D4E153 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 443262E01E85428E00D4E153 /* libWeChatSDK.a */; };
-		443263181E85428E00D4E153 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 443262E11E85428E00D4E153 /* read_me.txt */; };
 		443263191E85428E00D4E153 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 443262E21E85428E00D4E153 /* README.txt */; };
 		4432631A1E85428E00D4E153 /* libYixinSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 443262E71E85428E00D4E153 /* libYixinSDK.a */; };
 		4432631B1E85428E00D4E153 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443262EB1E85428E00D4E153 /* MOBFoundation.framework */; };
@@ -77,6 +77,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		442F25D41E9CC87A00E5B56E /* TwitterConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterConnector.framework; sourceTree = "<group>"; };
 		4432629C1E85428E00D4E153 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		4432629F1E85428E00D4E153 /* ShareSDKConfigFile.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKConfigFile.bundle; sourceTree = "<group>"; };
 		443262A01E85428E00D4E153 /* ShareSDKConfigFile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConfigFile.framework; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		443262DD1E85428E00D4E153 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		443262DE1E85428E00D4E153 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
 		443262E01E85428E00D4E153 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		443262E11E85428E00D4E153 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		443262E21E85428E00D4E153 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		443262E31E85428E00D4E153 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		443262E41E85428E00D4E153 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 				443262F71E85428E00D4E153 /* EvernoteConnector.framework in Frameworks */,
 				443262F91E85428E00D4E153 /* GooglePlusConnector.framework in Frameworks */,
 				443262F61E85428E00D4E153 /* DingTalkConnector.framework in Frameworks */,
+				442F25D51E9CC87A00E5B56E /* TwitterConnector.framework in Frameworks */,
 				DEC9E67C1BFDA74A007C3848 /* AssetsLibrary.framework in Frameworks */,
 				443263031E85428E00D4E153 /* SinaWeiboConnector.framework in Frameworks */,
 				443263171E85428E00D4E153 /* libWeChatSDK.a in Frameworks */,
@@ -264,6 +265,7 @@
 		443262A41E85428E00D4E153 /* PlatformConnector */ = {
 			isa = PBXGroup;
 			children = (
+				442F25D41E9CC87A00E5B56E /* TwitterConnector.framework */,
 				443262A51E85428E00D4E153 /* AliPayConnector.framework */,
 				443262A61E85428E00D4E153 /* CopyConnector.framework */,
 				443262A71E85428E00D4E153 /* DingTalkConnector.framework */,
@@ -401,7 +403,6 @@
 			isa = PBXGroup;
 			children = (
 				443262E01E85428E00D4E153 /* libWeChatSDK.a */,
-				443262E11E85428E00D4E153 /* read_me.txt */,
 				443262E21E85428E00D4E153 /* README.txt */,
 				443262E31E85428E00D4E153 /* WechatAuthSDK.h */,
 				443262E41E85428E00D4E153 /* WXApi.h */,
@@ -569,7 +570,6 @@
 				443262EF1E85428E00D4E153 /* ShareSDKConfigFile.bundle in Resources */,
 				DEE33CF51BE7380300B1089C /* Assets.xcassets in Resources */,
 				443263161E85428E00D4E153 /* WeiboSDK.bundle in Resources */,
-				443263181E85428E00D4E153 /* read_me.txt in Resources */,
 				DEE33CF31BE7380300B1089C /* Main.storyboard in Resources */,
 				4432631C1E85428E00D4E153 /* ShareSDK.bundle in Resources */,
 				443263191E85428E00D4E153 /* README.txt in Resources */,
@@ -734,7 +734,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/YiXinSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mob..ShareSDKForJavaScript;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mob.demoShareSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "37fd227a-3a52-4d9c-be14-74559828bdbd";
 				PROVISIONING_PROFILE_SPECIFIER = MobProvisioningProfiles;
@@ -779,7 +779,7 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/YiXinSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mob..ShareSDKForJavaScript;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mob.demoShareSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "37fd227a-3a52-4d9c-be14-74559828bdbd";
 				PROVISIONING_PROFILE_SPECIFIER = MobProvisioningProfiles;

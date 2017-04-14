@@ -176,7 +176,7 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
-                "type" : $sharesdk.ContentType.Auto
+                "type" : $sharesdk.ContentType.Auto,
             };
 
             var platforms =
@@ -204,13 +204,13 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
-                "type" : $sharesdk.ContentType.Auto,
-                "@client_share" : true, //iOS 启用客户端分享接口
-                "@advanced_share" :true //iOS 启用微博高级分享接口 3.6.3以后版本支持
+                "type" : $sharesdk.ContentType.Text,
+                "client_share" : true, //iOS 启用客户端分享接口
+                "advanced_share" :true //iOS 启用微博高级分享接口 3.6.3以后版本支持
             };
 
             $sharesdk.showShareMenu(null, params, 100, 100, function (reqID, platform, state, shareInfo, error) {
-                alert("state = " + state);
+                alert("showShareMenuClickHandler state = " + state);
                 alert("shareInfo");
                 showLog(shareInfo);
                 alert("error");
@@ -228,11 +228,12 @@
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://www.mob.com",
-                "type" : $sharesdk.ContentType.Auto
+                "type" : $sharesdk.ContentType.Text,
+                "advanced_share" :true //iOS 启用微博高级分享接口 3.6.3以后版本支持
             };
 
             $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (reqID, platform, state, shareInfo, error) {
-                alert("state = " + state);
+                alert("showShareViewClickHandler state = " + state);
                 alert("shareInfo");
                 showLog(shareInfo);
                 alert("error");
