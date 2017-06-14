@@ -18,6 +18,7 @@ import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
+import com.mob.MobSDK;
 import com.mob.tools.utils.Hashon;
 import com.mob.tools.utils.UIHandler;
 
@@ -246,9 +247,9 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 			boolean enableStatistics = !"false".equals(String.valueOf(params.get("enableStatistics")));
 			if(params.containsKey("appKey") && params.get("appKey") != null){
 				String appkey = String.valueOf(params.get("appKey"));
-				ShareSDK.initSDK(context, appkey, enableStatistics);
+				MobSDK.init(context,appkey);
 			} else {
-				ShareSDK.initSDK(context, enableStatistics);
+				MobSDK.init(context);
 			}
 			
 			//如果有平台信息，再初始化平台信息，否则调用ShareSDK.xml配置平台信息
@@ -280,7 +281,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	private void authorize(String seqId, String api, String callback, String oriCallback, HashMap<String, Object> params) {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
-		Platform platform = ShareSDK.getPlatform(context, platformName);
+		Platform platform = ShareSDK.getPlatform(platformName);
 		JSPlatformActionListener pa = new JSPlatformActionListener();
 		pa.setCallback(this);
 		pa.setSeqId(seqId);
@@ -299,7 +300,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	private void cancelAuthorize(HashMap<String, Object> params) {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
-		Platform platform = ShareSDK.getPlatform(context, platformName);
+		Platform platform = ShareSDK.getPlatform( platformName);
 		platform.removeAccount(true);
 	}
 	
@@ -311,8 +312,8 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	private boolean isAuthValid(HashMap<String, Object> params) {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
-		Platform platform = ShareSDK.getPlatform(context, platformName);
-		return platform.isValid();
+		Platform platform = ShareSDK.getPlatform( platformName);
+		return platform.isAuthValid();
 	}
 	
 	/**
@@ -323,7 +324,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	private boolean isClientValid(HashMap<String, Object> params) {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
-		Platform platform = ShareSDK.getPlatform(context, platformName);
+		Platform platform = ShareSDK.getPlatform( platformName);
 		return platform.isClientValid();
 	}
 	
@@ -338,7 +339,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	private void getUserInfo(String seqId, String api, String callback, String oriCallback, HashMap<String, Object> params) {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
-		Platform platform = ShareSDK.getPlatform(context, platformName);
+		Platform platform = ShareSDK.getPlatform( platformName);
 		JSPlatformActionListener pa = new JSPlatformActionListener();
 		pa.setCallback(this);
 		pa.setSeqId(seqId);
@@ -354,8 +355,8 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		String authInfo = "{}";
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
-		Platform platform = ShareSDK.getPlatform(context, platformName);
-		if(platform.isValid()){
+		Platform platform = ShareSDK.getPlatform(platformName);
+		if(platform.isClientValid()){
 			HashMap<String, Object> platformDbMap = new HashMap<String, Object>();
 			PlatformDb db = platform.getDb();
 			platformDbMap.put("expiresIn", db.getExpiresIn());
@@ -396,7 +397,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		sp.setShareType(shareType);
 		for (Integer platformId : platforms) {
 			String platformName = ShareSDK.platformIdToName(platformId.intValue());
-			Platform platform = ShareSDK.getPlatform(context, platformName);
+			Platform platform = ShareSDK.getPlatform(platformName);
 			JSPlatformActionListener pa = new JSPlatformActionListener();
 			pa.setCallback(this);
 			pa.setSeqId(seqId);
@@ -478,7 +479,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		int count = (Integer) params.get("count");
 		String account = (String) params.get("account");
 		String platformName = ShareSDK.platformIdToName(platformId);
-		Platform platform = ShareSDK.getPlatform(context, platformName);
+		Platform platform = ShareSDK.getPlatform(platformName);
 		JSPlatformActionListener pa = new JSPlatformActionListener();
 		pa.setCallback(this);
 		pa.setSeqId(seqId);
@@ -503,7 +504,7 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		String friendName = (String) params.get("friendName");
 		jsLog("friendName = " + friendName);
 		String platformName = ShareSDK.platformIdToName(platformId);
-		Platform platform = ShareSDK.getPlatform(context, platformName);
+		Platform platform = ShareSDK.getPlatform( platformName);
 		JSPlatformActionListener pa = new JSPlatformActionListener();
 		pa.setCallback(this);
 		pa.setSeqId(seqId);

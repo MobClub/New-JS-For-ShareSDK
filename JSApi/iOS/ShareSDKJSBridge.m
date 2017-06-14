@@ -31,6 +31,8 @@
 #define IMPORT_MEIPAI_LIB                   //导入美拍库，如果不需要美拍分享可以注释此行
 #define IMPORT_LINE_LIB                     //导入line，如果不需要line授权SDK可以注释此行
 
+//#define UseShareSDKConfigFileRegister       //使用配置文件方式进行平台注册的话 需要打开此行
+
 #ifdef IMPORT_SINA_WEIBO_LIB
 #import "WeiboSDK.h"
 #endif
@@ -359,12 +361,12 @@ static UIView *_refView = nil;
 - (void)openWithSeqId:(NSString *)seqId params:(NSDictionary *)params webView:(UIWebView *)webView
 {
     NSMutableDictionary *config = nil;
-    
-    NSString *appKey = nil;
-    if ([[params objectForKey:@"appKey"] isKindOfClass:[NSString class]])
-    {
-        appKey = [params objectForKey:@"appKey"];
-    }
+    //3.6.4之后appkey请在 info.plist 中添加 MOBAppKey MOBAppSecret 字段并进行设置
+//    NSString *appKey = nil;
+//    if ([[params objectForKey:@"appKey"] isKindOfClass:[NSString class]])
+//    {
+//        appKey = [params objectForKey:@"appKey"];
+//    }
     
     if ([[params objectForKey:@"platformConfig"] isKindOfClass:[NSDictionary class]])
     {
@@ -387,8 +389,7 @@ static UIView *_refView = nil;
         }
     }];
     
-    [ShareSDK registerApp:appKey
-          activePlatforms:activePlatforms
+    [ShareSDK registerActivePlatforms:activePlatforms
                  onImport:^(SSDKPlatformType platformType)
      {
                      switch (platformType)
@@ -526,6 +527,50 @@ static UIView *_refView = nil;
  */
 - (void)authorizeWithSeqId:(NSString *)seqId params:(NSDictionary *)params webView:(UIWebView *)webView
 {
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -660,6 +705,50 @@ static UIView *_refView = nil;
 
 - (void)getUserInfoWithSeqId:(NSString *)seqId params:(NSDictionary *)params webView:(UIWebView *)webView
 {
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -709,6 +798,50 @@ static UIView *_refView = nil;
 
 - (void)getAuthInfoWithSeqId:(NSString *)seqId params:(NSDictionary *)params webView:(UIWebView *)webView
 {
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -900,6 +1033,50 @@ static UIView *_refView = nil;
                        params:(NSDictionary *)params
                       webView:(UIWebView *)webView
 {
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     SSDKPlatformType type = SSDKPlatformTypeAny;
     
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
@@ -961,45 +1138,50 @@ static UIView *_refView = nil;
                               params:(NSDictionary *)params
                              webView:(UIWebView *)webView
 {
-#ifdef IMPORT_SINA_WEIBO_LIB
-    [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-#endif
     
-#ifdef IMPORT_QZONE_QQ_LIB
-    [ShareSDKConnector connectQQ:[QQApiInterface class]
-               tencentOAuthClass:[TencentOAuth class]];
-#endif
+#ifdef UseShareSDKConfigFileRegister
     
-#ifdef IMPORT_RENREN_LIB
-    [ShareSDKConnector connectRenren:[RennClient class]];
-#endif
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
     
-#ifdef IMPORT_WECHAT_LIB
-    [ShareSDKConnector connectWeChat:[WXApi class]];
-#endif
-    
-#ifdef IMPORT_ALIPAY_LIB
-    [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
-#endif
-    
-#ifdef IMPORT_KAKAO_LIB
-    [ShareSDKConnector connectKaKao:[KOSession class]];
-#endif
-    
-#ifdef IMPORT_MESSENGER_LIB
-    [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-#endif
-    
-#ifdef IMPORT_DINGTALK_LIB
-    [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
-#endif
-    
-#ifdef IMPORT_MEIPAI_LIB
-    [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
-#endif
-
-#ifdef IMPORT_LINE_LIB
-    [ShareSDKConnector connectLine:[LineSDKLogin class]];
 #endif
     
     
@@ -1103,45 +1285,50 @@ static UIView *_refView = nil;
                               params:(NSDictionary *)params
                              webView:(UIWebView *)webView
 {
-#ifdef IMPORT_SINA_WEIBO_LIB
-    [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-#endif
     
-#ifdef IMPORT_QZONE_QQ_LIB
-    [ShareSDKConnector connectQQ:[QQApiInterface class]
-               tencentOAuthClass:[TencentOAuth class]];
-#endif
+#ifdef UseShareSDKConfigFileRegister
     
-#ifdef IMPORT_RENREN_LIB
-    [ShareSDKConnector connectRenren:[RennClient class]];
-#endif
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
     
-#ifdef IMPORT_WECHAT_LIB
-    [ShareSDKConnector connectWeChat:[WXApi class]];
-#endif
-    
-#ifdef IMPORT_ALIPAY_LIB
-    [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
-#endif
-    
-#ifdef IMPORT_KAKAO_LIB
-    [ShareSDKConnector connectKaKao:[KOSession class]];
-#endif
-    
-#ifdef IMPORT_MESSENGER_LIB
-    [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-#endif
-    
-#ifdef IMPORT_DINGTALK_LIB
-    [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
-#endif
-    
-#ifdef IMPORT_MEIPAI_LIB
-    [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
-#endif
-    
-#ifdef IMPORT_LINE_LIB
-    [ShareSDKConnector connectLine:[LineSDKLogin class]];
 #endif
     
     SSDKPlatformType type = SSDKPlatformTypeAny;
@@ -1215,45 +1402,49 @@ static UIView *_refView = nil;
                webView:(UIWebView *)webView
 {
     
-#ifdef IMPORT_SINA_WEIBO_LIB
-    [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-#endif
+#ifdef UseShareSDKConfigFileRegister
     
-#ifdef IMPORT_QZONE_QQ_LIB
-    [ShareSDKConnector connectQQ:[QQApiInterface class]
-               tencentOAuthClass:[TencentOAuth class]];
-#endif
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
     
-#ifdef IMPORT_RENREN_LIB
-    [ShareSDKConnector connectRenren:[RennClient class]];
-#endif
-    
-#ifdef IMPORT_WECHAT_LIB
-    [ShareSDKConnector connectWeChat:[WXApi class]];
-#endif
-    
-#ifdef IMPORT_ALIPAY_LIB
-    [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
-#endif
-    
-#ifdef IMPORT_KAKAO_LIB
-    [ShareSDKConnector connectKaKao:[KOSession class]];
-#endif
-    
-#ifdef IMPORT_MESSENGER_LIB
-    [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-#endif
-    
-#ifdef IMPORT_DINGTALK_LIB
-    [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
-#endif
-    
-#ifdef IMPORT_MEIPAI_LIB
-    [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
-#endif
-
-#ifdef IMPORT_LINE_LIB
-    [ShareSDKConnector connectLine:[LineSDKLogin class]];
 #endif
     
     NSString *contentName = nil;
@@ -1322,6 +1513,50 @@ static UIView *_refView = nil;
                              params:(NSDictionary *)params
                             webView:(UIWebView *)webView
 {
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     NSArray *types = nil;
     if ([[params objectForKey:@"platforms"] isKindOfClass:[NSArray class]])
     {
@@ -1382,6 +1617,51 @@ static UIView *_refView = nil;
                         params:(NSDictionary *)params
                        webView:(UIWebView *)webView
 {
+    
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     NSArray *types = nil;
     if ([[params objectForKey:@"platforms"] isKindOfClass:[NSArray class]])
     {
@@ -1475,6 +1755,50 @@ static UIView *_refView = nil;
                         params:(NSDictionary *)params
                        webView:(UIWebView *)webView
 {
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -1537,6 +1861,50 @@ static UIView *_refView = nil;
                         params:(NSDictionary *)params
                        webView:(UIWebView *)webView
 {
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
@@ -1603,6 +1971,50 @@ static UIView *_refView = nil;
                     params:(NSDictionary *)params
                    webView:(UIWebView *)webView
 {
+#ifdef UseShareSDKConfigFileRegister
+    
+    #ifdef IMPORT_SINA_WEIBO_LIB
+        [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+    #endif
+        
+    #ifdef IMPORT_QZONE_QQ_LIB
+        [ShareSDKConnector connectQQ:[QQApiInterface class]
+                   tencentOAuthClass:[TencentOAuth class]];
+    #endif
+        
+    #ifdef IMPORT_RENREN_LIB
+        [ShareSDKConnector connectRenren:[RennClient class]];
+    #endif
+        
+    #ifdef IMPORT_WECHAT_LIB
+        [ShareSDKConnector connectWeChat:[WXApi class]];
+    #endif
+        
+    #ifdef IMPORT_ALIPAY_LIB
+        [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_KAKAO_LIB
+        [ShareSDKConnector connectKaKao:[KOSession class]];
+    #endif
+        
+    #ifdef IMPORT_MESSENGER_LIB
+        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
+    #endif
+        
+    #ifdef IMPORT_DINGTALK_LIB
+        [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
+    #endif
+        
+    #ifdef IMPORT_MEIPAI_LIB
+        [ShareSDKConnector connectMeiPai:[MPShareSDK class]];
+    #endif
+        
+    #ifdef IMPORT_LINE_LIB
+        [ShareSDKConnector connectLine:[LineSDKLogin class]];
+    #endif
+    
+#endif
     SSDKPlatformType type = SSDKPlatformTypeAny;
     if ([[params objectForKey:@"platform"] isKindOfClass:[NSNumber class]])
     {
