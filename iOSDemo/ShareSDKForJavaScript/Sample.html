@@ -81,13 +81,18 @@
             var lineConf = {};
             platformConfig[$sharesdk.PlatformID.Line] = lineConf;
             
-            //2、初始化ShareSDK
-            $sharesdk.initSDKAndSetPlatfromConfig("iosv1101", platformConfig);
+           //2、初始化ShareSDK
+           //Share SDK4.0.0及以上版本 appkey 及 appSecret 在Info.plist 中设置
+           //<key>MOBAppKey</key>
+           // <string>iosv1101</string>
+           // <key>MOBAppSecret</key>
+           // <string></string>
+            $sharesdk.initSDKAndSetPlatfromConfig("", platformConfig);
         }
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.PlatformID.Line, function (reqID, platform, state, error) {
+            $sharesdk.authorize($sharesdk.PlatformID.WechatPlatform, function (reqID, platform, state, error) {
                   alert("state = " + state);
                   alert("platform");
                   showLog(platform);
