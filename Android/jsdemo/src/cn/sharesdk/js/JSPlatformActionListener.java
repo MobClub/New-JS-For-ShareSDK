@@ -64,6 +64,7 @@ public class JSPlatformActionListener implements PlatformActionListener {
 	}
 	
 	public void onError(Platform platform, int action, Throwable t) {
+		t.printStackTrace();
 		HashMap<String, Object> resp = new HashMap<String, Object>();
 		resp.put("seqId", seqId);
 		resp.put("state", 2);

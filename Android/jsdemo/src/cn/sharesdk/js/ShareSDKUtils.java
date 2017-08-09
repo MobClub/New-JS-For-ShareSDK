@@ -242,13 +242,20 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 	// ============================ Java Actions ============================
 	@SuppressWarnings("unchecked")
 	private void initSDKAndSetPlatfromConfig(HashMap<String, Object> params) {
+		System.out.println("parame:" + params.toString());
 		try {
 			//调用initSDK初始化
 			boolean enableStatistics = !"false".equals(String.valueOf(params.get("enableStatistics")));
-			if(params.containsKey("appKey") && params.get("appKey") != null){
-				String appkey = String.valueOf(params.get("appKey"));
-				MobSDK.init(context,appkey);
-			} else {
+			String appkey;
+			String appSecret;
+			if(params.containsKey("appKey") && params.containsKey("appSecret")){
+				appkey = String.valueOf(params.get("appKey"));
+				appSecret = String.valueOf(params.get("appSecret"));
+				MobSDK.init(context,appkey, appSecret);
+			} else if(params.containsKey("appKey")){
+				appkey = String.valueOf(params.get("appKey"));
+				MobSDK.init(context, appkey);
+			} else{
 				MobSDK.init(context);
 			}
 			

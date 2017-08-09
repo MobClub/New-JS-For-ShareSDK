@@ -556,11 +556,12 @@ function ShareSDK()
      * @param platform          平台类型
      * @param config            配置信息
      */
-    this.initSDKAndSetPlatfromConfig = function (appKey, platformConfig)
+    this.initSDKAndSetPlatfromConfig = function (appKey, appSecret, platformConfig)
     {
         var params =
         {
             "appKey" : appKey,
+            "appSecret" : appSecret,
             "platformConfig" : platformConfig
         };
         CallMethod(ShareSDKMethodName.InitSDKAndSetPlatfromConfig, params);
