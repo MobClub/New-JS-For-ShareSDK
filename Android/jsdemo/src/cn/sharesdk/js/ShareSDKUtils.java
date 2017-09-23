@@ -437,6 +437,12 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 			if (map.containsKey("imageUrl")) {
 				oks.setImageUrl(String.valueOf(map.get("imageUrl")));
 			}
+			if (map.containsKey("imageArray")) {
+				@SuppressWarnings("unchecked")
+				ArrayList<String> imageList = (ArrayList<String>)map.get("imageArray");
+				String[] str = (String[])imageList.toArray(new String[imageList.size()]);
+				oks.setImageArray(str);
+			}
 			if (map.containsKey("comment")) {
 				oks.setComment(String.valueOf(map.get("comment")));
 			}

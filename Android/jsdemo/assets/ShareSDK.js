@@ -182,7 +182,7 @@ function ShareSDK()
                     switch (method)
                     {
                         case ShareSDKMethodName.Authorize:
-                            callbackFunc(response.seqId, response.platform, response.state, response.error);
+                            callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
                             break;
                         case ShareSDKMethodName.GetUserInfo:
                             callbackFunc(response.seqId, response.platform, response.state, response.data, response.error);
@@ -353,6 +353,7 @@ function ShareSDK()
     		KakaoTalk : 44,         //KakaoTalk
     		KakaoStory : 45,        //KakaoStory 
     		FacebookMessenger : 46, //FacebookMessenger
+    		Telegram : 47,			//Telefram
     		Bluetooth : 48,         //Bluetooth
     		Alipay : 50,            //Alipay
     		AlipayMoments : 51,     //AlipayMoments

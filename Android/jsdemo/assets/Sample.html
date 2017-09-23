@@ -28,9 +28,9 @@
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.PlatformID.QQ, function (reqId, platform, state, error){
+            $sharesdk.authorize($sharesdk.PlatformID.QQ, function (reqId, platform, state, data, error){
 
-                alert("state = " + state + "\n error = " + error);
+                alert("state = " + state + "result" + data + "\n error = " + error);
 
             });
         }
@@ -122,8 +122,10 @@
 
         function showShareMenuClickHandler()
         {
+        	var images = new Array("/sdcard/test.jpg","http://f1.webshare.mob.com/dimgs/1c950a7b02087bf41bc56f07f7d3572c11dfcf36.jpg","/sdcard/test.jpg");
             var params = {
                 "text" : "测试的文字",
+                "imageArray" : images,
                 "imageUrl" : "http://img0.bdstatic.com/img/image/shouye/tangwei.jpg",
                 "title" : "测试的标题",
                 "titleUrl" : "http://sharesdk.cn",
@@ -132,7 +134,7 @@
                 "siteUrl" : "http://sharesdk.cn",
                 "type" : 1
             };
-
+			//alert(params);
             $sharesdk.showShareMenu(null, params, 100, 100, function (reqId, platform, state, shareInfo, error) {
 
                 alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
@@ -181,6 +183,14 @@
 
             });
         }
+        function loginSMSBtnClickHandler()
+        {
+        	$sharesdk.authorize($sharesdk.PlatformID.SMS, function (reqId, platform, data, state, error){
+
+                alert("state = " + state + "result" + data + "\n error = " + error);
+
+            });
+        }
 
     </script>
 </head> 
@@ -197,5 +207,6 @@
     <input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="获取好友列表" onclick="getFriendListBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="关注好友" onclick="addFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="短信登陆" onclick="loginSMSBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
 </body>
 </html>

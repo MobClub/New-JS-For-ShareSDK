@@ -49,11 +49,6 @@
     -->
 
     <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false, -->
-	<!-- 1、ShareByWebApi是否使用新街口，true是使用新浪API接口分享，false为新浪H5网页分享
-		 2、用户分享到微博的文本内容，必须做URLencode，内容不超过140个汉字，文本中不能包含“#话题词#”，同时文本中必须包含至少一个第三方分享到微博的网页URL，
-		且该URL只能是该第三方（调用方）绑定域下的URL链接，绑定域在“我的应用 － 应用信息 － 基本应用信息编辑 － 安全域名”里设置。-->
-	<!--在ShareByAppClient为false，ShareByWebApi = "false"时，分享会调用Web页面分享{调用web分享，需集成res资源文件，以及libs下的so库}，
-		在ShareByAppClient为false，ShareByWebApi = "true"时，会走API方式分享-->
     <SinaWeibo
         Id="1"
         SortId="1"
@@ -391,6 +386,11 @@
 		ClientID="1089867596"
 		AppSecret="y9ym6rrjjijtkt23qtsc"
 		ShareByAppClient = "true"
+		Enable="true"/>
+	
+	<Telegram
+		Id="47"
+		SortId="47"
 		Enable="true"/>
 	
 </DevInfor>
