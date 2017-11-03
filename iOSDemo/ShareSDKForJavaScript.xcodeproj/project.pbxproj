@@ -46,7 +46,6 @@
 		443837951ED804DD00A43603 /* LineSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4438374C1ED804DD00A43603 /* LineSDK.framework */; };
 		443837961ED804DD00A43603 /* MPShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4438374E1ED804DD00A43603 /* MPShareSDK.framework */; };
 		443837971ED804DD00A43603 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443837501ED804DD00A43603 /* TencentOpenAPI.framework */; };
-		443837981ED804DD00A43603 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 443837511ED804DD00A43603 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		443837991ED804DD00A43603 /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 443837531ED804DD00A43603 /* RennSDK.bundle */; };
 		4438379A1ED804DD00A43603 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443837541ED804DD00A43603 /* RennSDK.framework */; };
 		4438379D1ED804DD00A43603 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 443837641ED804DD00A43603 /* libWeChatSDK.a */; };
@@ -571,7 +570,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				443837981ED804DD00A43603 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				443837991ED804DD00A43603 /* RennSDK.bundle in Resources */,
 				4438379E1ED804DD00A43603 /* README.txt in Resources */,
 				DE9902511BECAB2F00F3AD45 /* Sample.html in Resources */,

@@ -421,8 +421,8 @@ static UIView *_refView = nil;
 #endif
                              
 #ifdef IMPORT_ALIPAY_LIB
-                         case SSDKPlatformTypeAliPaySocial:
-                             [ShareSDKConnector connectAliPaySocial:[APOpenAPI class]];
+                         case SSDKPlatformTypeAliSocial:
+                             [ShareSDKConnector connectAliSocial:[APOpenAPI class]];
                              break;
 #endif
                              
