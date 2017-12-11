@@ -44,7 +44,7 @@
 /**
  新浪微博应用内分享 指定使用api进行分享 v4.0.1
  */
-- (void)SSDKEnableSinaWeiboAPIShare;
+- (void)SSDKEnableSinaWeiboAPIShare __deprecated_msg("discard form v4.0.5");
 
 
 /**
@@ -103,8 +103,8 @@
  @param latitude  纬度
  @param longitude 经度
  @param objectID  对象ID，标识系统内内容唯一性，应传入系统中分享内容的唯一标识，没有时可以传入nil
- @param isShareToStory 是否分享到故事 (仅支持视频和图片通过客户端分享)
- @param type      分享类型，仅支持Text、Image、WebPage、Video类型，Video只支持客户端分享
+ @param isShareToStory 是否分享到故事
+ @param type      分享类型，仅支持Text、Image、WebPage 类型
  设置 SSDKEnableSinaWeiboAPIShare 使用API进行分享 但text中需要附 安全域 安全域在新浪微博开放平台设置
  @param dataDictionary 数据存储字典 如果传入nil将新建
  */
