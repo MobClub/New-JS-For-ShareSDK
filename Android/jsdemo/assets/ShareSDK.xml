@@ -49,6 +49,7 @@
     -->
 
     <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false, -->
+
     <SinaWeibo
         Id="1"
         SortId="1"
@@ -69,19 +70,18 @@
     <QZone
         Id="3"
         SortId="3"
-        AppId="100371282"
-        AppKey="aed9b0303e3ed1e27bae87c33761161d"
-		BypassApproval="true"
+		AppId="100371282"
+		AppKey="aed9b0303e3ed1e27bae87c33761161d"
+		BypassApproval="false"
         Enable="true" />
     
     <!-- 
     	Wechat微信和WechatMoments微信朋友圈的appid是一样的；
     
-                       注意：开发者不能用我们这两个平台的appid,否则分享不了
-    
-       	  微信测试的时候，微信测试需要先签名打包出apk,
+        注意：开发者不能用我们这两个平台的appid,否则分享不了
+       	微信测试的时候，微信测试需要先签名打包出apk,
 		sample测试微信，要先签名打包，keystore在sample项目中，密码123456
-		
+
 		BypassApproval是绕过审核的标记，设置为true后AppId将被忽略，故不经过
 		审核的应用也可以执行分享，但是仅限于分享文字和图片，不能分享其他类型，
 		默认值为false。此外，微信收藏不支持此字段。wx4868b35061f87885
@@ -94,7 +94,9 @@
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
 		UserName="gh_afb25ac019c9"
 		Path="pages/index/index.html?id=1"
-        BypassApproval="true"
+        BypassApproval="false"
+		WithShareTicket = "true"
+		MiniprogramType = "0"
         Enable="true" />
     
     <WechatMoments
@@ -113,21 +115,23 @@
         Enable="true" />
     
 	<!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
+
 	<QQ
         Id="7"
         SortId="7"
         AppId="100371282"
         AppKey="aed9b0303e3ed1e27bae87c33761161d"
-        ShareByAppClient ="true"
-		BypassApproval = "false"
+		BypassApproval="false"
+        ShareByAppClient="true"
         Enable="true" />
-    
+
+
     <Facebook
         Id="8"
         SortId="8"
-        ConsumerKey="107704292745179"
-        ConsumerSecret="38053202e1a5fe26c80c753071f0b573"
-        RedirectUrl="fbconnect://success"
+		ConsumerKey="1412473428822331"
+		ConsumerSecret="a42f4f3f867dc947b9ed6020c2e93558"
+		RedirectUrl="https://mob.com"
 		ShareByAppClient="true"
 		Enable="true" />
 
@@ -200,16 +204,17 @@
 		ConsumerSecret="d05bf86993836004"
 		ShareByAppClient="true"
 		Enable="true" />
-    
+
+	<!---->
     <LinkedIn
     	Id="20"
         SortId="20"
         ApiKey="ejo5ibkye3vo"
-        SecretKey="cC7B2jpxITqPLZ5M" 
-        RedirectUrl="http://sharesdk.cn"
-		ShareByAppClient="false"
+        SecretKey="cC7B2jpxITqPLZ5M"
+		RedirectUrl="http://sharesdk.cn"
+		ShareByAppClient="true"
         Enable="true" />
-    
+
      <GooglePlus
     	Id="21"
         SortId="21"
@@ -261,7 +266,8 @@
         SortId="27"
         ApplicationId="3921561"
         Enable="true" />
-        
+
+	<!---->
     <Instagram 
     	Id="28"
         SortId="28"
@@ -351,7 +357,9 @@
         SortId="39"
         AppId="107704292745179"
         Enable="true" />
-    
+
+	<!--支付SDK的key：2017073107971452-->
+	<!--ShareSDK的key：2015072400185895-->
      <Alipay
         Id="50"
         SortId="50"  
@@ -387,7 +395,15 @@
 		AppSecret="y9ym6rrjjijtkt23qtsc"
 		ShareByAppClient = "true"
 		Enable="true"/>
-	
+
+	<Meipai
+		Id="54"
+		SortId="54"
+		ClientID="1089867596"
+		AppSecret="y9ym6rrjjijtkt23qtsc"
+		ShareByAppClient = "true"
+		Enable="true"/>
+
 	<Telegram
 		Id="47"
 		SortId="47"
