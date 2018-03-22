@@ -392,6 +392,8 @@ function ShareSDK()
         App : 7,
         File : 8,
         Emoji : 9
+		MiniProgram : 11
+		OpenMiniProgram : 12
     };
 
     /**
