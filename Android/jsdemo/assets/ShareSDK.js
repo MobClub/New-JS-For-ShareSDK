@@ -391,8 +391,8 @@ function ShareSDK()
         Video : 6,
         App : 7,
         File : 8,
-        Emoji : 9
-		MiniProgram : 11
+        Emoji : 9,
+		MiniProgram : 11,
 		OpenMiniProgram : 12
     };
 
