@@ -289,6 +289,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
 		Platform platform = ShareSDK.getPlatform(platformName);
+		if(platform == null){
+			new Throwable("Platform object is null or is invalid").printStackTrace();
+			return;
+		}
 		JSPlatformActionListener pa = new JSPlatformActionListener();
 		pa.setCallback(this);
 		pa.setSeqId(seqId);
@@ -308,6 +312,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
 		Platform platform = ShareSDK.getPlatform( platformName);
+		if(platform == null){
+			new Throwable("Platform object is null or is invalid").printStackTrace();
+			return;
+		}
 		platform.removeAccount(true);
 	}
 	
@@ -320,6 +328,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
 		Platform platform = ShareSDK.getPlatform( platformName);
+		if(platform == null){
+			new Throwable("Platform object is null or is invalid").printStackTrace();
+			return false;
+		}
 		return platform.isAuthValid();
 	}
 	
@@ -332,6 +344,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
 		Platform platform = ShareSDK.getPlatform( platformName);
+		if(platform == null){
+			new Throwable("Platform object is null or is invalid").printStackTrace();
+			return false;
+		}
 		return platform.isClientValid();
 	}
 	
@@ -347,6 +363,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
 		Platform platform = ShareSDK.getPlatform( platformName);
+		if(platform == null){
+			new Throwable("Platform object is null or is invalid").printStackTrace();
+			return;
+		}
 		JSPlatformActionListener pa = new JSPlatformActionListener();
 		pa.setCallback(this);
 		pa.setSeqId(seqId);
@@ -363,6 +383,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		int platformId = (Integer) params.get("platform");
 		String platformName = ShareSDK.platformIdToName(platformId);
 		Platform platform = ShareSDK.getPlatform(platformName);
+		if(platform == null){
+			new Throwable("Platform object is null or is invalid").printStackTrace();
+			return null;
+		}
 		if(platform.isClientValid()){
 			HashMap<String, Object> platformDbMap = new HashMap<String, Object>();
 			PlatformDb db = platform.getDb();
@@ -405,6 +429,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		for (Integer platformId : platforms) {
 			String platformName = ShareSDK.platformIdToName(platformId.intValue());
 			Platform platform = ShareSDK.getPlatform(platformName);
+			if(platform == null){
+				new Throwable("Platform object is null or is invalid").printStackTrace();
+				return;
+			}
 			JSPlatformActionListener pa = new JSPlatformActionListener();
 			pa.setCallback(this);
 			pa.setSeqId(seqId);
@@ -493,6 +521,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		String account = (String) params.get("account");
 		String platformName = ShareSDK.platformIdToName(platformId);
 		Platform platform = ShareSDK.getPlatform(platformName);
+		if(platform == null){
+			new Throwable("Platform object is null or is invalid").printStackTrace();
+			return;
+		}
 		JSPlatformActionListener pa = new JSPlatformActionListener();
 		pa.setCallback(this);
 		pa.setSeqId(seqId);
@@ -518,6 +550,10 @@ public class ShareSDKUtils extends WebViewClient implements Callback {
 		jsLog("friendName = " + friendName);
 		String platformName = ShareSDK.platformIdToName(platformId);
 		Platform platform = ShareSDK.getPlatform( platformName);
+		if(platform == null){
+			new Throwable("Platform object is null or is invalid").printStackTrace();
+			return;
+		}
 		JSPlatformActionListener pa = new JSPlatformActionListener();
 		pa.setCallback(this);
 		pa.setSeqId(seqId);

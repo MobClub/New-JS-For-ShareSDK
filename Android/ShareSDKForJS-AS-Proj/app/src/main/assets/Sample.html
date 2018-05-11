@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShareSDK for JS Sample</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <script language="javascript" type="text/javascript" src="ShareSDK.js"></script>
+    <script language="javascript" type="text/javascript">
+        function init()
+        {          
+        	//android的平台配置信息跟ShareSDK.xml一致；
+            var sinaConf = 
+            {
+            "Id" : "1",
+            "SortId" : "1",
+            "AppKey" : "568898243",
+            "AppSecret" : "38a4f8204cc784f81f9f0daaf31e02e3",
+            "RedirectUrl" : "http://www.sharesdk.cn",
+            "ShareByAppClient" : "false",
+            "Enable" : "true"
+            };
+        	//platformConfig平台配置信息可为null，此时用ShareSDK.xml
+			var platformConfig = {}; 
+			platformConfig[$sharesdk.PlatformID.SinaWeibo] = sinaConf;
+            $sharesdk.initSDKAndSetPlatfromConfig("moba6b6c6d6", "b89d2427a3bc7ad1aea1e1e8c1d36bf3", platformConfig);
+            alert("Init ShareSDK");
+        }
+
+        function authBtnClickHandler()
+        {
+            $sharesdk.authorize($sharesdk.PlatformID.QQ, function (reqId, platform, state, data, error){
+
+                alert("state = " + state + "result" + data + "\n error = " + error);
+
+            });
+        }
+
+        function isAuthValidBtnClickHandler()
+        {
+        	$sharesdk.isAuthorizedValid($sharesdk.PlatformID.QQ, function (reqId, platform, hasAuth) {
+
+                alert("hasAuth = " + hasAuth);
+
+            });
+        }
+        
+        function cancelAuthBtnClickHandler()
+        {
+        	 $sharesdk.cancelAuthorize($sharesdk.PlatformID.SinaWeibo);
+        }
+
+        function isClientValidBtnClickHandler()
+        {
+            $sharesdk.isClientValid($sharesdk.PlatformID.WeChatMoments, function (reqId, platform, isClientValid) {
+            	
+                alert("isClientValid = " + isClientValid);
+                
+            });
+        }
+
+        function userInfoBtnClickHandler()
+        {
+            $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (reqId, platform, state, user, error) {
+
+                alert("state = " + state + "\n user = " + user + "\n error = " + error);
+
+            });
+        }
+        
+        function authInfoBtnClickHandler()
+        {
+            $sharesdk.getAuthInfo($sharesdk.PlatformID.QQ, function (reqId, platform, authInfo) {
+
+                alert("authInfo = " + authInfo);
+
+            });
+        }
+
+        function shareContentClickHandler()
+        {
+            var params = {
+                "text" : "测试的文字",
+                "imageUrl" : "http://img0.bdstatic.com/img/image/shouye/tangwei.jpg",
+                "title" : "测试的标题",
+                "titleUrl" : "http://sharesdk.cn",
+                "description" : "测试的描述",
+                "site" : "ShareSDK",
+                "siteUrl" : "http://sharesdk.cn",
+                "type" : $sharesdk.ContentType.Text
+            };
+            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (reqId, platform, state, shareInfo, error) {
+
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+
+            });
+        }
+
+        function oneKeyShareContentClickHandler()
+        {
+            var params = {
+                "text" : "测试的文字",
+                "imageUrl" : "http://img0.bdstatic.com/img/image/shouye/tangwei.jpg",
+                "title" : "测试的标题",
+                "titleUrl" : "http://sharesdk.cn",
+                "description" : "测试的描述",
+                "site" : "ShareSDK",
+                "siteUrl" : "http://sharesdk.cn",
+                "type" : 1
+            };
+			
+            var platforms = [
+            	$sharesdk.PlatformID.SinaWeibo,
+            	$sharesdk.PlatformID.TencentWeibo
+            ];
+            
+            $sharesdk.oneKeyShareContent(platforms, params, function (reqId, platform, state, shareInfo, error) {
+
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+
+            });
+        }
+
+        function showShareMenuClickHandler()
+        {
+        	var images = new Array("/sdcard/test.jpg","http://f1.webshare.mob.com/dimgs/1c950a7b02087bf41bc56f07f7d3572c11dfcf36.jpg","/sdcard/test.jpg");
+            var params = {
+                "text" : "测试的文字",
+                "imageArray" : images,
+                "imageUrl" : "http://img0.bdstatic.com/img/image/shouye/tangwei.jpg",
+                "title" : "测试的标题",
+                "titleUrl" : "http://sharesdk.cn",
+                "description" : "测试的描述",
+                "site" : "ShareSDK",
+                "siteUrl" : "http://sharesdk.cn",
+                "type" : 1
+            };
+			//alert(params);
+            $sharesdk.showShareMenu(null, params, 100, 100, function (reqId, platform, state, shareInfo, error) {
+
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+
+            });
+        }
+
+        function showShareViewClickHandler()
+        {
+            var params = {
+                "text" : "测试的文字",
+                "imageUrl" : "http://img0.bdstatic.com/img/image/shouye/tangwei.jpg",
+                "title" : "测试的标题",
+                "titleUrl" : "http://sharesdk.cn",
+                "description" : "测试的描述",
+                "site" : "ShareSDK",
+                "siteUrl" : "http://sharesdk.cn",
+                "type" : 1
+            };
+
+            $sharesdk.showShareView($sharesdk.PlatformID.SinaWeibo, params, function (reqId, platform, state, shareInfo, error) {
+
+                alert("state = " + state + "\n shareInfo = " + shareInfo + "\n error = " + error);
+
+            });
+        }
+        
+        function getFriendListBtnClickHandler()
+        {
+        	var page = 1;
+        	var count = 10;
+        	var account = "沂谋大爱蓝军";
+            $sharesdk.getFriendList($sharesdk.PlatformID.SinaWeibo, page, count, account, function (reqId, platform, state, friendList, error) {
+
+                alert("state = " + state + "\n friendList = " + friendList + "\n error = " + error);
+
+            });
+        }
+        
+        function addFriendBtnClickHandler()
+        {	//测试的一个账号
+        	var account = "蜜思Louisette";
+            $sharesdk.addFriend($sharesdk.PlatformID.SinaWeibo, account, function (reqId, platform, state, error) {
+
+                alert("state = " + state +  "\n error = " + error);
+
+            });
+        }
+        function loginSMSBtnClickHandler()
+        {
+        	$sharesdk.authorize($sharesdk.PlatformID.SMS, function (reqId, platform, data, state, error){
+
+                alert("state = " + state + "result" + data + "\n error = " + error);
+
+            });
+        }
+
+    </script>
+</head> 
+<body onload="init()" style="text-align: center">
+    <br/><br/>
+    <input type="button" value="授权" onclick="authBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="是否授权" onclick="isAuthValidBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="取消授权" onclick="cancelAuthBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="是否安装客户端" onclick="isClientValidBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="获取用户信息" onclick="userInfoBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="分享内容" onclick="shareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="一键分享内容" onclick="oneKeyShareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="显示分享菜单" onclick="showShareMenuClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="获取好友列表" onclick="getFriendListBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="关注好友" onclick="addFriendBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="短信登陆" onclick="loginSMSBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+</body>
+</html>
