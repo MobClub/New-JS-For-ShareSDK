@@ -135,6 +135,10 @@
 		<key>ChannelID</key>
 		<string>1502330683</string>
 	</dict>
+	<key>MOBAppKey</key>
+	<string>iosv1101</string>
+	<key>MOBAppSecret</key>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -163,9 +167,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>MOBAppKey</key>
-	<string>iosv1101</string>
-	<key>MOBAppSecret</key>
-	<string></string>
 </dict>
 </plist>

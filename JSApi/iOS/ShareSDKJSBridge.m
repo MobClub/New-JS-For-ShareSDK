@@ -26,7 +26,6 @@
 #define IMPORT_WECHAT_LIB                   //导入微信库，如果不需要微信分享可以注释此行
 #define IMPORT_ALIPAY_LIB                   //导入支付宝分享库，如果不需要易信分享可以注释此行
 #define IMPORT_KAKAO_LIB                    //导入Kakao库，如果不需要易信分享可以注释此行
-#define IMPORT_MESSENGER_LIB                //导入Facebook Messenger库，如果不需要Facebook Messenger分享可以注释此行
 #define IMPORT_DINGTALK_LIB                 //导入钉钉（Ding Talk）库，如果不需要钉钉（Ding Talk）分享可以注释此行
 #define IMPORT_MEIPAI_LIB                   //导入美拍库，如果不需要美拍分享可以注释此行
 #define IMPORT_LINE_LIB                     //导入line，如果不需要line授权SDK可以注释此行
@@ -56,10 +55,6 @@
 
 #ifdef IMPORT_KAKAO_LIB
 #import <KakaoOpenSDK/KakaoOpenSDK.h>
-#endif
-
-#ifdef IMPORT_MESSENGER_LIB
-#import <FBSDKMessengerShareKit/FBSDKMessengerSharer.h>
 #endif
 
 #ifdef IMPORT_DINGTALK_LIB
@@ -153,10 +148,6 @@ static UIView *_refView = nil;
         
 #ifdef IMPORT_KAKAO_LIB
         [KOSession class];
-#endif
-        
-#ifdef IMPORT_MESSENGER_LIB
-        [FBSDKMessengerSharer class];
 #endif
         
 #ifdef IMPORT_DINGTALK_LIB
@@ -432,12 +423,6 @@ static UIView *_refView = nil;
                              break;
 #endif
                              
-#ifdef IMPORT_MESSENGER_LIB
-                         case SSDKPlatformTypeFacebookMessenger:
-                             [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-                             break;
-#endif
-                             
 #ifdef IMPORT_DINGTALK_LIB
                          case SSDKPlatformTypeDingTalk:
                              [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
@@ -553,11 +538,7 @@ static UIView *_refView = nil;
     #ifdef IMPORT_KAKAO_LIB
         [ShareSDKConnector connectKaKao:[KOSession class]];
     #endif
-        
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-    #endif
-        
+    
     #ifdef IMPORT_DINGTALK_LIB
         [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
     #endif
@@ -732,10 +713,6 @@ static UIView *_refView = nil;
         [ShareSDKConnector connectKaKao:[KOSession class]];
     #endif
         
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-    #endif
-        
     #ifdef IMPORT_DINGTALK_LIB
         [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
     #endif
@@ -823,10 +800,6 @@ static UIView *_refView = nil;
         
     #ifdef IMPORT_KAKAO_LIB
         [ShareSDKConnector connectKaKao:[KOSession class]];
-    #endif
-        
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
     #endif
         
     #ifdef IMPORT_DINGTALK_LIB
@@ -1060,10 +1033,6 @@ static UIView *_refView = nil;
         [ShareSDKConnector connectKaKao:[KOSession class]];
     #endif
         
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-    #endif
-        
     #ifdef IMPORT_DINGTALK_LIB
         [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
     #endif
@@ -1166,10 +1135,6 @@ static UIView *_refView = nil;
         [ShareSDKConnector connectKaKao:[KOSession class]];
     #endif
         
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-    #endif
-        
     #ifdef IMPORT_DINGTALK_LIB
         [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
     #endif
@@ -1235,50 +1200,56 @@ static UIView *_refView = nil;
     {
         callback = [params objectForKey:@"callback"];
     }
-
+    
+    NSDictionary *shareParams = [ShareSDK getShareParamsWithContentName:contentName customFields:customFields];
+    
     [ShareSDK showShareActionSheet:_refView
-                             items:types
-                       contentName:contentName
-                      customFields:customFields
-               onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-                   //返回
-                   NSMutableDictionary *responseDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                        [NSNumber numberWithInteger:[seqId integerValue]],
-                                                        @"seqId",
-                                                        showShareMenu,
-                                                        @"method",
-                                                        [NSNumber numberWithInteger:state],
-                                                        @"state",
-                                                        [NSNumber numberWithInteger:platformType],
-                                                        @"platform",
-                                                        [NSNumber numberWithBool:end],
-                                                        @"end",
-                                                        callback,
-                                                        @"callback",
-                                                        nil];
-                   if (error)
-                   {
-                       [responseDict setObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                [NSNumber numberWithInteger:[error code]],
-                                                @"error_code",
-                                                [error userInfo],
-                                                @"error_msg",
-                                                nil]
-                                        forKey:@"error"];
-                   }
-                   
-                   if ([contentEntity rawData])
-                   {
-                       [responseDict setObject:[contentEntity rawData] forKey:@"data"];
-                   }
-                   
-                   [self resultWithData:responseDict webView:webView];
-                   
-                   if (_refView)
-                   {
-                       [_refView removeFromSuperview];
-                   }
-               }];
+                       customItems:types
+                       shareParams:shareParams.mutableCopy
+                sheetConfiguration:nil
+                    onStateChanged:^(SSDKResponseState state,
+                                     SSDKPlatformType platformType,
+                                     NSDictionary *userData,
+                                     SSDKContentEntity *contentEntity,
+                                     NSError *error, BOOL end) {
+        //返回
+        NSMutableDictionary *responseDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                             [NSNumber numberWithInteger:[seqId integerValue]],
+                                             @"seqId",
+                                             showShareMenu,
+                                             @"method",
+                                             [NSNumber numberWithInteger:state],
+                                             @"state",
+                                             [NSNumber numberWithInteger:platformType],
+                                             @"platform",
+                                             [NSNumber numberWithBool:end],
+                                             @"end",
+                                             callback,
+                                             @"callback",
+                                             nil];
+        if (error)
+        {
+            [responseDict setObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     [NSNumber numberWithInteger:[error code]],
+                                     @"error_code",
+                                     [error userInfo],
+                                     @"error_msg",
+                                     nil]
+                             forKey:@"error"];
+        }
+        
+        if ([contentEntity rawData])
+        {
+            [responseDict setObject:[contentEntity rawData] forKey:@"data"];
+        }
+        
+        [self resultWithData:responseDict webView:webView];
+        
+        if (_refView)
+        {
+            [_refView removeFromSuperview];
+        }
+    }];
 }
 
 - (void)shareUsingShareViewWithSeqId:(NSString *)seqId
@@ -1311,10 +1282,6 @@ static UIView *_refView = nil;
         
     #ifdef IMPORT_KAKAO_LIB
         [ShareSDKConnector connectKaKao:[KOSession class]];
-    #endif
-        
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
     #endif
         
     #ifdef IMPORT_DINGTALK_LIB
@@ -1355,46 +1322,51 @@ static UIView *_refView = nil;
         callback = [params objectForKey:@"callback"];
     }
     
+    NSDictionary *shareParams = [ShareSDK getShareParamsWithContentName:contentName customFields:customFields];
     [ShareSDK showShareEditor:type
-           otherPlatformTypes:nil
-                  contentName:contentName
-                 customFields:customFields
-          onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-              
-              //返回
-              NSMutableDictionary *responseDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                   [NSNumber numberWithInteger:[seqId integerValue]],
-                                                   @"seqId",
-                                                   showShareView,
-                                                   @"method",
-                                                   [NSNumber numberWithInteger:state],
-                                                   @"state",
-                                                   @(platformType),
-                                                   @"platform",
-                                                   [NSNumber numberWithBool:end],
-                                                   @"end",
-                                                   callback,
-                                                   @"callback",
-                                                   nil];
-              if (error)
-              {
-                  [responseDict setObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                           [NSNumber numberWithInteger:[error code]],
-                                           @"error_code",
-                                           [error userInfo],
-                                           @"error_msg",
-                                           nil]
-                                   forKey:@"error"];
-              }
-              
-              if ([contentEntity rawData])
-              {
-                  [responseDict setObject:[contentEntity rawData] forKey:@"data"];
-              }
-              
-              [self resultWithData:responseDict webView:webView];
-          }];
-    
+               otherPlatforms:nil
+                  shareParams:shareParams.mutableCopy
+          editorConfiguration:nil
+               onStateChanged:^(SSDKResponseState state,
+                                SSDKPlatformType platformType,
+                                NSDictionary *userData,
+                                SSDKContentEntity *contentEntity,
+                                NSError *error,
+                                BOOL end) {
+        
+        //返回
+        NSMutableDictionary *responseDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                             [NSNumber numberWithInteger:[seqId integerValue]],
+                                             @"seqId",
+                                             showShareView,
+                                             @"method",
+                                             [NSNumber numberWithInteger:state],
+                                             @"state",
+                                             @(platformType),
+                                             @"platform",
+                                             [NSNumber numberWithBool:end],
+                                             @"end",
+                                             callback,
+                                             @"callback",
+                                             nil];
+        if (error)
+        {
+            [responseDict setObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     [NSNumber numberWithInteger:[error code]],
+                                     @"error_code",
+                                     [error userInfo],
+                                     @"error_msg",
+                                     nil]
+                             forKey:@"error"];
+        }
+        
+        if ([contentEntity rawData])
+        {
+            [responseDict setObject:[contentEntity rawData] forKey:@"data"];
+        }
+        
+        [self resultWithData:responseDict webView:webView];
+    }];
 }
 
 - (void)shareWithSeqId:(NSString *)seqId
@@ -1427,10 +1399,6 @@ static UIView *_refView = nil;
         
     #ifdef IMPORT_KAKAO_LIB
         [ShareSDKConnector connectKaKao:[KOSession class]];
-    #endif
-        
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
     #endif
         
     #ifdef IMPORT_DINGTALK_LIB
@@ -1540,10 +1508,6 @@ static UIView *_refView = nil;
         [ShareSDKConnector connectKaKao:[KOSession class]];
     #endif
         
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-    #endif
-        
     #ifdef IMPORT_DINGTALK_LIB
         [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
     #endif
@@ -1644,11 +1608,7 @@ static UIView *_refView = nil;
     #ifdef IMPORT_KAKAO_LIB
         [ShareSDKConnector connectKaKao:[KOSession class]];
     #endif
-        
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-    #endif
-        
+
     #ifdef IMPORT_DINGTALK_LIB
         [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
     #endif
@@ -1782,10 +1742,6 @@ static UIView *_refView = nil;
         [ShareSDKConnector connectKaKao:[KOSession class]];
     #endif
         
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-    #endif
-        
     #ifdef IMPORT_DINGTALK_LIB
         [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
     #endif
@@ -1886,10 +1842,6 @@ static UIView *_refView = nil;
         
     #ifdef IMPORT_KAKAO_LIB
         [ShareSDKConnector connectKaKao:[KOSession class]];
-    #endif
-        
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
     #endif
         
     #ifdef IMPORT_DINGTALK_LIB
@@ -1997,11 +1949,7 @@ static UIView *_refView = nil;
     #ifdef IMPORT_KAKAO_LIB
         [ShareSDKConnector connectKaKao:[KOSession class]];
     #endif
-        
-    #ifdef IMPORT_MESSENGER_LIB
-        [ShareSDKConnector connectFacebookMessenger:[FBSDKMessengerSharer class]];
-    #endif
-        
+    
     #ifdef IMPORT_DINGTALK_LIB
         [ShareSDKConnector connectDingTalk:[DTOpenAPI class]];
     #endif
