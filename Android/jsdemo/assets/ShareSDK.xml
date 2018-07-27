@@ -60,7 +60,7 @@
         Enable="true" />
 
     <TencentWeibo
-        Id="2" 
+        Id="2"
         SortId="2"
         AppKey="801307650"
         AppSecret="ae36f4ee3946e1cbb98d6965b0b2ff5c"
@@ -86,17 +86,17 @@
 		审核的应用也可以执行分享，但是仅限于分享文字和图片，不能分享其他类型，
 		默认值为false。此外，微信收藏不支持此字段。wx4868b35061f87885
 	-->
-	<!--要分享微信小应用程序时用userName,path-->
+
     <Wechat
         Id="4"
         SortId="4"
-        AppId="wx4868b35061f87885"
-        AppSecret="64020361b8ec4c99936c0e3999a9f249"
-		UserName="gh_afb25ac019c9"
-		Path="pages/index/index.html?id=1"
+		AppId="wx4868b35061f87885"
+		AppSecret="64020361b8ec4c99936c0e3999a9f249"
+		UserName="gh_b0c6a9ca668a"
+		Path="pages/index/index?id=mob"
         BypassApproval="false"
 		WithShareTicket = "true"
-		MiniprogramType = "0"
+		MiniprogramType = "2"
         Enable="true" />
     
     <WechatMoments
@@ -104,7 +104,7 @@
         SortId="5"
         AppId="wx4868b35061f87885"
         AppSecret="64020361b8ec4c99936c0e3999a9f249"
-        BypassApproval="true"
+        BypassApproval="false"
         Enable="true" />
         
 	<WechatFavorite
@@ -126,20 +126,21 @@
         Enable="true" />
 
 
+
     <Facebook
         Id="8"
         SortId="8"
 		ConsumerKey="1412473428822331"
 		ConsumerSecret="a42f4f3f867dc947b9ed6020c2e93558"
 		RedirectUrl="https://mob.com"
-		ShareByAppClient="true"
+		ShareByAppClient="false"
 		Enable="true" />
 
     <Twitter
         Id="9"
         SortId="9"
-        ConsumerKey="LRBM0H75rWrU9gNHvlEAA2aOy"
-        ConsumerSecret="gbeWsZvA9ELJSdoBzJ5oLKX0TU09UOwrzdGfo9Tg7DjyGuMe8G"
+        ConsumerKey="viOnkeLpHBKs6KXV7MPpeGyzE"
+        ConsumerSecret="NJEglQUy2rqZ9Io9FcAU9p17omFqbORknUpRrCDOK46aAbIiey"
         CallbackUrl="http://mob.com"
         Enable="true" />
     
@@ -396,17 +397,16 @@
 		ShareByAppClient = "true"
 		Enable="true"/>
 
-	<Meipai
-		Id="54"
-		SortId="54"
-		ClientID="1089867596"
-		AppSecret="y9ym6rrjjijtkt23qtsc"
-		ShareByAppClient = "true"
-		Enable="true"/>
-
 	<Telegram
 		Id="47"
 		SortId="47"
 		Enable="true"/>
+
+	<Cmcc
+		Id="55"
+		SortId="55"
+		AppId="300011860247"
+		AppKey="2D464D8BFCE73A44B4F9DF95A2FDBE1C"
+		Eneble="true"/>
 	
 </DevInfor>

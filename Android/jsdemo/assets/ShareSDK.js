@@ -364,7 +364,8 @@ function ShareSDK()
     		Any : 999,				//Any Platform  
     		Dingding:52,			//钉钉
     		Youtube:53,				//YouTube
-    		Meipai:54 				//美拍
+    		Meipai:54, 				//美拍
+    		Cmcc : 55               //中国移动
     };
 
     /**
