@@ -365,6 +365,7 @@ function ShareSDK()
             YouTube:53,             //youtube
             MeiPai:54,              //美拍
 			Cmcc : 55,              //中国移动
+			Reddit : 56,			//Reddit
             KakaoPlatform : 995,    //Kakao Series
             EvernotePlatform : 996, //Evernote Series
     		WechatPlatform : 997,   //Wechat Series
