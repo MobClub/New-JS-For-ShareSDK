@@ -365,7 +365,8 @@ function ShareSDK()
     		Dingding:52,			//钉钉
     		Youtube:53,				//YouTube
     		Meipai:54, 				//美拍
-    		Cmcc : 55               //中国移动
+    		Cmcc : 55,              //中国移动
+			Reddit : 56				//Reddit
     };
 
     /**
