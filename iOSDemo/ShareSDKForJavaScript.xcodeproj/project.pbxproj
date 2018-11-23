@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B85BDF221A8047B00029EFA /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B85BDED21A8047B00029EFA /* AccountKitStrings.bundle */; };
+		0B85BDF321A8047B00029EFA /* AccountKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B85BDEE21A8047B00029EFA /* AccountKit.framework */; };
+		0B85BDF421A8047B00029EFA /* HTMLResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B85BDF021A8047B00029EFA /* HTMLResource.bundle */; };
+		0B85BDF521A8047B00029EFA /* EAccountSDKArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B85BDF121A8047B00029EFA /* EAccountSDKArchive.framework */; };
+		0B85BDFD21A806D700029EFA /* ShareSDKJSBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B85BDFB21A806D700029EFA /* ShareSDKJSBridge.m */; };
+		0B85BDFE21A806D700029EFA /* ShareSDK.js in Resources */ = {isa = PBXBuildFile; fileRef = 0B85BDFC21A806D700029EFA /* ShareSDK.js */; };
 		504A5ECA215C735200A8362F /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 504A5E72215C735100A8362F /* RennSDK.bundle */; };
 		504A5ECB215C735200A8362F /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504A5E73215C735100A8362F /* RennSDK.framework */; };
 		504A5ECC215C735200A8362F /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 504A5E75215C735100A8362F /* WeiboSDK.bundle */; };
@@ -72,7 +78,6 @@
 		504A5F08215C735200A8362F /* DouBanConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504A5EC6215C735200A8362F /* DouBanConnector.framework */; };
 		504A5F09215C735200A8362F /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504A5EC7215C735200A8362F /* ShareSDK.framework */; };
 		504A5F0A215C735200A8362F /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504A5EC9215C735200A8362F /* MOBFoundation.framework */; };
-		504A5F0C215C77C900A8362F /* MOBDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504A5F0B215C77C900A8362F /* MOBDebug.framework */; };
 		DE9902511BECAB2F00F3AD45 /* Sample.html in Resources */ = {isa = PBXBuildFile; fileRef = DE99024F1BECAB2F00F3AD45 /* Sample.html */; };
 		DEC9E6781BFDA71A007C3848 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDD3BB61BF9BA2A00575AF7 /* ImageIO.framework */; };
 		DEDD3BAF1BF9BA0D00575AF7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDD3BAE1BF9BA0D00575AF7 /* libicucore.dylib */; };
@@ -87,11 +92,16 @@
 		DEE33CF31BE7380300B1089C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE33CF11BE7380300B1089C /* Main.storyboard */; };
 		DEE33CF51BE7380300B1089C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEE33CF41BE7380300B1089C /* Assets.xcassets */; };
 		DEE33CF81BE7380300B1089C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE33CF61BE7380300B1089C /* LaunchScreen.storyboard */; };
-		DEF93ACB1C2BF6E600295FBA /* ShareSDKJSBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF93ABF1C2BF6E600295FBA /* ShareSDKJSBridge.m */; };
-		DEF93ACC1C2BF6E600295FBA /* ShareSDK.js in Resources */ = {isa = PBXBuildFile; fileRef = DEF93AC01C2BF6E600295FBA /* ShareSDK.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B85BDED21A8047B00029EFA /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AccountKitStrings.bundle; sourceTree = "<group>"; };
+		0B85BDEE21A8047B00029EFA /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
+		0B85BDF021A8047B00029EFA /* HTMLResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HTMLResource.bundle; sourceTree = "<group>"; };
+		0B85BDF121A8047B00029EFA /* EAccountSDKArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EAccountSDKArchive.framework; sourceTree = "<group>"; };
+		0B85BDFA21A806D700029EFA /* ShareSDKJSBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareSDKJSBridge.h; sourceTree = "<group>"; };
+		0B85BDFB21A806D700029EFA /* ShareSDKJSBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareSDKJSBridge.m; sourceTree = "<group>"; };
+		0B85BDFC21A806D700029EFA /* ShareSDK.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ShareSDK.js; sourceTree = "<group>"; };
 		504A5E72215C735100A8362F /* RennSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RennSDK.bundle; sourceTree = "<group>"; };
 		504A5E73215C735100A8362F /* RennSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RennSDK.framework; sourceTree = "<group>"; };
 		504A5E75215C735100A8362F /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
@@ -166,7 +176,6 @@
 		504A5EC6215C735200A8362F /* DouBanConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DouBanConnector.framework; sourceTree = "<group>"; };
 		504A5EC7215C735200A8362F /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		504A5EC9215C735200A8362F /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
-		504A5F0B215C77C900A8362F /* MOBDebug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBDebug.framework; sourceTree = "<group>"; };
 		DE99024F1BECAB2F00F3AD45 /* Sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Sample.html; sourceTree = "<group>"; };
 		DEDD3BAE1BF9BA0D00575AF7 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		DEDD3BB01BF9BA1600575AF7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -185,9 +194,6 @@
 		DEE33CF41BE7380300B1089C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DEE33CF71BE7380300B1089C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DEE33CF91BE7380300B1089C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEF93ABE1C2BF6E600295FBA /* ShareSDKJSBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareSDKJSBridge.h; sourceTree = "<group>"; };
-		DEF93ABF1C2BF6E600295FBA /* ShareSDKJSBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareSDKJSBridge.m; sourceTree = "<group>"; };
-		DEF93AC01C2BF6E600295FBA /* ShareSDK.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ShareSDK.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,8 +213,8 @@
 				504A5ED7215C735200A8362F /* KakaoCommon.framework in Frameworks */,
 				504A5EE8215C735200A8362F /* WhatsAppConnector.framework in Frameworks */,
 				DEC9E6781BFDA71A007C3848 /* ImageIO.framework in Frameworks */,
+				0B85BDF321A8047B00029EFA /* AccountKit.framework in Frameworks */,
 				504A5EFC215C735200A8362F /* FlickrConnector.framework in Frameworks */,
-				504A5F0C215C77C900A8362F /* MOBDebug.framework in Frameworks */,
 				504A5EEB215C735200A8362F /* CMCCConnector.framework in Frameworks */,
 				504A5EFF215C735200A8362F /* TwitterConnector.framework in Frameworks */,
 				504A5EE7215C735200A8362F /* FacebookMessengerConnector.framework in Frameworks */,
@@ -223,6 +229,7 @@
 				504A5EEC215C735200A8362F /* AliSocialConnector.framework in Frameworks */,
 				504A5ED2215C735200A8362F /* TYRZSDK.framework in Frameworks */,
 				504A5F05215C735200A8362F /* InstagramConnector.framework in Frameworks */,
+				0B85BDF521A8047B00029EFA /* EAccountSDKArchive.framework in Frameworks */,
 				504A5ECF215C735200A8362F /* libWeChatSDK.a in Frameworks */,
 				504A5F08215C735200A8362F /* DouBanConnector.framework in Frameworks */,
 				504A5EDC215C735200A8362F /* ShareSDKConnector.framework in Frameworks */,
@@ -266,6 +273,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B85BDEC21A8047B00029EFA /* FacebookAccountSDK */ = {
+			isa = PBXGroup;
+			children = (
+				0B85BDED21A8047B00029EFA /* AccountKitStrings.bundle */,
+				0B85BDEE21A8047B00029EFA /* AccountKit.framework */,
+			);
+			path = FacebookAccountSDK;
+			sourceTree = "<group>";
+		};
+		0B85BDEF21A8047B00029EFA /* ESurfingSDK */ = {
+			isa = PBXGroup;
+			children = (
+				0B85BDF021A8047B00029EFA /* HTMLResource.bundle */,
+				0B85BDF121A8047B00029EFA /* EAccountSDKArchive.framework */,
+			);
+			path = ESurfingSDK;
+			sourceTree = "<group>";
+		};
+		0B85BDF821A806D700029EFA /* JSApi */ = {
+			isa = PBXGroup;
+			children = (
+				0B85BDF921A806D700029EFA /* iOS */,
+				0B85BDFC21A806D700029EFA /* ShareSDK.js */,
+			);
+			name = JSApi;
+			path = ../../JSApi;
+			sourceTree = "<group>";
+		};
+		0B85BDF921A806D700029EFA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0B85BDFA21A806D700029EFA /* ShareSDKJSBridge.h */,
+				0B85BDFB21A806D700029EFA /* ShareSDKJSBridge.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		504A5E6D215C735100A8362F /* SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +342,8 @@
 		504A5E70215C735100A8362F /* PlatformSDK */ = {
 			isa = PBXGroup;
 			children = (
+				0B85BDEF21A8047B00029EFA /* ESurfingSDK */,
+				0B85BDEC21A8047B00029EFA /* FacebookAccountSDK */,
 				504A5E71215C735100A8362F /* RenRenSDK */,
 				504A5E74215C735100A8362F /* SinaWeiboSDK */,
 				504A5E79215C735100A8362F /* WeChatSDK */,
@@ -486,7 +532,6 @@
 		504A5EC8215C735200A8362F /* Required */ = {
 			isa = PBXGroup;
 			children = (
-				504A5F0B215C77C900A8362F /* MOBDebug.framework */,
 				504A5EC9215C735200A8362F /* MOBFoundation.framework */,
 			);
 			path = Required;
@@ -511,8 +556,8 @@
 		DEE33CE71BE7380300B1089C /* ShareSDKForJavaScript */ = {
 			isa = PBXGroup;
 			children = (
+				0B85BDF821A806D700029EFA /* JSApi */,
 				504A5E6D215C735100A8362F /* SDK */,
-				DEF93AAF1C2BF6E600295FBA /* JSApi */,
 				DE99024F1BECAB2F00F3AD45 /* Sample.html */,
 				DEE33CEB1BE7380300B1089C /* AppDelegate.h */,
 				DEE33CEC1BE7380300B1089C /* AppDelegate.m */,
@@ -540,25 +585,6 @@
 				DEE33CE91BE7380300B1089C /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DEF93AAF1C2BF6E600295FBA /* JSApi */ = {
-			isa = PBXGroup;
-			children = (
-				DEF93ABD1C2BF6E600295FBA /* iOS */,
-				DEF93AC01C2BF6E600295FBA /* ShareSDK.js */,
-			);
-			name = JSApi;
-			path = ../../JSApi;
-			sourceTree = "<group>";
-		};
-		DEF93ABD1C2BF6E600295FBA /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				DEF93ABE1C2BF6E600295FBA /* ShareSDKJSBridge.h */,
-				DEF93ABF1C2BF6E600295FBA /* ShareSDKJSBridge.m */,
-			);
-			path = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -621,7 +647,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9902511BECAB2F00F3AD45 /* Sample.html in Resources */,
+				0B85BDF221A8047B00029EFA /* AccountKitStrings.bundle in Resources */,
+				0B85BDF421A8047B00029EFA /* HTMLResource.bundle in Resources */,
 				504A5ECA215C735200A8362F /* RennSDK.bundle in Resources */,
+				0B85BDFE21A806D700029EFA /* ShareSDK.js in Resources */,
 				DEE33CF81BE7380300B1089C /* LaunchScreen.storyboard in Resources */,
 				504A5EE2215C735200A8362F /* ShareSDKConfigFile.bundle in Resources */,
 				DEE33CF51BE7380300B1089C /* Assets.xcassets in Resources */,
@@ -631,7 +660,6 @@
 				DEE33CF31BE7380300B1089C /* Main.storyboard in Resources */,
 				504A5ED1215C735200A8362F /* README.md in Resources */,
 				504A5ECE215C735200A8362F /* README.txt in Resources */,
-				DEF93ACC1C2BF6E600295FBA /* ShareSDK.js in Resources */,
 				504A5ED3215C735200A8362F /* Resource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,8 +671,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B85BDFD21A806D700029EFA /* ShareSDKJSBridge.m in Sources */,
 				DEE33CF01BE7380300B1089C /* ViewController.m in Sources */,
-				DEF93ACB1C2BF6E600295FBA /* ShareSDKJSBridge.m in Sources */,
 				DEE33CED1BE7380300B1089C /* AppDelegate.m in Sources */,
 				DEE33CEA1BE7380300B1089C /* main.m in Sources */,
 			);
@@ -708,7 +736,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -746,7 +774,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -788,7 +816,10 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/RenRenSDK",
 					"$(PROJECT_DIR)/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/SDK/ShareSDK/Support/PlatformSDK/CMCCSDK",
+					"$(PROJECT_DIR)/SDK/ShareSDK/Support/PlatformSDK/FacebookAccountSDK",
+					"$(PROJECT_DIR)/SDK/ShareSDK/Support/PlatformSDK/ESurfingSDK",
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ShareSDKForJavaScript/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -808,6 +839,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -845,7 +877,10 @@
 					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/RenRenSDK",
 					"$(PROJECT_DIR)/ShareSDK/Support/Required",
 					"$(PROJECT_DIR)/SDK/ShareSDK/Support/PlatformSDK/CMCCSDK",
+					"$(PROJECT_DIR)/SDK/ShareSDK/Support/PlatformSDK/FacebookAccountSDK",
+					"$(PROJECT_DIR)/SDK/ShareSDK/Support/PlatformSDK/ESurfingSDK",
 				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = ShareSDKForJavaScript/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -865,6 +900,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
