@@ -641,6 +641,11 @@ static UIView *_refView = nil;
     SSDKContentType type = SSDKContentTypeAuto;
     BOOL clientShare = NO;
     BOOL advancedShare = NO;
+
+    BOOL sina_linkCard = NO;
+    NSString *sina_cardTitle = nil;
+    NSString *sina_cardSummary = nil;
+
     NSMutableDictionary *para = [NSMutableDictionary dictionary];
     
     if (dict)
@@ -684,6 +689,22 @@ static UIView *_refView = nil;
         {
             type = [self convertJSShareTypeToIOSShareType:[[dict objectForKey:@"type"] unsignedIntegerValue]];
         }
+
+        if ([[dict objectForKey:@"sina_linkCard"] isKindOfClass:[NSNumber class]] && [[dict objectForKey:@"sina_linkCard"] unsignedIntegerValue] > 0)
+        {
+            sina_linkCard = YES;
+        }
+
+        if ([[dict objectForKey:@"sina_cardTitle"] isKindOfClass:[NSString class]])
+        {
+            sina_cardTitle = [dict objectForKey:@"sina_cardTitle"];
+        }
+
+        if ([[dict objectForKey:@"sina_cardSummary"] isKindOfClass:[NSString class]])
+        {
+            sina_cardSummary = [dict objectForKey:@"sina_cardSummary"];
+        }
+
     }
     
     [para SSDKSetupShareParamsByText:message
@@ -691,6 +712,20 @@ static UIView *_refView = nil;
                                  url:[NSURL URLWithString:url]
                                title:title
                                 type:type];
+
+    if (sina_linkCard == YES)
+    {
+      [para setObject:@(sina_linkCard) forKey:@"sina_linkCard"];
+      [para setObject:[MobSDK appKey] forKey:@"mob_appkey"];
+      if (sina_cardTitle != nil)
+      {
+        [para setObject:sina_cardTitle forKey:@"sina_cardTitle"];
+      }
+      if (sina_cardSummary != nil)
+      {
+        [para setObject:sina_cardSummary forKey:@"sina_cardSummary"];
+      }
+    }
 
     if (dict)
     {

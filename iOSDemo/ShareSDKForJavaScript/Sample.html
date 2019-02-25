@@ -199,6 +199,28 @@
             });
         }
 
+        function oneSinaLinkCardShareContentClickHandler()
+        {
+            var params = {
+                "text" : "测试的linkCard",
+                "imageUrl" : "http://www.mob.com/assets/images/ShareSDK_pic_1-09d293a6.png",
+                "title" : "",
+                "titleUrl" : "http://www.mob.com",
+                "sina_linkCard" : 1,
+                "sina_cardTitle" : "cardTitle",
+                "sina_cardSummary" : "cardSummary",
+                "type" : $sharesdk.ContentType.WebPage,
+            };
+
+            $sharesdk.shareContent($sharesdk.PlatformID.SinaWeibo, params, function (reqID, platform, state, shareInfo, error) {
+                alert("state = " + state);
+                alert("shareInfo");
+                showLog(shareInfo);
+                alert("error");
+                showLog(error);
+            });
+        }
+
         function showShareMenuClickHandler()
         {
             var params = {
@@ -364,5 +386,6 @@
     <input type="button" value="自定义配置文件分享" onclick="customShareWithConFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="使用配置文件＋分享菜单栏分享" onclick="showShareMenuWithConfigurationFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
     <input type="button" value="使用配置文件＋分享编辑页面分享" onclick="showShareViewWithConfigurationFileBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="新浪微博LinkCard卡片类型链接分享" onclick="oneSinaLinkCardShareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
 </body>
 </html>
