@@ -368,6 +368,7 @@ function ShareSDK()
 			Reddit : 56,			//Reddit
             ESurfing : 57,          //天翼
             FacebookAccount : 58,   //FacebookAccount
+            Douyin : 59,            //抖音
             KakaoPlatform : 995,    //Kakao Series
             EvernotePlatform : 996, //Evernote Series
     		WechatPlatform : 997,   //Wechat Series

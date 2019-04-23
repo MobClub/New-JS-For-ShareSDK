@@ -81,6 +81,12 @@
             var lineConf = {};
             platformConfig[$sharesdk.PlatformID.Line] = lineConf;
             
+            //抖音 授权 分享暂只支持图片
+            var douyinConf = {};
+            douyinConf["app_key"] = "aw9ivykfjvi4hpwo";
+            douyinConf["app_secret"] = "42b4caa6bda60bd49f05f06d0a4956e1";
+            platformConfig[$sharesdk.PlatformID.Douyin] = douyinConf;
+            
            //2、初始化ShareSDK
            //Share SDK4.0.0及以上版本 appkey 及 appSecret 在Info.plist 中设置
            //<key>MOBAppKey</key>

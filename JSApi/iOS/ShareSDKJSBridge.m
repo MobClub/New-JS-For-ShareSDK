@@ -463,7 +463,7 @@ static UIView *_refView = nil;
         callback = [params objectForKey:@"callback"];
     }
     
-    BOOL ret = [ShareSDK isClientInstalled:SSDKPlatformSubTypeWechatTimeline];
+    BOOL ret = [ShareSDK isClientInstalled:type];
     
     //返回
     NSDictionary *responseDict = [NSDictionary dictionaryWithObjectsAndKeys:
