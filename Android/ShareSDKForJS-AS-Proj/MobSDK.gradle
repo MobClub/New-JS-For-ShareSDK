@@ -306,6 +306,7 @@ MobSDK {
                 sortId 32
                 appId "1639219273"
                 appSecret "58faad55ffce8bf8f63b59fe6fb702ae"
+                callbackUri "https://www.mob.com/"
                 callbackscheme "lineauth"
                 enable true
             }
@@ -356,9 +357,9 @@ MobSDK {
             Telegram {
                 id 47
                 sortId 47
-                AppKey="782826033"
-                RedirectUrl="http://www.mob.com"
-                Enable="true"
+                appKey "782826033"
+                callbackUri "http://www.mob.com"
+                enable true
             }
 
 
@@ -411,10 +412,10 @@ MobSDK {
             }
 
             Reddit {
-                Id="56"
-                SortId="56"
-                AppKey="MExDxPuTCtFiRw"
-                RedirectUrl="http://www.sharesdk.cn"
+                id 56
+                sortId 56
+                appKey "MExDxPuTCtFiRw"
+                callbackUri "http://www.sharesdk.cn"
             }
 
             Telecom {
@@ -439,7 +440,9 @@ MobSDK {
 
             Douyin {
                 id 59
-                sortId 59
+                sortId 1
+                appKey "aw9ivykfjvi4hpwo"
+                appSecret "42b4caa6bda60bd49f05f06d0a4956e1"
                 enable true
             }
         }
