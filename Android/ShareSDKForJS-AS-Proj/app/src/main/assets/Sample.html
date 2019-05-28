@@ -62,7 +62,7 @@
         {
             $sharesdk.getUserInfo($sharesdk.PlatformID.SinaWeibo, function (reqId, platform, state, user, error) {
 
-                alert("state = " + state + "\n user = " + user + "\n error = " + error);
+                alert("state = " + state + "\n user = " + JSON.stringify(user) + "\n error = " + error);
 
             });
         }
