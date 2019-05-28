@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B45F5772277FD7D0008F97D /* ShareSDKHybrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B45F5762277FD7D0008F97D /* ShareSDKHybrid.m */; };
 		0B57A8C7226F0F7A006F1DEA /* libDouyinOpenSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B57A8C5226F0F7A006F1DEA /* libDouyinOpenSDK.a */; };
 		0B57A8C9226F0F87006F1DEA /* DouyinConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B57A8C8226F0F86006F1DEA /* DouyinConnector.framework */; };
 		0B85BDF221A8047B00029EFA /* AccountKitStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B85BDED21A8047B00029EFA /* AccountKitStrings.bundle */; };
@@ -97,6 +98,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B45F5752277FD7D0008F97D /* ShareSDKHybrid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareSDKHybrid.h; sourceTree = "<group>"; };
+		0B45F5762277FD7D0008F97D /* ShareSDKHybrid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareSDKHybrid.m; sourceTree = "<group>"; };
 		0B57A8C4226F0F7A006F1DEA /* DouyinOpenSDKApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DouyinOpenSDKApiObject.h; sourceTree = "<group>"; };
 		0B57A8C5226F0F7A006F1DEA /* libDouyinOpenSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDouyinOpenSDK.a; sourceTree = "<group>"; };
 		0B57A8C6226F0F7A006F1DEA /* DouyinOpenSDKApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DouyinOpenSDKApi.h; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 			children = (
 				0B85BDFA21A806D700029EFA /* ShareSDKJSBridge.h */,
 				0B85BDFB21A806D700029EFA /* ShareSDKJSBridge.m */,
+				0B45F5752277FD7D0008F97D /* ShareSDKHybrid.h */,
+				0B45F5762277FD7D0008F97D /* ShareSDKHybrid.m */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -692,6 +697,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B85BDFD21A806D700029EFA /* ShareSDKJSBridge.m in Sources */,
+				0B45F5772277FD7D0008F97D /* ShareSDKHybrid.m in Sources */,
 				DEE33CF01BE7380300B1089C /* ViewController.m in Sources */,
 				DEE33CED1BE7380300B1089C /* AppDelegate.m in Sources */,
 				DEE33CEA1BE7380300B1089C /* main.m in Sources */,

@@ -98,7 +98,7 @@
 
         function authBtnClickHandler()
         {
-            $sharesdk.authorize($sharesdk.PlatformID.WechatPlatform, function (reqID, platform, state, error) {
+            $sharesdk.authorize($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, state, error) {
                   alert("state = " + state);
                   alert("platform");
                   showLog(platform);
@@ -127,7 +127,7 @@
 
         function isClientValidBtnClickHandler()
         {
-            $sharesdk.isClientValid($sharesdk.PlatformID.WeChatTimeline, function (reqID, platform, isClientValid) {
+            $sharesdk.isClientValid($sharesdk.PlatformID.SinaWeibo, function (reqID, platform, isClientValid) {
                 alert("isClientValid = " + isClientValid);
                 alert("platform");
                 showLog(platform);
