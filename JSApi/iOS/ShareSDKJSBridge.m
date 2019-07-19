@@ -264,14 +264,14 @@ static UIView *_refView = nil;
  */
 - (void)openWithSeqId:(NSString *)seqId params:(NSDictionary *)params webView:(UIWebView *)webView
 {
-    NSMutableDictionary *config = nil;
+    NSMutableDictionary *config_tmp = nil;
     
     if ([[params objectForKey:@"platformConfig"] isKindOfClass:[NSDictionary class]])
     {
-        config = [params objectForKey:@"platformConfig"];
+        config_tmp = [[params objectForKey:@"platformConfig"] mutableCopy];
     }
     
-    NSArray *plat = [config allKeys];
+    NSArray *plat = [config_tmp allKeys];
     
     //保存成NSNumber类型
     NSMutableArray *activePlatforms = [NSMutableArray array];
@@ -286,6 +286,12 @@ static UIView *_refView = nil;
             [activePlatforms addObject:obj];
         }
     }];
+    
+    NSMutableDictionary *config = [NSMutableDictionary dictionary];
+    for (NSNumber *platNum in activePlatforms)
+    {
+        config[[NSString stringWithFormat:@"%@",platNum]] = [config_tmp[[NSString stringWithFormat:@"%@",platNum]] mutableCopy];
+    }
     
     [ShareSDK registPlatforms:^(SSDKRegister *platformsRegister) {
         NSMutableDictionary *dic = platformsRegister.platformsInfo;
