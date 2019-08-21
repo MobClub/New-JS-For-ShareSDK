@@ -141,6 +141,7 @@
 		<string>fbauth</string>
 		<string>douyinsharesdk</string>
 		<string>douyinopensdk</string>
+		<string>mqqopensdkminiapp</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
