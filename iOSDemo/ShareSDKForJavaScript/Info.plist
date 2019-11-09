@@ -84,6 +84,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<string></string>
 		<string>lineauth</string>
 		<string>line</string>
 		<string>youtube</string>

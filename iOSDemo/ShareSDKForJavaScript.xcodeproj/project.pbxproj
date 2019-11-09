@@ -104,6 +104,7 @@
 		0B57A8C5226F0F7A006F1DEA /* libDouyinOpenSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDouyinOpenSDK.a; sourceTree = "<group>"; };
 		0B57A8C6226F0F7A006F1DEA /* DouyinOpenSDKApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DouyinOpenSDKApi.h; sourceTree = "<group>"; };
 		0B57A8C8226F0F86006F1DEA /* DouyinConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DouyinConnector.framework; sourceTree = "<group>"; };
+		0B789DFE235ED624002FEDF3 /* ShareSDKForJavaScript.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareSDKForJavaScript.entitlements; sourceTree = "<group>"; };
 		0B85BDED21A8047B00029EFA /* AccountKitStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AccountKitStrings.bundle; sourceTree = "<group>"; };
 		0B85BDEE21A8047B00029EFA /* AccountKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AccountKit.framework; sourceTree = "<group>"; };
 		0B85BDF021A8047B00029EFA /* HTMLResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HTMLResource.bundle; sourceTree = "<group>"; };
@@ -581,6 +582,7 @@
 		DEE33CE71BE7380300B1089C /* ShareSDKForJavaScript */ = {
 			isa = PBXGroup;
 			children = (
+				0B789DFE235ED624002FEDF3 /* ShareSDKForJavaScript.entitlements */,
 				0B85BDF821A806D700029EFA /* JSApi */,
 				504A5E6D215C735100A8362F /* SDK */,
 				DE99024F1BECAB2F00F3AD45 /* Sample.html */,
@@ -643,7 +645,7 @@
 				TargetAttributes = {
 					DEE33CE41BE7380300B1089C = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = Q87QUX3533;
+						DevelopmentTeam = LW5266U92D;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -653,6 +655,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -812,9 +815,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ShareSDKForJavaScript/ShareSDKForJavaScript.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = Q87QUX3533;
+				DEVELOPMENT_TEAM = LW5266U92D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -865,7 +869,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mob.product.ShareSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = MobProvisioningProfiles;
+				PROVISIONING_PROFILE_SPECIFIER = ShareSDKDomainDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -874,6 +878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ShareSDKForJavaScript/ShareSDKForJavaScript.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = LW5266U92D;
