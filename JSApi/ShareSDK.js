@@ -369,6 +369,7 @@ function ShareSDK()
             ESurfing : 57,          //天翼
             FacebookAccount : 58,   //FacebookAccount
             Douyin : 59,            //抖音
+            Apple : 61,             //苹果
             KakaoPlatform : 995,    //Kakao Series
             EvernotePlatform : 996, //Evernote Series
     		WechatPlatform : 997,   //Wechat Series
@@ -865,7 +866,9 @@ function ShareSDK()
         };
 
         CallMethod(ShareSDKMethodName.CloseSSOWhenAuthorize, params);
-    };                                        
+    };
+    
+    
 };
                                                          
 var $sharesdk = new ShareSDK();

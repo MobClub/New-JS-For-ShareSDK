@@ -4,7 +4,7 @@
 **支持的 ShareSDK 版本**
 
 - iOS - v4.1.1
-- Android - v3.1.4
+- Android - v3.6.8
 
 **集成文档**
 

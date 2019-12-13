@@ -19,7 +19,7 @@
 #import <ShareSDKExtension/SSEFriendsPaging.h>
 
 #import <ShareSDKConfigFile/ShareSDK+XML.h>
-
+#import <objc/message.h>
 static NSString *const initSDKAndSetPlatfromConfig = @"initSDKAndSetPlatfromConfig";
 static NSString *const authorize = @"authorize";
 static NSString *const cancelAuthorize = @"cancelAuthorize";
@@ -70,6 +70,8 @@ static UIView *_refView = nil;
 @end
 
 @implementation ShareSDKJSBridge
+
+
 
 - (id)initWithWebView:(UIWebView *)webView
 {
@@ -1393,3 +1395,14 @@ static UIView *_refView = nil;
 
 
 @end
+
+__attribute__((constructor)) static void _SSDKJavaScriptiOSApplicationExcImp(){
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        SEL sel = sel_registerName("addChannelWithSdkName:channel:");
+        Method method = class_getClassMethod([MobSDK class],sel) ;
+        if (method && method_getImplementation(method) != _objc_msgForward) {
+        ((void (*)(id, SEL,id,id))objc_msgSend)([MobSDK class],sel,@"SHARESDK",@"3");
+        }
+    });
+}

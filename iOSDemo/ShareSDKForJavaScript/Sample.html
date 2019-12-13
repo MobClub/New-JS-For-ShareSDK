@@ -21,8 +21,8 @@
             
             //微信
             var weixinConf = {};
-            weixinConf["app_id"] = "wx4868b35061f87885";
-            weixinConf["app_secret"] = "64020361b8ec4c99936c0e3999a9f249";
+            weixinConf["app_id"] = "wx617c77c82218ea2c";
+            weixinConf["app_secret"] = "c7253e5289986cf4c4c74d1ccc185fb1";
             weixinConf["app_universalLink"] = "https://www.sandslee.com/";
             platformConfig[$sharesdk.PlatformID.WechatPlatform] = weixinConf;
 
@@ -169,7 +169,7 @@
                 "type" : $sharesdk.ContentType.Auto
             };
 
-            $sharesdk.shareContent($sharesdk.PlatformID.FacebookMessenger, params, function (reqID, platform, state, shareInfo, error) {
+            $sharesdk.shareContent($sharesdk.PlatformID.WechatPlatform, params, function (reqID, platform, state, shareInfo, error) {
                 alert("state = " + state);
                 alert("shareInfo");
                 showLog(shareInfo);

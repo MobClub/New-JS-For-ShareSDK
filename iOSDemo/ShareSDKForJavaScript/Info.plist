@@ -37,6 +37,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>mp1089867596</string>
@@ -48,7 +50,6 @@
 				<string>rm226427com.mob.demoShareSDK</string>
 				<string>pocketapp1234</string>
 				<string>QQ05FB8B52</string>
-				<string>wx4868b35061f87885</string>
 				<string>tencent100371282</string>
 				<string>fb107704292745179</string>
 				<string>wb568898243</string>
@@ -74,6 +75,14 @@
 				<string>aw9ivykfjvi4hpwo</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx617c77c82218ea2c</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -84,7 +93,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>line3rdp.$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-		<string></string>
+		<string>weixinULAPI</string>
 		<string>lineauth</string>
 		<string>line</string>
 		<string>youtube</string>
